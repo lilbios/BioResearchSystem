@@ -14,7 +14,7 @@ namespace bioResearchSystem.Context
         public BioResearchSystemDbContex CreateDbContext(string[] args)
         {
             var optionBuilder = new DbContextOptionsBuilder<BioResearchSystemDbContex>();
-            optionBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=eventodb;Trusted_Connection=True;MultipleActiveResultSets=true", 
+            optionBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=bioresearchsystemdb;Trusted_Connection=True;MultipleActiveResultSets=true", 
                 b => b.MigrationsAssembly(typeof(BioResearchSystemDbContexFactory).Assembly.GetName().Name));
             return new BioResearchSystemDbContex(optionBuilder.Options);
         }
