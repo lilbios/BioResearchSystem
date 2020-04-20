@@ -1,10 +1,10 @@
-﻿-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace bioResearchSystem.DAL.Repositories
 {
-    public class IRepositoryResearch
+    public interface IRepositoryResearch
     {
     }
 }

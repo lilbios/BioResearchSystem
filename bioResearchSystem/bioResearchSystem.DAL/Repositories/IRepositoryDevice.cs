@@ -4,7 +4,7 @@ using System.Text;
 
 namespace bioResearchSystem.DAL.Repositories
 {
-    public interface IRepositoryUser
+    public interface IRepositoryDevice
     {
     }
 }

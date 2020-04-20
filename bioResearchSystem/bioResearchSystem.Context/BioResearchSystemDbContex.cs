@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace bioResearchSystem.DAL.Repositories
+namespace bioResearchSystem.Context
 {
-    public interface IRepositoryUser
+    public class BioResearchSystemDbContex
     {
     }
 }
