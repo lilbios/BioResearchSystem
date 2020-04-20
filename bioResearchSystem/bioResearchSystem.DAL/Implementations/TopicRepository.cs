@@ -8,35 +8,35 @@ using System.Threading.Tasks;
 
 namespace bioResearchSystem.DAL.Implementations
 {
-    public class ExperimentRepository:IRepositoryExperiment
+    public class TopicRepository:IRepositoryTopic
     {
         private readonly BioResearchSystemDbContex dbContext;
-        public ExperimentRepository(BioResearchSystemDbContex _dbContext)
+        public TopicRepository(BioResearchSystemDbContex _dbContext)
         {
             dbContext = _dbContext;
         }
 
-        public Task Create(Experiment value)
+        public Task Create(Topic value)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Experiment> Get(int id)
+        public Task<Topic> Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<Experiment>> GetAll()
+        public Task<ICollection<Topic>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Task Remove(Experiment value)
+        public Task Remove(Topic value)
         {
             throw new NotImplementedException();
         }
 
-        public Task Update(Experiment value)
+        public Task Update(Topic value)
         {
             throw new NotImplementedException();
         }

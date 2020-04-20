@@ -1,10 +1,11 @@
-﻿using System;
+﻿using bioResearchSystem.DTO.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace bioResearchSystem.DAL.Repositories
 {
-    public interface IRepositoryDevice
+    public interface IRepositoryDevice:IRepository<Device>
     {
     }
 }
