@@ -6,6 +6,9 @@ using System.Text;
 
 namespace bioResearchSystem.Context
 {
+    /// <summary>
+    /// ???
+    /// </summary>
     public class BioResearchSystemDbContexFactory : IDesignTimeDbContextFactory<BioResearchSystemDbContex>
     {
         public BioResearchSystemDbContex CreateDbContext(string[] args)
