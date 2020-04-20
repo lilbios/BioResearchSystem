@@ -20,12 +20,13 @@ namespace bioResearchSystem.DTO.Entities
         public DateTime OpenedDate { get; set; }
         public DateTime ClosedDate { get; set; }
 
-        public ICollection<Experiment> Experiments { get; set; }
 
         public int UserId { get; set; }
         public User User { get; set; }
-
+ 
         public int ExperimendId { get; set; }
         public Experiment Experiment { get; set; }
+
+        public ICollection<Objective> Objectives { get; set; }
     }
 }

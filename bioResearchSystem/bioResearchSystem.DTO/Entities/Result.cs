@@ -2,10 +2,11 @@
 
 namespace bioResearchSystem.DTO.Entities
 {
-    public class Result:Entity
+    public class Result : Entity
     {
         [Required]
-        public string ExperimentResult { get; set; }
-        
+        public string OrignalResult { get; set; }
+        public int ExpetimentId { get; set; }
+        public Experiment Experiment  { get; set; }
     }
 }
