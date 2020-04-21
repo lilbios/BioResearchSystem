@@ -15,6 +15,26 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.API", "bi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bioResearchSystem.Context", "bioResearchSystem.Context\bioResearchSystem.Context.csproj", "{55D5256F-75CB-49F0-85EA-5AE6D7D2C5DB}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web", "..\web\", "{EE35860A-7F32-4489-BDEF-25BB9A1B041D}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60483"
+		Debug.AspNetCompiler.PhysicalPath = "..\web\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60483\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60483"
+		Release.AspNetCompiler.PhysicalPath = "..\web\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60483\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "60483"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +65,10 @@ Global
 		{55D5256F-75CB-49F0-85EA-5AE6D7D2C5DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55D5256F-75CB-49F0-85EA-5AE6D7D2C5DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55D5256F-75CB-49F0-85EA-5AE6D7D2C5DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE35860A-7F32-4489-BDEF-25BB9A1B041D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE35860A-7F32-4489-BDEF-25BB9A1B041D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE35860A-7F32-4489-BDEF-25BB9A1B041D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE35860A-7F32-4489-BDEF-25BB9A1B041D}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
