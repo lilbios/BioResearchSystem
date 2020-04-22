@@ -1,6 +1,7 @@
 ﻿using bioResearchSystem.Context;
 using bioResearchSystem.DAL.Repositories;
 using bioResearchSystem.DTO.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,29 +17,44 @@ namespace bioResearchSystem.DAL.Implementations
             dbContext = _dbContext;
         }
 
-        public Task Create(Research value)
+        public async Task Create(Research value)
         {
-            throw new NotImplementedException();
+            dbContext.Researches.Add(value);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task<Research> Get(int id)
+        public async Task<Research> Get(int id)
         {
-            throw new NotImplementedException();
+            var research = await dbContext.Researches
+                .Include(o => o.Objectives)
+                .Include(e => e.Experiment)
+                .FirstOrDefaultAsync(r => r.Id == id);
+            return research;
         }
 
-        public Task<ICollection<Research>> GetAll()
+        public async Task<ICollection<Research>> GetAll()
         {
-            throw new NotImplementedException();
+            var researches = await dbContext.Researches
+                .Include(o => o.Objectives)
+                .Include(e => e.Experiment)
+                .ToListAsync();
+            return researches;
         }
 
-        public Task Remove(Research value)
+        public async Task Remove(Research value)
         {
-            throw new NotImplementedException();
+            var research = await Get(value.Id);
+            if (research != null) {
+
+                dbContext.Researches.Remove(value);
+                await dbContext.SaveChangesAsync();
+            }
         }
 
-        public Task Update(Research value)
+        public async Task Update(Research value)
         {
-            throw new NotImplementedException();
+            dbContext.Entry(value).State = EntityState.Modified;
+            await dbContext.SaveChangesAsync();
         }
     }
 }

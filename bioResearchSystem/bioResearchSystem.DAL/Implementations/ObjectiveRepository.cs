@@ -1,6 +1,7 @@
 ﻿using bioResearchSystem.Context;
 using bioResearchSystem.DAL.Repositories;
 using bioResearchSystem.DTO.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace bioResearchSystem.DAL.Implementations
 {
-    public class ObjectiveRepository:IRepositoryObjective
+    public class ObjectiveRepository : IRepositoryObjective
     {
         private readonly BioResearchSystemDbContex dbContext;
         public ObjectiveRepository(BioResearchSystemDbContex _dbContext)
@@ -16,29 +17,42 @@ namespace bioResearchSystem.DAL.Implementations
             dbContext = _dbContext;
         }
 
-        public Task Create(Objective value)
+        public async Task Create(Objective value)
         {
-            throw new NotImplementedException();
+            dbContext.Objectives.Add(value);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task<Objective> Get(int id)
+        public async Task<Objective> Get(int id)
         {
-            throw new NotImplementedException();
+            var objective = await dbContext.Objectives
+                .Include(r => r.Research)
+                .FirstOrDefaultAsync(o => o.Id == id);
+            return objective;
         }
 
-        public Task<ICollection<Objective>> GetAll()
+        public async Task<ICollection<Objective>> GetAll()
         {
-            throw new NotImplementedException();
+            var objectives = await dbContext.Objectives
+                .Include(r => r.Research)
+                .ToListAsync();
+            return objectives;
         }
 
-        public Task Remove(Objective value)
+        public async Task Remove(Objective value)
         {
-            throw new NotImplementedException();
+            var objective = await Get(value.Id);
+            if (objective != null)
+            {
+                dbContext.Objectives.Remove(objective);
+                await dbContext.SaveChangesAsync();
+            }
         }
 
-        public Task Update(Objective value)
+        public async async Task Update(Objective value)
         {
-            throw new NotImplementedException();
+            dbContext.Entry(value).State = EntityState.Modified;
+            await dbContext.SaveChangesAsync();
         }
     }
 }

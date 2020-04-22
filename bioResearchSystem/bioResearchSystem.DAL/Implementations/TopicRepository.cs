@@ -1,6 +1,7 @@
 ﻿using bioResearchSystem.Context;
 using bioResearchSystem.DAL.Repositories;
 using bioResearchSystem.DTO.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace bioResearchSystem.DAL.Implementations
 {
-    public class TopicRepository:IRepositoryTopic
+    public class TopicRepository : IRepositoryTopic
     {
         private readonly BioResearchSystemDbContex dbContext;
         public TopicRepository(BioResearchSystemDbContex _dbContext)
@@ -16,29 +17,44 @@ namespace bioResearchSystem.DAL.Implementations
             dbContext = _dbContext;
         }
 
-        public Task Create(Topic value)
+        public async Task Create(Topic value)
         {
-            throw new NotImplementedException();
+
+            dbContext.Topics.Add(value);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task<Topic> Get(int id)
+        public async Task<Topic> Get(int id)
         {
-            throw new NotImplementedException();
+            var topic = await dbContext.Topics
+                .Include(r => r.Researches)
+                .FirstOrDefaultAsync(t => t.Id == id);
+            return topic;
         }
 
-        public Task<ICollection<Topic>> GetAll()
+        public async Task<ICollection<Topic>> GetAll()
         {
-            throw new NotImplementedException();
+            var topics = await dbContext.Topics
+                 .Include(r => r.Researches)
+                 .ToListAsync();
+            return topics;
         }
 
-        public Task Remove(Topic value)
+        public async Task Remove(Topic value)
         {
-            throw new NotImplementedException();
+            var topic = await Get(value.Id);
+            if (topic != null)
+            {
+
+                dbContext.Topics.Remove(topic);
+                await dbContext.SaveChangesAsync();
+            }
         }
 
-        public Task Update(Topic value)
+        public async Task Update(Topic value)
         {
-            throw new NotImplementedException();
+            dbContext.Entry(value).State = EntityState.Modified;
+            await dbContext.SaveChangesAsync();
         }
     }
 }

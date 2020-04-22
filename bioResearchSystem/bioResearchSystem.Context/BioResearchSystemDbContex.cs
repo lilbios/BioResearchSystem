@@ -14,6 +14,7 @@ namespace bioResearchSystem.Context
         public DbSet<Result> Results { get; set; }
         public DbSet<Objective> Objectives { get; set; }
         public DbSet<Device> Devices { get; set; }
+        public DbSet<Topic> Topics { get; set; }
 
         public BioResearchSystemDbContex(DbContextOptions<BioResearchSystemDbContex> options)
             :base(options)

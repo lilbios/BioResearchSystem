@@ -1,6 +1,7 @@
 ﻿using bioResearchSystem.Context;
 using bioResearchSystem.DAL.Repositories;
 using bioResearchSystem.DTO.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,29 +16,39 @@ namespace bioResearchSystem.DAL.Implementations
         {
             dbContext = _dbContext;
         }
-        public Task Create(Device value)
+        public async Task Create(Device value)
         {
-            throw new NotImplementedException();
+            dbContext.Devices.Add(value);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task<Device> Get(int id)
+        public async Task<Device> Get(int id)
         {
-            throw new NotImplementedException();
+            var device = await dbContext.Devices
+                .Include(u => u.User).FirstOrDefaultAsync(d => d.Id == id);
+            return device;
         }
 
-        public Task<ICollection<Device>> GetAll()
+        public async Task<ICollection<Device>> GetAll()
         {
-            throw new NotImplementedException();
+            var devices = await dbContext.Devices.Include(u => u.User).ToListAsync();
+            return devices;
         }
 
-        public Task Remove(Device value)
+        public async Task Remove(Device value)
         {
-            throw new NotImplementedException();
+            var device = await Get(value.Id);
+            if (device != null)
+            {
+                dbContext.Devices.Remove(device);
+                await dbContext.SaveChangesAsync();
+            }
         }
-
-        public Task Update(Device value)
+        
+        public async Task Update(Device value)
         {
-            throw new NotImplementedException();
+            dbContext.Entry(value).State = EntityState.Modified;
+            await dbContext.SaveChangesAsync();
         }
     }
 }

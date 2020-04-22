@@ -1,6 +1,7 @@
 ﻿using bioResearchSystem.Context;
 using bioResearchSystem.DAL.Repositories;
 using bioResearchSystem.DTO.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,29 +17,42 @@ namespace bioResearchSystem.DAL.Implementations
             dbContext = _dbContext;
         }
 
-        public Task Create(Experiment value)
+        public async Task Create(Experiment value)
         {
-            throw new NotImplementedException();
+            dbContext.Experiments.Add(value);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task<Experiment> Get(int id)
+        public async Task<Experiment> Get(int id)
         {
-            throw new NotImplementedException();
+            var experiment = await dbContext.Experiments
+                .Include(results => results.Results).Include(reseaches => reseaches.Researches)
+                .FirstOrDefaultAsync(e => e.Id == id);
+            return experiment;
         }
 
-        public Task<ICollection<Experiment>> GetAll()
+        public async Task<ICollection<Experiment>> GetAll()
         {
-            throw new NotImplementedException();
+            var experiments = await dbContext.Experiments
+               .Include(results => results.Results).Include(reseaches => reseaches.Researches)
+               .ToListAsync();
+            return experiments;
         }
 
-        public Task Remove(Experiment value)
+        public async Task Remove(Experiment value)
         {
-            throw new NotImplementedException();
+            var  experiment = await Get(value.Id);
+            if (experiment != null)
+            {
+                dbContext.Experiments.Remove(experiment);
+                await dbContext.SaveChangesAsync();
+            }
         }
 
-        public Task Update(Experiment value)
+        public async Task Update(Experiment value)
         {
-            throw new NotImplementedException();
+            dbContext.Entry(value).State = EntityState.Modified;
+            await dbContext.SaveChangesAsync();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace bioResearchSystem.DTO.Entities
 {
-    public class Research
+    public class Research:Entity
     {
         [Required(ErrorMessage = "Required field")]
         public string  Title {get;set;}

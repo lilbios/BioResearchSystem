@@ -1,6 +1,7 @@
 ﻿using bioResearchSystem.Context;
 using bioResearchSystem.DAL.Repositories;
 using bioResearchSystem.DTO.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,29 +17,46 @@ namespace bioResearchSystem.DAL.Implementations
             dbContext = _dbContext;
         }
 
-        public Task Create(User value)
+        public async Task Create(User value)
         {
-            throw new NotImplementedException();
+            dbContext.Users.Add(value);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task<User> Get(int id)
+        public async Task<User> Get(int id)
         {
-            throw new NotImplementedException();
+            var user = await dbContext.Users
+                .Include(d => d.Devices)
+                .Include(e => e.Researches)
+                .FirstOrDefaultAsync(u => u.Id == id);
+            return user;
+
         }
 
-        public Task<ICollection<User>> GetAll()
+        public async Task<ICollection<User>> GetAll()
         {
-            throw new NotImplementedException();
+            var users = await dbContext.Users
+                .Include(d => d.Devices)
+                .Include(e => e.Researches)
+                .ToListAsync();
+            return users;
         }
 
-        public Task Remove(User value)
+        public async Task Remove(User value)
         {
-            throw new NotImplementedException();
+            var user = await Get(value.Id);
+            if (user != null)
+            {
+                dbContext.Users.Remove(user);
+                await dbContext.SaveChangesAsync();
+            }
+            
         }
 
-        public Task Update(User value)
+        public async Task Update(User value)
         {
-            throw new NotImplementedException();
+            dbContext.Entry(value).State = EntityState.Modified;
+            await dbContext.SaveChangesAsync();
         }
     }
 }
