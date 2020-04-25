@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.SL", "bio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.API", "bioResearchSystem.API\bioResearchSystem.API.csproj", "{0D1B7C31-5891-4992-8585-FD252A23459A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bioResearchSystem.Context", "bioResearchSystem.Context\bioResearchSystem.Context.csproj", "{55D5256F-75CB-49F0-85EA-5AE6D7D2C5DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.Context", "bioResearchSystem.Context\bioResearchSystem.Context.csproj", "{55D5256F-75CB-49F0-85EA-5AE6D7D2C5DB}"
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web", "..\web\", "{EE35860A-7F32-4489-BDEF-25BB9A1B041D}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -33,7 +33,12 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web", "..\web\", "{EE35860A
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "60483"
+		SlnRelativePath = "..\web\"
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BioAlgo", "BioAlgo\BioAlgo.csproj", "{EB110477-44E2-44C4-BA38-321B2B1699D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SciDocoBuilder", "SciDocoBuilder\SciDocoBuilder.csproj", "{02132A61-5A3F-45F4-A3C9-76B9CBB96836}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +74,14 @@ Global
 		{EE35860A-7F32-4489-BDEF-25BB9A1B041D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE35860A-7F32-4489-BDEF-25BB9A1B041D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{EE35860A-7F32-4489-BDEF-25BB9A1B041D}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{EB110477-44E2-44C4-BA38-321B2B1699D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB110477-44E2-44C4-BA38-321B2B1699D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB110477-44E2-44C4-BA38-321B2B1699D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB110477-44E2-44C4-BA38-321B2B1699D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02132A61-5A3F-45F4-A3C9-76B9CBB96836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02132A61-5A3F-45F4-A3C9-76B9CBB96836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02132A61-5A3F-45F4-A3C9-76B9CBB96836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02132A61-5A3F-45F4-A3C9-76B9CBB96836}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

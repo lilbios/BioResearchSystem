@@ -4,6 +4,7 @@ using bioResearchSystem.DTO.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +21,11 @@ namespace bioResearchSystem.DAL.Implementations
         {
             dbContext.Devices.Add(value);
             await dbContext.SaveChangesAsync();
+        }
+
+        public Task<ICollection<Device>> FindByCondition(Expression<Func<Device, bool>> expression)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<Device> Get(int id)

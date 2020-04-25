@@ -5,7 +5,7 @@ using System.Text;
 
 namespace bioResearchSystem.DAL.Repositories
 {
-    public interface IRepositoryObjective:IRepository<Objective>
+    public interface IRepositoryObjective: IRepository<Objective>
     {
     }
 }
