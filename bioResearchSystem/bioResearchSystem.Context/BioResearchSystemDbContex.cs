@@ -1,4 +1,4 @@
-﻿using bioResearchSystem.DTO.Entities;
+﻿using bioResearchSystem.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

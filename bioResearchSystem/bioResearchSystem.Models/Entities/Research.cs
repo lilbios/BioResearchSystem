@@ -1,20 +1,19 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace bioResearchSystem.DTO.Entities
+namespace bioResearchSystem.Models.Entities
 {
     public class Research:Entity
     {
-        [Required(ErrorMessage = "Required field")]
+        [Required]
         public string  Title {get;set;}
 
-        [Required(ErrorMessage ="Required field")]
-        [MinLength(50,ErrorMessage = "Describe the researching in more detail so that other people can understand what it is about")]
+        [Required]
         public string Description { get; set; }
 
-        [DefaultValue(StatusResearch.InProgress)]
         public StatusResearch StatusResearch { get; set; }
 
         public DateTime OpenedDate { get; set; }

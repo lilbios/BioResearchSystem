@@ -1,7 +1,8 @@
-﻿using System;
+﻿using bioResearchSystem.DTO.Entities;
+using System;
 using System.Collections.Generic;
 
-namespace bioResearchSystem.DTO.Entities
+namespace bioResearchSystem.Models.Entities
 {
     public class Experiment:Entity
     {

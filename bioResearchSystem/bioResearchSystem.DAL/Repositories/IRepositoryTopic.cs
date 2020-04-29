@@ -1,7 +1,4 @@
-﻿using bioResearchSystem.DTO.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using bioResearchSystem.Models.Entities;
 
 namespace bioResearchSystem.DAL.Repositories
 {

@@ -12,7 +12,6 @@
     <ProjectReference Include="..\bioResearchSystem.Context\bioResearchSystem.Context.csproj" />
     <ProjectReference Include="..\bioResearchSystem.DAL\bioResearchSystem.DAL.csproj" />
     <ProjectReference Include="..\bioResearchSystem.DTO\bioResearchSystem.DTO.csproj" />
-    <ProjectReference Include="..\bioResearchSystem.SL\bioResearchSystem.SL.csproj" />
   </ItemGroup>
 
 </Project>

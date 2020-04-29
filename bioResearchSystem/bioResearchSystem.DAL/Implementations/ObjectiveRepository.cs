@@ -1,6 +1,6 @@
 ﻿using bioResearchSystem.Context;
 using bioResearchSystem.DAL.Repositories;
-using bioResearchSystem.DTO.Entities;
+using bioResearchSystem.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,14 +20,10 @@ namespace bioResearchSystem.DAL.Implementations
 
         public async Task Create(Objective value)
         {
-            dbContext.Objectives.Add(value);
+            await dbContext.Objectives.AddAsync(value);
             await dbContext.SaveChangesAsync();
         }
 
-        public Task<ICollection<Objective>> FindByCondition(Expression<Func<Objective, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<Objective> Get(int id)
         {

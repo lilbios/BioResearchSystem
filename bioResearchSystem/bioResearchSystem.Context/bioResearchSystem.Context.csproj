@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\bioResearchSystem.DTO\bioResearchSystem.DTO.csproj" />
+    <ProjectReference Include="..\bioResearchSystem.Models\bioResearchSystem.Models.csproj" />
   </ItemGroup>
 
 </Project>

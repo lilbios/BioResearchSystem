@@ -13,6 +13,5 @@ namespace bioResearchSystem.DAL.Repositories
         public Task<ICollection<T>> GetAll();
         public Task Update(T value);
         public Task Remove(T value);
-        public Task<ICollection<T>> FindByCondition(Expression<Func<T,bool>> expression);
     }
 }

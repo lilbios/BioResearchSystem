@@ -1,7 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BioAlgo\BioAlgo.csproj" />
+    <ProjectReference Include="..\bioResearchSystem.DAL\bioResearchSystem.DAL.csproj" />
+    <ProjectReference Include="..\SciDocoBuilder\SciDocoBuilder.csproj" />
+  </ItemGroup>
 
 </Project>

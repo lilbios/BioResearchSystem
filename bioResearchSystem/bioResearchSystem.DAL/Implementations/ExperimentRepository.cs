@@ -1,9 +1,10 @@
 ﻿using bioResearchSystem.Context;
 using bioResearchSystem.DAL.Repositories;
-using bioResearchSystem.DTO.Entities;
+using bioResearchSystem.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,9 +20,10 @@ namespace bioResearchSystem.DAL.Implementations
 
         public async Task Create(Experiment value)
         {
-            dbContext.Experiments.Add(value);
+            await dbContext.Experiments.AddAsync(value);
             await dbContext.SaveChangesAsync();
         }
+
 
         public async Task<Experiment> Get(int id)
         {
@@ -44,7 +46,7 @@ namespace bioResearchSystem.DAL.Implementations
             var  experiment = await Get(value.Id);
             if (experiment != null)
             {
-                dbContext.Experiments.Remove(experiment);
+                dbContext.Entry(value).State = EntityState.Deleted;
                 await dbContext.SaveChangesAsync();
             }
         }

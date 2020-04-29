@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace bioResearchSystem.DTO.Entities
+namespace bioResearchSystem.Models.Entities
 {
     public class Objective : Entity
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace bioResearchSystem.DTO.Entities
+namespace bioResearchSystem.Models.Entities
 {
     public class Topic : Entity
     {

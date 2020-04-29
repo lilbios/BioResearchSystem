@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.DTO", "bioResearchSystem.DTO\bioResearchSystem.DTO.csproj", "{72B22C6D-0B16-4B24-8913-BC7B6D972BBC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.ВLL", "bioResearchSystem.ВLL\bioResearchSystem.ВLL.csproj", "{A88143CA-7395-4DB2-998B-B23DA5D33DED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.DAL", "bioResearchSystem.DAL\bioResearchSystem.DAL.csproj", "{AE770BC4-E662-49F3-AF2D-5BC9E2B0A7C2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.SL", "bioResearchSystem.SL\bioResearchSystem.SL.csproj", "{9C740CA6-92EA-423F-A6BF-88DC7BAAC533}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.API", "bioResearchSystem.API\bioResearchSystem.API.csproj", "{0D1B7C31-5891-4992-8585-FD252A23459A}"
 EndProject
@@ -36,9 +32,11 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web", "..\web\", "{EE35860A
 		SlnRelativePath = "..\web\"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BioAlgo", "BioAlgo\BioAlgo.csproj", "{EB110477-44E2-44C4-BA38-321B2B1699D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BioAlgo", "BioAlgo\BioAlgo.csproj", "{EB110477-44E2-44C4-BA38-321B2B1699D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SciDocoBuilder", "SciDocoBuilder\SciDocoBuilder.csproj", "{02132A61-5A3F-45F4-A3C9-76B9CBB96836}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SciDocoBuilder", "SciDocoBuilder\SciDocoBuilder.csproj", "{02132A61-5A3F-45F4-A3C9-76B9CBB96836}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.Models", "bioResearchSystem.Models\bioResearchSystem.Models.csproj", "{F485AA59-5658-4F7A-A613-27DF1A1EE8D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,10 +44,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{72B22C6D-0B16-4B24-8913-BC7B6D972BBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72B22C6D-0B16-4B24-8913-BC7B6D972BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72B22C6D-0B16-4B24-8913-BC7B6D972BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72B22C6D-0B16-4B24-8913-BC7B6D972BBC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A88143CA-7395-4DB2-998B-B23DA5D33DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A88143CA-7395-4DB2-998B-B23DA5D33DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A88143CA-7395-4DB2-998B-B23DA5D33DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -58,10 +52,6 @@ Global
 		{AE770BC4-E662-49F3-AF2D-5BC9E2B0A7C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE770BC4-E662-49F3-AF2D-5BC9E2B0A7C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE770BC4-E662-49F3-AF2D-5BC9E2B0A7C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C740CA6-92EA-423F-A6BF-88DC7BAAC533}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C740CA6-92EA-423F-A6BF-88DC7BAAC533}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C740CA6-92EA-423F-A6BF-88DC7BAAC533}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C740CA6-92EA-423F-A6BF-88DC7BAAC533}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0D1B7C31-5891-4992-8585-FD252A23459A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D1B7C31-5891-4992-8585-FD252A23459A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D1B7C31-5891-4992-8585-FD252A23459A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -82,6 +72,10 @@ Global
 		{02132A61-5A3F-45F4-A3C9-76B9CBB96836}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02132A61-5A3F-45F4-A3C9-76B9CBB96836}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02132A61-5A3F-45F4-A3C9-76B9CBB96836}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F485AA59-5658-4F7A-A613-27DF1A1EE8D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F485AA59-5658-4F7A-A613-27DF1A1EE8D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F485AA59-5658-4F7A-A613-27DF1A1EE8D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F485AA59-5658-4F7A-A613-27DF1A1EE8D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

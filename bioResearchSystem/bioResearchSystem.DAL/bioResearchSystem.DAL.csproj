@@ -15,7 +15,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\bioResearchSystem.Context\bioResearchSystem.Context.csproj" />
-    <ProjectReference Include="..\bioResearchSystem.DTO\bioResearchSystem.DTO.csproj" />
+    <ProjectReference Include="..\bioResearchSystem.Models\bioResearchSystem.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Transaction\" />
   </ItemGroup>
 
 </Project>

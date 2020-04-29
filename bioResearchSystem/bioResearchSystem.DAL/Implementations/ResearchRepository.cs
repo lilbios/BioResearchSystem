@@ -1,9 +1,10 @@
 ﻿using bioResearchSystem.Context;
 using bioResearchSystem.DAL.Repositories;
-using bioResearchSystem.DTO.Entities;
+using bioResearchSystem.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace bioResearchSystem.DAL.Implementations
 
         public async Task Create(Research value)
         {
-            dbContext.Researches.Add(value);
+            await dbContext.Researches.AddAsync(value);
             await dbContext.SaveChangesAsync();
         }
 

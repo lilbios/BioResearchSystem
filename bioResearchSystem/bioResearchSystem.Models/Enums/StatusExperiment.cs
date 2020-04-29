@@ -1,4 +1,4 @@
-﻿namespace bioResearchSystem.DTO.Entities
+﻿namespace bioResearchSystem.Models.Enums
 {
     public enum StatusExperiment
     {
