@@ -1,4 +1,4 @@
-﻿using bioResearchSystem.DTO.Entities;
+﻿using bioResearchSystem.Models.Enums;
 using System;
 using System.Collections.Generic;
 

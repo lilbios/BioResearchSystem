@@ -8,10 +8,4 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\bioResearchSystem.Context\bioResearchSystem.Context.csproj" />
-    <ProjectReference Include="..\bioResearchSystem.DAL\bioResearchSystem.DAL.csproj" />
-    <ProjectReference Include="..\bioResearchSystem.DTO\bioResearchSystem.DTO.csproj" />
-  </ItemGroup>
-
 </Project>

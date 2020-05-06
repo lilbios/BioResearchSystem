@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace bioResearchSystem.Models.Entities
 {
@@ -6,7 +7,7 @@ namespace bioResearchSystem.Models.Entities
     {
         [Required]
         public string OrignalResult { get; set; }
-        public int ExpetimentId { get; set; }
+        public Guid ExpetimentId { get; set; }
         public Experiment Experiment  { get; set; }
     }
 }

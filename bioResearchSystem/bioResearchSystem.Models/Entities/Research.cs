@@ -1,4 +1,5 @@
 ﻿
+using bioResearchSystem.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,11 +21,12 @@ namespace bioResearchSystem.Models.Entities
         public DateTime ClosedDate { get; set; }
 
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
  
-        public int ExperimendId { get; set; }
+        public Guid ExperimendId { get; set; }
         public Experiment Experiment { get; set; }
+        public ICollection<TagResearch> TagResearches { get; set; }
 
         public ICollection<Objective> Objectives { get; set; }
     }

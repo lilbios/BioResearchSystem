@@ -2,15 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using bioResearchSystem.Context;
-using bioResearchSystem.DAL;
-using bioResearchSystem.DAL.Implementations;
-using bioResearchSystem.DAL.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -37,6 +32,8 @@ namespace bioResearchSystem.API
             services.AddDbContext<BioResearchSystemDbContex>(options => options.UseSqlServer(connection,
                 assembly => assembly.MigrationsAssembly(nameof(Context))));
 
+            services.AddControllersWithViews();
+
             //DI approach
             services.AddTransient<IRepositoryDevice,DeviceRepository>();
             services.AddTransient<IRepositoryExperiment, ExperimentRepository>();
@@ -45,7 +42,6 @@ namespace bioResearchSystem.API
             services.AddTransient<IRepositoryResult, ResultRepository>();
             services.AddTransient<IRepositoryTopic, TopicRepository>();
             services.AddTransient<IRepositoryUser, UserRepository>();
-            services.AddScoped<DataManager>();
 
         }
 
@@ -65,8 +61,11 @@ namespace bioResearchSystem.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+           
         }
     }
 }

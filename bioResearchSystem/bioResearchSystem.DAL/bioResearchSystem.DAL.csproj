@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -14,12 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\bioResearchSystem.Context\bioResearchSystem.Context.csproj" />
     <ProjectReference Include="..\bioResearchSystem.Models\bioResearchSystem.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Transaction\" />
   </ItemGroup>
 
 </Project>

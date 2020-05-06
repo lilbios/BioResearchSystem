@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace bioResearchSystem.Models.Entities
 {
-    public class User : Entity
+    public class User : IdentityUser
     {
         [Required]
         public string Name { get; set; }
@@ -12,18 +13,6 @@ namespace bioResearchSystem.Models.Entities
         public bool IsSuperVisor { get; set; }
 
         public Gender Gender { get; set; }
-
-        public Roles Roles { get; set; }
-
-
-        [Required]
-        public string Email { get; set; }
-
-
-        [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Required field")]
-        [MinLength(11, ErrorMessage = "Password to short")]
-        public string Password { get; set; }
 
         public byte[] Photo { get; set; }
         public ICollection<Device> Devices { get; set; }
