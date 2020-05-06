@@ -4,7 +4,7 @@ using System.Text;
 
 namespace bioResearchSystem.Models.Interfaces.Services
 {
-    public interface IWalletService<T> where T : class
+    public interface IWalletService
     {
 
        

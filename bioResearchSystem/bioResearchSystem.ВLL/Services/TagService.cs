@@ -6,7 +6,7 @@ using System.Text;
 
 namespace bioResearchSystem.ВLL.Services
 {
-    public class UserService:IUserService
+    public class TagService:ITagService
     {
     }
 }

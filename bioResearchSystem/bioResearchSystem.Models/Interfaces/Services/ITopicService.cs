@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace bioResearchSystem.Models.Interfaces.Services
 {
-    public interface ITopicService<T> where T : class
+    public interface ITopicService
     {
         public Task CreateTopic(Topic topic);
         public Task UpdateTopic(Topic topic);

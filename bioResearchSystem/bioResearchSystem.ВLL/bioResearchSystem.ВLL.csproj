@@ -13,4 +13,8 @@
     <ProjectReference Include="..\bioResearchSystem.DAL\bioResearchSystem.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Proceses\" />
+  </ItemGroup>
+
 </Project>

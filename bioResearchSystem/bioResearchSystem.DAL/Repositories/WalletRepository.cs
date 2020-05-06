@@ -1,7 +1,4 @@
-﻿using bioResearchSystem.Context;
-using bioResearchSystem.Models.Entities;
-using bioResearchSystem.Models.Interfaces.DataAccess;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;

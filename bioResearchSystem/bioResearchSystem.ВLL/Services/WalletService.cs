@@ -1,10 +1,13 @@
-﻿using System;
+﻿using bioResearchSystem.Models.Entities;
+using bioResearchSystem.Models.Interfaces.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace bioResearchSystem.ВLL.Services
 {
-    class WalletService
+    class WalletService:IWalletService
     {
+        
     }
 }

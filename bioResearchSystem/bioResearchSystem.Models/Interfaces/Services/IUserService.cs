@@ -4,7 +4,7 @@ using System.Text;
 
 namespace bioResearchSystem.Models.Interfaces.Services
 {
-    public interface IUserService<T> where T : class
+    public interface IUserService
     {
     }
 }
