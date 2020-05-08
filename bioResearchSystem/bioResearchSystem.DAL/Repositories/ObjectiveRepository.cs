@@ -1,55 +1,34 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using bioResearchSystem.Context;
+using bioResearchSystem.DAL.Repositories;
+using bioResearchSystem.Models.Entities;
+using bioResearchSystem.Models.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace bioResearchSystem.DAL.Implementations
 {
-    public class ObjectiveRepository : IRepositoryObjective
+    public class ObjectiveRepository:BaseRepository<Objective>,IRepositoryObjective
     {
-        private readonly BioResearchSystemDbContext dbContext;
-        public ObjectiveRepository(BioResearchSystemDbContext _dbContext)
+        public ObjectiveRepository(BioResearchSystemDbContext dbContext) :base(dbContext)
         {
-            dbContext = _dbContext;
+
         }
 
-        public async Task Create(Objective value)
+        public Task<Objective> CreateObjective(Objective objective)
         {
-            await dbContext.Objectives.AddAsync(value);
-            await dbContext.SaveChangesAsync();
+            throw new NotImplementedException();
         }
 
-
-        public async Task<Objective> Get(Guid id)
+        public Task<ICollection<Device>> GetAllWithInludeAsync()
         {
-            var objective = await dbContext.Objectives
-                .Include(r => r.Research)
-                .FirstOrDefaultAsync(o => o.Id == id);
-            return objective;
+            throw new NotImplementedException();
         }
 
-        public async Task<ICollection<Objective>> GetAll()
+        public Task GetWithIncludeAsync(Guid id, Guid researchGuid)
         {
-            var objectives = await dbContext.Objectives
-                .Include(r => r.Research)
-                .ToListAsync();
-            return objectives;
-        }
-
-        public async Task Remove(Objective value)
-        {
-            var objective = await Get(value.Id);
-            if (objective != null)
-            {
-                dbContext.Objectives.Remove(objective);
-                await dbContext.SaveChangesAsync();
-            }
-        }
-
-        public async  Task Update(Objective objective)
-        {
-            dbContext.Entry(objective).State = EntityState.Modified;
-            await dbContext.SaveChangesAsync();
+            throw new NotImplementedException();
         }
     }
 }

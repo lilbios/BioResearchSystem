@@ -1,56 +1,34 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using bioResearchSystem.Context;
+using bioResearchSystem.DAL.Repositories;
+using bioResearchSystem.Models.Entities;
+using bioResearchSystem.Models.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace bioResearchSystem.DAL.Implementations
 {
-    public class ResearchRepository:IRepositoryResearch
+    public class ResearchRepository:BaseRepository<Research>,IRepositoryResearch
     {
-        private readonly BioResearchSystemDbContext dbContext;
-        public ResearchRepository(BioResearchSystemDbContext _dbContext)
+        public ResearchRepository(BioResearchSystemDbContext dbContext) :base(dbContext)
         {
-            dbContext = _dbContext;
+
         }
 
-        public async Task Create(Research value)
+        public Task<Research> CreateResearch(Research research)
         {
-            await dbContext.Researches.AddAsync(value);
-            await dbContext.SaveChangesAsync();
+            throw new NotImplementedException();
         }
 
-        public async Task<Research> Get(Guid id)
+        public Task<ICollection<Device>> GetAllWithInlude()
         {
-            var research = await dbContext.Researches
-                .Include(o => o.Objectives)
-                .Include(e => e.Experiment)
-                .FirstOrDefaultAsync(r => r.Id == id);
-            return research;
+            throw new NotImplementedException();
         }
 
-        public async Task<ICollection<Research>> GetAll()
+        public Task GetWithInclude(Guid id)
         {
-            var researches = await dbContext.Researches
-                .Include(o => o.Objectives)
-                .Include(e => e.Experiment)
-                .ToListAsync();
-            return researches;
-        }
-
-        public async Task Remove(Research value)
-        {
-            var research = await Get(value.Id);
-            if (research != null) {
-
-                dbContext.Researches.Remove(value);
-                await dbContext.SaveChangesAsync();
-            }
-        }
-
-        public async Task Update(Research research)
-        {
-            dbContext.Entry(research).State = EntityState.Modified;
-            await dbContext.SaveChangesAsync();
+            throw new NotImplementedException();
         }
     }
 }

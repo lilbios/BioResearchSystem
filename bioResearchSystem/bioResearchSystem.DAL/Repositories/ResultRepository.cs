@@ -1,55 +1,29 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using bioResearchSystem.Context;
+using bioResearchSystem.DAL.Repositories;
+using bioResearchSystem.Models.Entities;
+using bioResearchSystem.Models.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace bioResearchSystem.DAL.Implementations
 {
-    public class ResultRepository : IRepositoryResult
+    public class ResultRepository:BaseRepository<Result>,IRepositoryResult
     {
-        private readonly BioResearchSystemDbContext dbContext;
-        public ResultRepository(BioResearchSystemDbContext _dbContext)
+        public ResultRepository(BioResearchSystemDbContext dbContext) :base(dbContext)
         {
-            dbContext = _dbContext;
+
         }
 
-        public async Task Create(Result value)
+        public Task<Result> Create()
         {
-            await dbContext.Results.AddAsync(value);
-            await dbContext.SaveChangesAsync();
+            throw new NotImplementedException();
         }
 
-
-        public async Task<Result> Get(Guid id)
+        public Task<ICollection<Device>> GetAllWithInlude()
         {
-            var result = await dbContext.Results
-                .Include(e => e.Experiment)
-                .FirstOrDefaultAsync(r => r.Id == id);
-            return result;
-        }
-
-        public async Task<ICollection<Result>> GetAll()
-        {
-            var results = await dbContext.Results
-                .Include(e => e.Experiment)
-                .ToListAsync();
-            return results;
-        }
-
-        public async Task Remove(Result value)
-        {
-            var result = await Get(value.Id);
-            if (result != null)
-            {
-                dbContext.Results.Remove(result);
-                await dbContext.SaveChangesAsync();
-            }
-        }
-
-        public async Task Update(Result result)
-        {
-            dbContext.Entry(result).State = EntityState.Modified;
-            await dbContext.SaveChangesAsync();
+            throw new NotImplementedException();
         }
     }
 }

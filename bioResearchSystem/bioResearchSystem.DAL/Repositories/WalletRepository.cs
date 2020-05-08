@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using bioResearchSystem.Context;
+using bioResearchSystem.Models.Entities;
+using bioResearchSystem.Models.Interfaces.DataAccess;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
@@ -7,46 +10,21 @@ using System.Threading.Tasks;
 
 namespace bioResearchSystem.DAL.Repositories
 {
-    public class WalletRepository : IWalletRepository
+    public class WalletRepository : BaseRepository<Wallet>, IWalletRepository
     {
 
-        private readonly BioResearchSystemDbContext dbContext;
-        public WalletRepository(BioResearchSystemDbContext _dbContext)
+        public WalletRepository(BioResearchSystemDbContext dbContext) :base(dbContext)
         {
-            dbContext = _dbContext;
+
         }
-
-        public async  Task<bool> ChangeOffMoneyTransaction(Wallet wallet, decimal summa)
-        {
-            using (var transaction = dbContext.Database.BeginTransaction()) {
-                try
-                {
-
-                    wallet.Balance -= summa;
-                    dbContext.Attach(wallet);
-                    dbContext.Entry(wallet).Property(w => w.Balance).IsModified = true;
-                    await transaction.CommitAsync();
-                    return true;    
-                }
-                catch (Exception)
-                {
-                    await transaction.RollbackAsync();
-                    return false;
-                }
-
-                
-            };
-        }
-
-        public Task Create(Wallet value)
+        public Task<bool> ChangeOffMoneyTransaction(Wallet wallet, decimal summa)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Wallet> FindUserWallet(string id)
+        public Task<Wallet> FindUserWallet(string id)
         {
-            var wallet = await dbContext.Wallets.FirstOrDefaultAsync(w=> w.UserId == id);
-            return wallet;
+            throw new NotImplementedException();
         }
     }
 }

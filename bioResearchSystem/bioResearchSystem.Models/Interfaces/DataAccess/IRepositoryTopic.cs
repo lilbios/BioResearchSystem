@@ -4,5 +4,6 @@ namespace bioResearchSystem.Models.Repositories
 {
     public interface IRepositoryTopic : IRepository<Topic>
     {
+
     }
 }
