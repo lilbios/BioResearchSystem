@@ -9,34 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.DAL", "bi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.API", "bioResearchSystem.API\bioResearchSystem.API.csproj", "{0D1B7C31-5891-4992-8585-FD252A23459A}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "web", "..\web\", "{EE35860A-7F32-4489-BDEF-25BB9A1B041D}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_60483"
-		Debug.AspNetCompiler.PhysicalPath = "..\web\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60483\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_60483"
-		Release.AspNetCompiler.PhysicalPath = "..\web\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60483\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "60483"
-		SlnRelativePath = "..\web\"
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BioAlgo", "BioAlgo\BioAlgo.csproj", "{EB110477-44E2-44C4-BA38-321B2B1699D0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.Models", "bioResearchSystem.Models\bioResearchSystem.Models.csproj", "{F485AA59-5658-4F7A-A613-27DF1A1EE8D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SciReport", "SciReport\SciReport.csproj", "{22EE8EB3-9761-4B0B-AA47-3014101F8BC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SciReport", "SciReport\SciReport.csproj", "{22EE8EB3-9761-4B0B-AA47-3014101F8BC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bioResearchSystem.Device", "bioResearchSystem.Device\bioResearchSystem.Device.csproj", "{62D59CCF-9437-4F5E-A117-D7606C294489}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.Device", "bioResearchSystem.Device\bioResearchSystem.Device.csproj", "{62D59CCF-9437-4F5E-A117-D7606C294489}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,10 +35,6 @@ Global
 		{0D1B7C31-5891-4992-8585-FD252A23459A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D1B7C31-5891-4992-8585-FD252A23459A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D1B7C31-5891-4992-8585-FD252A23459A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE35860A-7F32-4489-BDEF-25BB9A1B041D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE35860A-7F32-4489-BDEF-25BB9A1B041D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE35860A-7F32-4489-BDEF-25BB9A1B041D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE35860A-7F32-4489-BDEF-25BB9A1B041D}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{EB110477-44E2-44C4-BA38-321B2B1699D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB110477-44E2-44C4-BA38-321B2B1699D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB110477-44E2-44C4-BA38-321B2B1699D0}.Release|Any CPU.ActiveCfg = Release|Any CPU

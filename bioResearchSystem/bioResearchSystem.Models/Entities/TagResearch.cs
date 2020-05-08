@@ -9,6 +9,7 @@ namespace bioResearchSystem.Models.Entities
         public Guid ReseachId { get; set; }
         public Research Research { get; set; }
         public Guid TagId { get; set; }
+        public Tag Tag { get; set; }
 
      }
 }

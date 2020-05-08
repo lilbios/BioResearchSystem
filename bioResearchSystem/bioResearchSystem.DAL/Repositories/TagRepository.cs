@@ -1,4 +1,5 @@
-﻿using bioResearchSystem.Context;
+﻿using bioResearchSystem.Mode;
+using bioResearchSystem.Models;
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Interfaces.DataAccess;
 using System;
@@ -15,9 +16,11 @@ namespace bioResearchSystem.DAL.Repositories
 
         }
 
-        public Task AddTag(Tag tag)
+        public async Task<Tag> AddTag(Tag tag)
         {
-            throw new NotImplementedException();
+            await dbSet.AddAsync(tag);
+            await dbContext.SaveChangesAsync();
+            return tag;
         }
 
         public Task AttachTag(Research research, Tag tag)
@@ -25,9 +28,6 @@ namespace bioResearchSystem.DAL.Repositories
             throw new NotImplementedException();
         }
 
-        public Task RemoveTag(Tag tag)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

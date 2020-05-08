@@ -1,5 +1,6 @@
-﻿using bioResearchSystem.Context;
-using bioResearchSystem.DAL.Repositories;
+﻿using bioResearchSystem.DAL.Repositories;
+using bioResearchSystem.Mode;
+using bioResearchSystem.Models;
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -10,21 +11,25 @@ using System.Threading.Tasks;
 
 namespace bioResearchSystem.DAL.Implementations
 {
-    public class ExperimentRepository:BaseRepository<Experiment>,IRepositoryExperiment
+    public class ExperimentRepository : BaseRepository<Experiment>, IRepositoryExperiment
     {
-        public ExperimentRepository(BioResearchSystemDbContext dbContext):base(dbContext)
+        public ExperimentRepository(BioResearchSystemDbContext dbContext) : base(dbContext)
         {
 
         }
 
-        public Task<IQueryable<Device>> GetAllWithInludeAsync()
+        public async Task<ICollection<Experiment>> GetAllWithInludeAsync()
         {
-            throw new NotImplementedException();
+            return await dbSet.Include(r => r.Researches).ToListAsync();
         }
 
-        public Task GetWithIncludeAsync(Guid id)
+        public Task<Experiment> GetWithIncludeAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var experiment = dbSet.Include(rsrch => rsrch.Researches)
+                .Include(res => res.Results)
+                .FirstOrDefaultAsync(e => e.Id == id);
+            return experiment;
         }
     }
 }
+

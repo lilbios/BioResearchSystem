@@ -1,8 +1,9 @@
 ﻿using bioResearchSystem.Models.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
-namespace bioResearchSystem.Context
+namespace bioResearchSystem.Mode
 {
     public class BioResearchSystemDbContext : IdentityDbContext<User>
     {
@@ -18,12 +19,16 @@ namespace bioResearchSystem.Context
             :base(options)
         {
 
-            Database.EnsureCreated();
+            
         }
-
-
-
-
-
+    }
+    public class BioResearhSystemDbContextFactory : IDesignTimeDbContextFactory<BioResearchSystemDbContext>
+    {
+        public BioResearchSystemDbContext CreateDbContext(string[] args)
+        {
+            var optionBuilder = new DbContextOptionsBuilder<BioResearchSystemDbContext>();
+            optionBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=BRSdb;Trusted_Connection=True;MultipleActiveResultSets=true", b => b.MigrationsAssembly("bioResearchSystem.Models"));
+            return new BioResearchSystemDbContext(optionBuilder.Options);
+        }
     }
 }

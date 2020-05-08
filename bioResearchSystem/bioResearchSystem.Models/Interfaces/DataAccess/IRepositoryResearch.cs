@@ -9,8 +9,8 @@ namespace bioResearchSystem.Models.Repositories
 {
     public interface IRepositoryResearch: IRepository<Research>
     {
-        public Task GetWithInclude(Guid id);
-        public Task<ICollection<Device>> GetAllWithInlude();
+        public Task<Research> GetWithInclude(Guid id);
+        public Task<ICollection<Research>> GetAllWithInlude();
         public Task<Research> CreateResearch(Research research);
 
     }

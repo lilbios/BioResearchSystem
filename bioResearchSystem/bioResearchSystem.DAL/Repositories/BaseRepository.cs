@@ -1,4 +1,5 @@
-﻿using bioResearchSystem.Context;
+﻿using bioResearchSystem.Mode;
+using bioResearchSystem.Models;
 using bioResearchSystem.Models.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,8 +11,8 @@ namespace bioResearchSystem.DAL.Repositories
 {
     public class BaseRepository<T> : IRepository<T> where T : class
     {
-        private readonly BioResearchSystemDbContext dbContext;
-        private readonly DbSet<T> dbSet;
+        protected readonly BioResearchSystemDbContext dbContext;
+        protected readonly DbSet<T> dbSet;
         public BaseRepository(BioResearchSystemDbContext dbContext)
         {
             this.dbContext = dbContext;

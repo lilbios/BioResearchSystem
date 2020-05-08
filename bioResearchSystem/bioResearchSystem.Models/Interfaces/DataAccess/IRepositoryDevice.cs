@@ -10,7 +10,7 @@ namespace bioResearchSystem.Models.Repositories
 {
     public interface IRepositoryDevice: IRepository<Device>
     {
-        public Task GetWithIncludeAsync(Guid id);
+        public Task<Device> GetWithIncludeAsync(Guid id);
         public Task<ICollection<Device>> GetAllWithInludeAsync();
     }
 }

@@ -1,4 +1,6 @@
-﻿using bioResearchSystem.Context;
+﻿
+using bioResearchSystem.Mode;
+using bioResearchSystem.Models;
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Interfaces.DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -22,9 +24,10 @@ namespace bioResearchSystem.DAL.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Wallet> FindUserWallet(string id)
+        public async Task<Wallet> FindUserWallet(string id)
         {
-            throw new NotImplementedException();
+            var wallet = await dbSet.Include(u => u.User).FirstOrDefaultAsync(w => w.UserId == id);
+            return wallet;
         }
     }
 }

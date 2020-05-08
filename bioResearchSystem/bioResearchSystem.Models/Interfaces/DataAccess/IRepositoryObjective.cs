@@ -9,8 +9,8 @@ namespace bioResearchSystem.Models.Repositories
 {
     public interface IRepositoryObjective: IRepository<Objective>
     {
-        public Task GetWithIncludeAsync(Guid id,Guid researchGuid);
-        public Task<ICollection<Device>> GetAllWithInludeAsync();
+        public Task<Objective> GetWithIncludeAsync(Guid id,Guid researchGuid);
+        public Task<ICollection<Objective>> GetAllWithInludeAsync(Guid id);
         public Task<Objective> CreateObjective(Objective objective);
         
     }

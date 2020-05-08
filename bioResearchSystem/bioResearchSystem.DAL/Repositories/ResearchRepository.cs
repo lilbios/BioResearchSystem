@@ -1,5 +1,7 @@
-﻿using bioResearchSystem.Context;
+﻿
 using bioResearchSystem.DAL.Repositories;
+using bioResearchSystem.Mode;
+using bioResearchSystem.Models;
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -16,17 +18,23 @@ namespace bioResearchSystem.DAL.Implementations
 
         }
 
-        public Task<Research> CreateResearch(Research research)
+        public async Task<Research> CreateResearch(Research research)
         {
-            throw new NotImplementedException();
+            await dbSet.AddAsync(research);
+            await dbContext.SaveChangesAsync();
+            return research;
         }
 
-        public Task<ICollection<Device>> GetAllWithInlude()
+        public  async Task<ICollection<Research>> GetAllWithInlude()
         {
-            throw new NotImplementedException();
+            return await dbSet.Include(e => e.Experiment)
+                .Include(o => o.Objectives)
+                .Include(u => u.User)
+                .Include(tr => tr.TagResearches).ThenInclude(t => t.Tag).AsNoTracking()
+                .ToListAsync();
         }
 
-        public Task GetWithInclude(Guid id)
+        public Task<Research> GetWithInclude(Guid id)
         {
             throw new NotImplementedException();
         }

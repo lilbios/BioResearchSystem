@@ -1,4 +1,5 @@
 ﻿using bioResearchSystem.Models.Entities;
+using bioResearchSystem.Models.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace bioResearchSystem.Models.Interfaces.DataAccess
 {
-   public  interface ITagRepostiory
+   public  interface IRepositoryTag:IRepository<Tag>
     {
 
-        public Task AddTag(Tag tag);
-        public Task RemoveTag(Tag tag);
+        public Task<Tag> AddTag(Tag tag);
         public Task AttachTag(Research research, Tag tag);
     }
 }

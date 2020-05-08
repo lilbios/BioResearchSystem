@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using bioResearchSystem.Context;
 using bioResearchSystem.DAL.Implementations;
+using bioResearchSystem.Mode;
+using bioResearchSystem.Models;
+using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace bioResearchSystem.API
 {
@@ -34,9 +30,15 @@ namespace bioResearchSystem.API
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddControllers();
             services.AddDbContext<BioResearchSystemDbContext>(options => options.UseSqlServer(connection,
-                assembly => assembly.MigrationsAssembly(nameof(Context))));
+                assembly => assembly.MigrationsAssembly("bioResearchSystem.Models")));
 
             services.AddControllersWithViews();
+            services.AddIdentity<User, IdentityRole>(opts =>
+            {
+                opts.User.RequireUniqueEmail = true;
+
+            })
+            .AddEntityFrameworkStores<BioResearchSystemDbContext>();
 
             //DI approach
             services.AddTransient<IRepositoryDevice,DeviceRepository>();
