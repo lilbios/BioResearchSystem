@@ -6,10 +6,10 @@ namespace bioResearchSystem.Models.Repositories
 {
     public interface IRepositoryUser
     {
-        public Task CreateAsync(User value);
-        public Task<User> GetAsync(string id);
-        public  Task<ICollection<User>> GetAllAsync();
-        public  Task RemoveAsync(User value);
-        public  Task UpdateAsync(User user);
+        public Task CreateAsync(AppUser value);
+        public Task<AppUser> GetAsync(string id);
+        public  Task<ICollection<AppUser>> GetAllAsync();
+        public  Task RemoveAsync(AppUser value);
+        public  Task UpdateAsync(AppUser user);
     }
 }

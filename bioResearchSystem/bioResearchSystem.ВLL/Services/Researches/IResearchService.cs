@@ -14,5 +14,7 @@ namespace bioResearchSystem.ВLL.Services.Researches
         public Task EditResearch(ResearchDTO researchDto);
         public Task GetResearchByTagName(string tagName);
         public Task<ICollection<Research>> FindResearchsRelatedWithTag(Tag tag);
+        public Task<ICollection<Research>> GetAllResearches();
+        public Task<ICollection<Research>> GetResearches();
     } 
 }

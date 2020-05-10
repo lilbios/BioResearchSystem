@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace bioResearchSystem.Mode
 {
-    public class BioResearchSystemDbContext : IdentityDbContext<User>
+    public class BioResearchSystemDbContext : IdentityDbContext<AppUser>
     {
         public DbSet<Research> Researches { get; set; }
         public DbSet<Experiment> Experiments { get; set; }

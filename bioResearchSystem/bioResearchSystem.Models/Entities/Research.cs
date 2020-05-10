@@ -22,7 +22,7 @@ namespace bioResearchSystem.Models.Entities
 
 
         public string UserId { get; set; }
-        public User User { get; set; }
+        public AppUser User { get; set; }
  
         public Guid ExperimendId { get; set; }
         public Experiment Experiment { get; set; }

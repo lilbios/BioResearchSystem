@@ -8,6 +8,6 @@ namespace bioResearchSystem.Models.Entities
     {
         public string Alias { get; set; }
         public string UserId { get; set; }
-        public User User { get; set; }
+        public AppUser User { get; set; }
     }
 }

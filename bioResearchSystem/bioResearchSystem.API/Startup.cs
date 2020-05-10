@@ -1,3 +1,4 @@
+using bioResearchSystem.API.Common;
 using bioResearchSystem.DAL.Implementations;
 using bioResearchSystem.Mode;
 using bioResearchSystem.Models;
@@ -33,21 +34,27 @@ namespace bioResearchSystem.API
                 assembly => assembly.MigrationsAssembly("bioResearchSystem.Models")));
 
             services.AddControllersWithViews();
-            services.AddIdentity<User, IdentityRole>(opts =>
+            services.AddIdentity<AppUser, IdentityRole>(opts =>
             {
                 opts.User.RequireUniqueEmail = true;
 
             })
             .AddEntityFrameworkStores<BioResearchSystemDbContext>();
 
-            //DI approach
-            services.AddTransient<IRepositoryDevice,DeviceRepository>();
-            services.AddTransient<IRepositoryExperiment, ExperimentRepository>();
-            services.AddTransient<IRepositoryObjective, ObjectiveRepository>();
-            services.AddTransient<IRepositoryResearch, ResearchRepository>();
-            services.AddTransient<IRepositoryResult, ResultRepository>();
-            services.AddTransient<IRepositoryTopic, TopicRepository>();
-            services.AddTransient<IRepositoryUser, UserRepository>();
+            services.RegisterServices(Configuration);
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+            });
+
+
 
         }
 

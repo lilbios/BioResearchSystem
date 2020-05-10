@@ -5,12 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\bioResearchSystem.DAL\bioResearchSystem.DAL.csproj" />
     <ProjectReference Include="..\bioResearchSystem.Models\bioResearchSystem.Models.csproj" />
+    <ProjectReference Include="..\bioResearchSystem.ВLL\bioResearchSystem.ВLL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Account\" />
   </ItemGroup>
 
 </Project>

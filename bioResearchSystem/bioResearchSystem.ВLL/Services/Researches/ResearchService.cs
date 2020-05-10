@@ -1,4 +1,5 @@
 ﻿using bioResearchSystem.Models.Entities;
+using bioResearchSystem.Models.Repositories;
 using bioResearchSystem.ВLL.Services.Researches;
 using System;
 using System.Collections.Generic;
@@ -9,17 +10,33 @@ namespace bioResearchSystem.ВLL.Services
 {
     public class ResearchService : IResearchService
     {
+        private readonly IRepositoryResearch repositoryResearch;
+        public ResearchService(IRepositoryResearch repositoryResearch)
+        {
+            this.repositoryResearch = repositoryResearch;
+        }
+
         public Task EditResearch(ResearchDTO researchDto)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<Research>> FindResearchsRelatedWithTag(Tag tag)
+        public async Task<ICollection<Research>> FindResearchsRelatedWithTag(Tag tag)
+        {
+            
+        }
+
+        public async Task<ICollection<Research>> GetAllResearches()
+        {
+            return await repositoryResearch.GetAllAsync();
+        }
+
+        public Task GetResearchByTagName(string tagName)
         {
             throw new NotImplementedException();
         }
 
-        public Task GetResearchByTagName(string tagName)
+        public Task<ICollection<Research>> GetResearches()
         {
             throw new NotImplementedException();
         }

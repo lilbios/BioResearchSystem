@@ -11,19 +11,19 @@ using System.Threading.Tasks;
 
 namespace bioResearchSystem.DAL.Implementations
 {
-    public class UserRepository:BaseRepository<User>,IRepositoryUser
+    public class UserRepository:BaseRepository<AppUser>,IRepositoryUser
     {
         public UserRepository(BioResearchSystemDbContext dbContext):base(dbContext)
         {
 
         }
 
-        public Task CreateAsync(User value)
+        public Task CreateAsync(AppUser value)
         {
             return null;
         }
 
-        public async Task<User> GetAsync(string id)
+        public async Task<AppUser> GetAsync(string id)
         {
             var user = await dbSet.Include(d => d.Devices)
                 .Include(r => r.Researches).FirstOrDefaultAsync(u => u.Id == id);

@@ -11,6 +11,6 @@ namespace bioResearchSystem.Models.Entities
         [ForeignKey("User")]
 
         public string UserId { get; set; }
-        public User User { get; set; } 
+        public AppUser User { get; set; } 
     }
 }
