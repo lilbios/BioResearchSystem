@@ -10,5 +10,6 @@ namespace bioResearchSystem.ВLL.Services.Accounts
     {
         public Task<IdentityResult> Registration(UserDTO user);
         public Task<SignInResult> LogIn(UserDTO user);
+        public Task Logout();
     }
 }

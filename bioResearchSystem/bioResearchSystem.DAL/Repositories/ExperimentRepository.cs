@@ -20,7 +20,7 @@ namespace bioResearchSystem.DAL.Implementations
 
         public async Task<ICollection<Experiment>> GetAllWithInludeAsync()
         {
-            return await dbSet.Include(r => r.Researches).ToListAsync();
+            return await dbSet.Include(r => r.Researches).AsNoTracking().ToListAsync();
         }
 
         public Task<Experiment> GetWithIncludeAsync(Guid id)

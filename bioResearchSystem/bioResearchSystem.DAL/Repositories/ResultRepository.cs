@@ -1,7 +1,5 @@
-﻿
-using bioResearchSystem.DAL.Repositories;
+﻿using bioResearchSystem.DAL.Repositories;
 using bioResearchSystem.Mode;
-using bioResearchSystem.Models;
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -23,14 +21,14 @@ namespace bioResearchSystem.DAL.Implementations
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<Result>> GetAllWithInlude()
+        public async Task<ICollection<Result>> GetAllWithInlude()
         {
-            throw new NotImplementedException();
+            return await dbSet.Include(e => e.Experiment).AsNoTracking().ToListAsync();
         }
 
-        public Task<Result> GetObjectWithIcnlude(Guid id)
+        public async Task<Result> GetObjectWithIcnlude(Guid id)
         {
-            throw new NotImplementedException();
+            return await dbSet.Include(e => e.Experiment).FirstOrDefaultAsync();
         }
     }
 }

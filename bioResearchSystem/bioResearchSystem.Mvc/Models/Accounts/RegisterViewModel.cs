@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace bioResearchSystem.API.Models
+namespace bioResearchSystem.Mvc.Models.Accounts
 {
     public class RegisterViewModel
     {

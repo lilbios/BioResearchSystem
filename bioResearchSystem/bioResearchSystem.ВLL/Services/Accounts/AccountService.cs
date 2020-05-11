@@ -27,6 +27,11 @@ namespace bioResearchSystem.ВLL.Services.Accounts
 
         }
 
+        public async Task Logout()
+        {
+            await signInManager.SignOutAsync();
+        }
+
         public async Task<IdentityResult> Registration(UserDTO userDto)
         {
             var user = mapper.Map<AppUser>(userDto);
@@ -37,5 +42,7 @@ namespace bioResearchSystem.ВLL.Services.Accounts
             }
             return identityResult;
         }
+
+        
     }
 }

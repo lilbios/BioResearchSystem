@@ -23,10 +23,7 @@ namespace bioResearchSystem.DAL.Repositories
             return tag;
         }
 
-        public Task AttachTag(Research research, Tag tag)
-        {
-            throw new NotImplementedException();
-        }
+        
 
        
     }

@@ -14,6 +14,7 @@ namespace bioResearchSystem.Mode
         public DbSet<Device> Devices { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<TagResearch> TagResearches { get; set; }
 
         public BioResearchSystemDbContext(DbContextOptions<BioResearchSystemDbContext> options)
             :base(options)

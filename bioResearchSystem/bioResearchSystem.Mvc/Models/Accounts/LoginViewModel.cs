@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace bioResearchSystem.API.Models
+namespace bioResearchSystem.Mvc.Models.Accounts
 {
     public class LoginViewModel
     {
@@ -15,6 +15,5 @@ namespace bioResearchSystem.API.Models
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
     }
 }

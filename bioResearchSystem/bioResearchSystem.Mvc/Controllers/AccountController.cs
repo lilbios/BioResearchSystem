@@ -1,32 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using bioResearchSystem.API.Models;
+﻿using AutoMapper;
+using bioResearchSystem.Mvc.Models.Accounts;
 using bioResearchSystem.ВLL.Services.Accounts;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
-namespace bioResearchSystem.API.Controllers
+namespace bioResearchSystem.Mvc.Controllers
 {
     public class AccountController : Controller
     {
+
         private readonly IMapper mapper;
         private readonly IAccountService accountService;
-        public AccountController(IMapper mapper,IAccountService accountService)
+        public AccountController(IMapper mapper, IAccountService accountService)
         {
             this.mapper = mapper;
             this.accountService = accountService;
         }
 
         [HttpGet]
-        public  IActionResult  SingUp() {
+        public IActionResult Registration()
+        {
             return View();
         }
 
 
-        [HttpGet]
-        public  async IActionResult  Registration(RegisterViewModel registerViewModel) {
+        [HttpPost]
+        public async Task<IActionResult> Registration(RegisterViewModel registerViewModel)
+        {
 
             var userDto = mapper.Map<UserDTO>(registerViewModel);
             var identityResult = await accountService.Registration(userDto);
@@ -34,14 +34,26 @@ namespace bioResearchSystem.API.Controllers
             {
                 return RedirectToAction();
             }
-            else { 
-            
-            
+            else
+            {
+                foreach (var error in identityResult.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+
             }
             return View(registerViewModel);
-            
-            
         }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
         
+        
+
+
     }
 }

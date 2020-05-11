@@ -34,9 +34,14 @@ namespace bioResearchSystem.DAL.Implementations
                 .ToListAsync();
         }
 
-        public Task<Research> GetWithInclude(Guid id)
+        public async Task<Research> GetWithInclude(Guid id)
         {
-            throw new NotImplementedException();
+            return await dbSet.Include(e => e.Experiment)
+                .Include(o => o.Objectives)
+                .Include(u => u.User)
+                .Include(tr => tr.TagResearches).ThenInclude(t => t.Tag).FirstOrDefaultAsync();
+
+
         }
         
     }

@@ -21,11 +21,7 @@ namespace bioResearchSystem.ВLL.Services
             throw new NotImplementedException();
         }
 
-        public async Task<ICollection<Research>> FindResearchsRelatedWithTag(Tag tag)
-        {
-            
-        }
-
+      
         public async Task<ICollection<Research>> GetAllResearches()
         {
             return await repositoryResearch.GetAllAsync();

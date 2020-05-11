@@ -11,6 +11,5 @@ namespace bioResearchSystem.Models.Interfaces.DataAccess
     {
 
         public Task<Tag> AddTag(Tag tag);
-        public Task AttachTag(Research research, Tag tag);
     }
 }
