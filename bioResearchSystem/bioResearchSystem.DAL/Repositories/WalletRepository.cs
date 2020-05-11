@@ -1,6 +1,4 @@
-﻿
-using bioResearchSystem.Mode;
-using bioResearchSystem.Models;
+﻿using bioResearchSystem.Models;
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Interfaces.DataAccess;
 using Microsoft.EntityFrameworkCore;

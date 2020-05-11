@@ -1,6 +1,5 @@
 ﻿
 using bioResearchSystem.DAL.Repositories;
-using bioResearchSystem.Mode;
 using bioResearchSystem.Models;
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Repositories;

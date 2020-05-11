@@ -1,5 +1,4 @@
-﻿using bioResearchSystem.Mode;
-using bioResearchSystem.Models;
+﻿using bioResearchSystem.Models;
 using bioResearchSystem.Models.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;

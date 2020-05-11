@@ -1,6 +1,6 @@
 using System;
 
-namespace bioResearchSystem.Mvc.Models
+namespace bioResearchSystem.Web.Models
 {
     public class ErrorViewModel
     {

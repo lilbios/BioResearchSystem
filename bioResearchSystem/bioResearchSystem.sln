@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.ВLL", "b
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.DAL", "bioResearchSystem.DAL\bioResearchSystem.DAL.csproj", "{AE770BC4-E662-49F3-AF2D-5BC9E2B0A7C2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.API", "bioResearchSystem.API\bioResearchSystem.API.csproj", "{0D1B7C31-5891-4992-8585-FD252A23459A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BioAlgo", "BioAlgo\BioAlgo.csproj", "{EB110477-44E2-44C4-BA38-321B2B1699D0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.Models", "bioResearchSystem.Models\bioResearchSystem.Models.csproj", "{F485AA59-5658-4F7A-A613-27DF1A1EE8D4}"
@@ -17,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SciReport", "SciReport\SciR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bioResearchSystem.Device", "bioResearchSystem.Device\bioResearchSystem.Device.csproj", "{62D59CCF-9437-4F5E-A117-D7606C294489}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bioResearchSystem.Mvc", "bioResearchSystem.Mvc\bioResearchSystem.Mvc.csproj", "{DFD9AEDF-8F08-4C25-A717-0F8A83DF8153}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bioResearchSystem.Web", "bioResearchSystem.Web\bioResearchSystem.Web.csproj", "{2177712D-3E18-466D-9759-CE45A33555C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +31,6 @@ Global
 		{AE770BC4-E662-49F3-AF2D-5BC9E2B0A7C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE770BC4-E662-49F3-AF2D-5BC9E2B0A7C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE770BC4-E662-49F3-AF2D-5BC9E2B0A7C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D1B7C31-5891-4992-8585-FD252A23459A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D1B7C31-5891-4992-8585-FD252A23459A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D1B7C31-5891-4992-8585-FD252A23459A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D1B7C31-5891-4992-8585-FD252A23459A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB110477-44E2-44C4-BA38-321B2B1699D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB110477-44E2-44C4-BA38-321B2B1699D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB110477-44E2-44C4-BA38-321B2B1699D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,10 +47,10 @@ Global
 		{62D59CCF-9437-4F5E-A117-D7606C294489}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62D59CCF-9437-4F5E-A117-D7606C294489}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62D59CCF-9437-4F5E-A117-D7606C294489}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DFD9AEDF-8F08-4C25-A717-0F8A83DF8153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DFD9AEDF-8F08-4C25-A717-0F8A83DF8153}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DFD9AEDF-8F08-4C25-A717-0F8A83DF8153}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DFD9AEDF-8F08-4C25-A717-0F8A83DF8153}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2177712D-3E18-466D-9759-CE45A33555C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2177712D-3E18-466D-9759-CE45A33555C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2177712D-3E18-466D-9759-CE45A33555C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2177712D-3E18-466D-9759-CE45A33555C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

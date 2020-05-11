@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BioAlgo\BioAlgo.csproj" />
     <ProjectReference Include="..\bioResearchSystem.DAL\bioResearchSystem.DAL.csproj" />
   </ItemGroup>
 

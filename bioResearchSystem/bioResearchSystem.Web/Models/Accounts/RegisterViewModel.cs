@@ -4,26 +4,29 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace bioResearchSystem.Mvc.Models.Accounts
+namespace bioResearchSystem.Web.Models.Accounts
 {
     public class RegisterViewModel
     {
         [Required]
-        public string Name { get; set; }
-        public string LastName { get; set; }
+        public string FirstName { get; set; }
         [Required]
-        public string NickName { get; set; }
+        public string LastName { get; set; }
+
 
         [Required]
-        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [Required]
+        [Compare("Password", ErrorMessage = "Passswords doesn't equals")]
         [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
         public string PasswordConfirm { get; set; }
     }
 }

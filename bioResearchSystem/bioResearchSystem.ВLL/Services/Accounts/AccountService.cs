@@ -21,11 +21,7 @@ namespace bioResearchSystem.ВLL.Services.Accounts
             this.mapper = mapper;
         }
 
-        public async Task<SignInResult> LogIn(UserDTO userDto)
-        {
-            return null;
-
-        }
+     
 
         public async Task Logout()
         {
@@ -41,6 +37,10 @@ namespace bioResearchSystem.ВLL.Services.Accounts
                 await signInManager.SignInAsync(user, false);
             }
             return identityResult;
+        }
+        public async Task<SignInResult> Login(UserDTO model) { 
+        
+            return await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
         }
 
         

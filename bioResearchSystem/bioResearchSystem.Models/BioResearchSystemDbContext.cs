@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace bioResearchSystem.Mode
+namespace bioResearchSystem.Models
 {
     public class BioResearchSystemDbContext : IdentityDbContext<AppUser>
     {
