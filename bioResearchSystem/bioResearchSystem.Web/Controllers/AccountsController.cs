@@ -22,7 +22,7 @@ namespace bioResearchSystem.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Register() {
+        public IActionResult Registration() {
             return View();
         }
 
@@ -72,8 +72,8 @@ namespace bioResearchSystem.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result =
-                    await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                var user = mapper.Map<UserDTO>(model);
+                var result = await accountService.Login(user);
                 if (result.Succeeded)
                 {
                     // проверяем, принадлежит ли URL приложению

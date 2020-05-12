@@ -7,6 +7,7 @@ namespace bioResearchSystem.Models.Entities
     public class Tag:Entity
     {
         public string TagName { get; set; }
+        public ICollection<TagResearch> TagResearches { get; set; }
         
     }
 }
