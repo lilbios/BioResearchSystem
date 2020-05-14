@@ -26,7 +26,7 @@ namespace bioResearchSystem.DAL.Implementations
 
         public  async Task<ICollection<Research>> GetAllWithInlude()
         {
-            return await dbSet.Include(e => e.Experiment)
+            return await dbSet.Include(e => e.Experiments)
                 .Include(o => o.Objectives)
                 .Include(u => u.User)
                 .Include(tr => tr.TagResearches).ThenInclude(t => t.Tag).AsNoTracking()
@@ -35,7 +35,7 @@ namespace bioResearchSystem.DAL.Implementations
 
         public async Task<Research> GetWithInclude(Guid id)
         {
-            return await dbSet.Include(e => e.Experiment)
+            return await dbSet.Include(e => e.Experiments)
                 .Include(o => o.Objectives)
                 .Include(u => u.User)
                 .Include(tr => tr.TagResearches).ThenInclude(t => t.Tag).FirstOrDefaultAsync();

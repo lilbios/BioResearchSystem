@@ -14,11 +14,14 @@ namespace bioResearchSystem.Models.Entities
         [Required]
         public string Description { get; set; }
 
-        public StatusResearch StatusResearch { get; set; }
+        public StatusResearch? StatusResearch { get; set; }
+
+        [Required]
         public Privacy Privacy { get; set; }
 
+        [Required]
         public DateTime OpenedDate { get; set; }
-        public DateTime ClosedDate { get; set; }
+        public DateTime? ClosedDate { get; set; }
 
 
         public string UserId { get; set; }

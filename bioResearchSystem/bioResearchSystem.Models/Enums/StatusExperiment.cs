@@ -2,9 +2,8 @@
 {
     public enum StatusExperiment
     {
-        Approved,
-        Waiting,
-        Denied,
-        InProgress
+        Done,
+        InProgress,
+        NotStarted
     }
 }
