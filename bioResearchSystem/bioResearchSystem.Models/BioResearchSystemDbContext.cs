@@ -18,10 +18,17 @@ namespace bioResearchSystem.Models
         public DbSet<TagResearch> TagResearches { get; set; }
 
         public BioResearchSystemDbContext(DbContextOptions<BioResearchSystemDbContext> options)
-            :base(options)
+            : base(options)
         {
-
-            
+        }
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<AppUser>()
+                .HasOne(u => u.Wallet)
+                .WithOne(w => w.User)
+                .HasForeignKey<Wallet>(w => w.UserId);
         }
     }
     public class BioResearhSystemDbContextFactory : IDesignTimeDbContextFactory<BioResearchSystemDbContext>
@@ -29,7 +36,7 @@ namespace bioResearchSystem.Models
         public BioResearchSystemDbContext CreateDbContext(string[] args)
         {
             var optionBuilder = new DbContextOptionsBuilder<BioResearchSystemDbContext>();
-            optionBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=BRSdb;Trusted_Connection=True;MultipleActiveResultSets=true", b => b.MigrationsAssembly("bioResearchSystem.Models"));
+            optionBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=brsdb;Trusted_Connection=True;MultipleActiveResultSets=true", b => b.MigrationsAssembly("bioResearchSystem.Models"));
             return new BioResearchSystemDbContext(optionBuilder.Options);
         }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bioResearchSystem.ВLL.Services.Topics
 {
-    interface ITopicService
+   public  interface ITopicService
     {
         public Task CreateTopic(TopicDTO topic);
         public Task UpdateTopic(TopicDTO topic);

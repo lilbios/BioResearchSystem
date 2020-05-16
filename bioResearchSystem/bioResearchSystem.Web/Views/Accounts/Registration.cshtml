@@ -1,0 +1,16 @@
+﻿@model bioResearchSystem.Web.Models.Accounts.RegisterViewModel
+@{
+    Layout = "~/Views/Shared/_RegisterLayout.cshtml";
+}
+    <div class="login-page">
+        <div class="form">
+            <form class="login-form" asp-action="Accounts" asp-controller="Registration">
+                <input type="text" placeholder="full name" />
+                <input type="text" placeholder="email"/>
+                <input type="password" placeholder="password"/>
+                <input type="password" placeholder="repeat password" />
+                <button>Sing Up</button>
+                <p class="message">Already exsist? <a href="@Url.Action("Login","Accounts")">Login</a></p>
+            </form>
+        </div>
+    </div>

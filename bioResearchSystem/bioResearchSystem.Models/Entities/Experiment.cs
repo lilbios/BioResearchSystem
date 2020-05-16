@@ -10,7 +10,9 @@ namespace bioResearchSystem.Models.Entities
         public StatusExperiment StatusExperiment { get; set; }
         public DateTime StartedDate { get; set; }
         public DateTime FinishedDate { get; set; }
-        public ICollection<Research> Researches { get; set; }
-        public ICollection<Result> Results { get; set; }
+        public Guid ResearchId { get; set; }
+        public Guid ResultId { get; set; }
+        public Result Result { get; set; }
+        public Research Research { get; set; }
     }
 }

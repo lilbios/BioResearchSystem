@@ -8,8 +8,6 @@ namespace bioResearchSystem.Models.Entities
     public class Wallet:Entity
     { 
         public decimal Balance { get; set; }
-        [ForeignKey("User")]
-
         public string UserId { get; set; }
         public AppUser User { get; set; } 
     }

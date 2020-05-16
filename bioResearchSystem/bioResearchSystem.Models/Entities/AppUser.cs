@@ -14,9 +14,7 @@ namespace bioResearchSystem.Models.Entities
         public string NickName { get; set; }
         public int Age { get; set; }
 
-        public bool IsSuperVisor { get; set; }
-
-        [Required]
+        public Wallet Wallet { get; set; }
         public Gender Gender { get; set; }
 
         public byte[] Photo { get; set; }

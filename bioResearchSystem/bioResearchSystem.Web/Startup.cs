@@ -30,7 +30,7 @@ namespace bioResearchSystem.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<BioResearchSystemDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly(nameof(bioResearchSystem.Models))));
+            services.AddDbContext<BioResearchSystemDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("bioResearchSystem.Models")));
             services.AddAutoMapper(typeof(MapperProfile));
 
             services.AddIdentity<AppUser, IdentityRole>(opts =>
@@ -75,7 +75,7 @@ namespace bioResearchSystem.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Accounts}/{action=Login}/{id?}");
             });
         }
     }

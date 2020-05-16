@@ -2,9 +2,8 @@
 {
     public enum StatusResearch
     {
-        Investigated,
-        InProgress,
-        Frozen,
-        Failed
+        Approved,
+        UnCommited,
+        Denied
     }
 }

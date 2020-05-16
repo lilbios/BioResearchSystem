@@ -23,12 +23,12 @@ namespace bioResearchSystem.DAL.Implementations
 
         public async Task<ICollection<Result>> GetAllWithInlude()
         {
-            return await dbSet.Include(e => e.Experiment).AsNoTracking().ToListAsync();
+            return await dbSet.Include(e => e.Experiments).AsNoTracking().ToListAsync();
         }
 
         public async Task<Result> GetObjectWithIcnlude(Guid id)
         {
-            return await dbSet.Include(e => e.Experiment).FirstOrDefaultAsync();
+            return await dbSet.Include(e => e.Experiments).FirstOrDefaultAsync();
         }
     }
 }

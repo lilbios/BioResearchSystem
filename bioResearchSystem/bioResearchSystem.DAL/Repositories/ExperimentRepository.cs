@@ -19,13 +19,13 @@ namespace bioResearchSystem.DAL.Implementations
 
         public async Task<ICollection<Experiment>> GetAllWithInludeAsync()
         {
-            return await dbSet.Include(r => r.Researches).AsNoTracking().ToListAsync();
+            return await dbSet.Include(r => r.Research).AsNoTracking().ToListAsync();
         }
 
         public Task<Experiment> GetWithIncludeAsync(Guid id)
         {
-            var experiment = dbSet.Include(rsrch => rsrch.Researches)
-                .Include(res => res.Results)
+            var experiment = dbSet.Include(rsrch => rsrch.Research)
+                .Include(res => res.Result)
                 .FirstOrDefaultAsync(e => e.Id == id);
             return experiment;
         }

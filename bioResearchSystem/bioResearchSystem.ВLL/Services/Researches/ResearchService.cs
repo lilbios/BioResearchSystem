@@ -1,4 +1,6 @@
-﻿using bioResearchSystem.Models.Entities;
+﻿using AutoMapper;
+using bioResearchSystem.Models.Entities;
+using bioResearchSystem.Models.Interfaces.DataAccess;
 using bioResearchSystem.Models.Repositories;
 using bioResearchSystem.ВLL.Services.Researches;
 using System;
@@ -10,12 +12,15 @@ namespace bioResearchSystem.ВLL.Services
 {
     public class ResearchService : IResearchService
     {
-        private readonly IRepositoryResearch repositoryResearch;
-        public ResearchService(IRepositoryResearch repositoryResearch)
+        private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
+        public ResearchService(IUnitOfWork _unitOfWork, IMapper _mapper)
         {
-            this.repositoryResearch = repositoryResearch;
-        }
+            unitOfWork = _unitOfWork;
+            mapper = _mapper;
 
+        }
+      
         public Task EditResearch(ResearchDTO researchDto)
         {
             throw new NotImplementedException();
@@ -24,7 +29,7 @@ namespace bioResearchSystem.ВLL.Services
       
         public async Task<ICollection<Research>> GetAllResearches()
         {
-            return await repositoryResearch.GetAllAsync();
+            return await unitOfWork.Researches.GetAllAsync();
         }
 
         public Task GetResearchByTagName(string tagName)

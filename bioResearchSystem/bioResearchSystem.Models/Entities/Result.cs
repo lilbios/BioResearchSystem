@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace bioResearchSystem.Models.Entities
@@ -7,7 +9,6 @@ namespace bioResearchSystem.Models.Entities
     {
         [Required]
         public string OrignalResult { get; set; }
-        public Guid ExpetimentId { get; set; }
-        public Experiment Experiment  { get; set; }
+        public ICollection<Experiment> Experiments { get; set; }  
     }
 }
