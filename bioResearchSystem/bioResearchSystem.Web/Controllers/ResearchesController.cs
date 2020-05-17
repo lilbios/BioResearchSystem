@@ -7,6 +7,7 @@ using bioResearchSystem.Models.Interfaces.DataAccess;
 using bioResearchSystem.Web.Models.Researсhes;
 using bioResearchSystem.ВLL.Services.Accounts;
 using bioResearchSystem.ВLL.Services.Researches;
+using bioResearchSystem.ВLL.Services.Tags;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bioResearchSystem.Web.Controllers
@@ -15,17 +16,16 @@ namespace bioResearchSystem.Web.Controllers
     {
         
         private readonly IMapper mapper;
-        private readonly IRepositoryTag repositoryTag;
+        private readonly ITagService repositoryTag;
         private readonly IResearchService researchService;
-        private readonly IRepositoryTagResearch repositoryTagResearch;
 
-        public ResearchesController(IMapper mapper, IResearchService researchService,
-            IRepositoryTagResearch repositoryTagResearch,IRepositoryTag repositoryTag)
+        public ResearchesController(IMapper mapper, IResearchService researchService
+             ,ITagService repositoryTag)
         {
             this.mapper = mapper;
             this.repositoryTag = repositoryTag;
             this.researchService = researchService;
-            this.repositoryTagResearch = repositoryTagResearch;
+     
         }
 
        [HttpGet]
@@ -37,5 +37,22 @@ namespace bioResearchSystem.Web.Controllers
 
             return View();
         }
+        public IActionResult EditResearch(int id) {
+            return View();
+        }
+        public IActionResult EditResearch(ResearchViewModel resarchView) {
+
+            return View();
+        }
+        public IActionResult Details(int id) {
+            return View();
+        }
+        public IActionResult Tags(string tagName) {
+            return View();
+        }
+
+        
+        
+
     }
 }

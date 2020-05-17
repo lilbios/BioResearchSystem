@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using bioResearchSystem.Models.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,5 +12,6 @@ namespace bioResearchSystem.ВLL.Services.Accounts
         public Task<IdentityResult> Registration(UserDTO user);
         public Task<SignInResult> Login(UserDTO user);
         public Task Logout();
+        public Task<AppUser> FindUser(string param);
     }
 }

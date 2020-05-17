@@ -6,27 +6,25 @@ using System.Threading.Tasks;
 
 namespace bioResearchSystem.Web.Models.Accounts
 {
-    public class RegisterViewModel
+    public class RegisterViewModel : CommonViewModel
     {
         [Required]
-        public string FirstName { get; set; }
-        [Required]
-        public string LastName { get; set; }
-
+        public string FullName { get; set; }
 
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "email")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "password")]
+        [MinLength(10,ErrorMessage ="Your password to short!")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [Required]
         [Compare("Password", ErrorMessage = "Passswords doesn't equals")]
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
         public string PasswordConfirm { get; set; }
+
     }
 }

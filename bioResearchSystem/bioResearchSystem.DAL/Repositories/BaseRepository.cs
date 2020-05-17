@@ -3,6 +3,7 @@ using bioResearchSystem.Models.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,6 +47,9 @@ namespace bioResearchSystem.DAL.Repositories
            await dbContext.SaveChangesAsync();
         }
 
-        
+        public async Task<T> Find(Expression<Func<T, bool>> expression)
+        {
+            return await dbSet.FirstOrDefaultAsync(expression);
+        }
     }
 }

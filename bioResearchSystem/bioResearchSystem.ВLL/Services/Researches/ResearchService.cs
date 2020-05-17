@@ -47,9 +47,9 @@ namespace bioResearchSystem.ВLL.Services
             throw new NotImplementedException();
         }
 
-        public Task<Research> СreateNewResearch(ResearchDTO researchDto)
+        public  Task<Research> СreateNewResearch(ResearchDTO researchDto)
         {
-            throw new NotImplementedException();
+            return  null;
         }
     }
 }

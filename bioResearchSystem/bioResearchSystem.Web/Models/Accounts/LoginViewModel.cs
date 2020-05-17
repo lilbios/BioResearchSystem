@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace bioResearchSystem.Web.Models.Accounts
 {
-    public class LoginViewModel
+    public class LoginViewModel:CommonViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "email")]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "password")]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]

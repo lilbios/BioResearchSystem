@@ -1,4 +1,5 @@
-﻿using bioResearchSystem.DAL.Repositories;
+﻿using bioResearchSystem.DAL.Implementations;
+using bioResearchSystem.DAL.Repositories;
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Interfaces.DataAccess;
 using bioResearchSystem.Models.Repositories;
@@ -28,15 +29,15 @@ namespace bioResearchSystem.Web.Common
                 throw new ArgumentNullException(nameof(configuration));
             }
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<IRepository<AppUser>, BaseRepository<AppUser>>();
-            services.AddTransient<IRepository<Research>, BaseRepository<Research>>();
-            services.AddTransient<IRepository<Objective>,BaseRepository<Objective>>();
-            services.AddTransient<IRepository<Tag>, BaseRepository<Tag>>();
-            services.AddTransient<IRepository<Device>, BaseRepository<Device>>();
-            services.AddTransient<IRepository<TagResearch>, BaseRepository<TagResearch>>();
-            services.AddTransient<IRepository<Wallet>, BaseRepository<Wallet>>();
-            services.AddTransient<IRepository<Result>, BaseRepository<Result>>();
-            services.AddTransient<IRepository<Topic>, BaseRepository<Topic>>();
+            services.AddTransient<BaseRepository<AppUser>,UserRepository>();
+            services.AddTransient<IRepository<Research>,ResearchRepository>();
+            services.AddTransient<IRepository<Objective>,ObjectiveRepository>();
+            services.AddTransient<IRepository<Tag>, TagRepository>();
+            services.AddTransient<IRepository<Device>, DeviceRepository>();
+            services.AddTransient<IRepository<TagResearch>,TagResearchRepository>();
+            services.AddTransient<IRepository<Wallet>,WalletRepository>();
+            services.AddTransient<IRepository<Result>,ResultRepository>();
+            services.AddTransient<IRepository<Topic>, TopicRepository>();
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddTransient<IResearchService, ResearchService>();

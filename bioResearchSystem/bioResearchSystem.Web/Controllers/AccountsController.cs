@@ -6,18 +6,22 @@ using AutoMapper;
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Web.Models.Accounts;
 using bioResearchSystem.ВLL.Services.Accounts;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bioResearchSystem.Web.Controllers
 {
     public class AccountsController : Controller
     {
-
-        private readonly IAccountService accountService;
         private readonly IMapper mapper;
-        public AccountsController(IMapper mapper,IAccountService accountService)
+        private readonly IAccountService accountService;
+        private readonly UserManager<AppUser> userManager;
+      
+        public AccountsController(IMapper mapper,IAccountService accountService, 
+            UserManager<AppUser> userManager)
         {
             this.accountService = accountService;
+            this.userManager = userManager;
             this.mapper = mapper;
         }
 
@@ -46,6 +50,12 @@ namespace bioResearchSystem.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Registration(RegisterViewModel model)
         {
+            var findUser = await accountService.FindUser(model.Email);
+
+            if (findUser != null) {
+                ModelState.AddModelError("ErrorMsg", "User already exsists");
+            }
+            
             if (ModelState.IsValid)
             {
                 var user = mapper.Map<UserDTO>(model);
@@ -53,7 +63,7 @@ namespace bioResearchSystem.Web.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction(nameof(Index), "Home");
                 }
                 else
                 {
@@ -70,20 +80,27 @@ namespace bioResearchSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            var findUser = await accountService.FindUser(model.Email);
+
+            if (findUser is null)
+            {
+                ModelState.AddModelError("ErrorMsg", "User doesn't exsist");
+            }
+
             if (ModelState.IsValid)
             {
                 var user = mapper.Map<UserDTO>(model);
                 var result = await accountService.Login(user);
                 if (result.Succeeded)
                 {
-                    // проверяем, принадлежит ли URL приложению
+              
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {
                         return Redirect(model.ReturnUrl);
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction(nameof(Index), "Home");
                     }
                 }
                 else

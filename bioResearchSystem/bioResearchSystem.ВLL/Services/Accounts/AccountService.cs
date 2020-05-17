@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using bioResearchSystem.Models.Entities;
+using bioResearchSystem.Models.Interfaces.DataAccess;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -11,15 +12,17 @@ namespace bioResearchSystem.ВLL.Services.Accounts
     public class AccountService: IAccountService
     {
         private readonly IMapper mapper;
+        private readonly IUnitOfWork unitOfWork;
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly RoleManager<IdentityRole> roleManager;
         
-        public AccountService(UserManager<AppUser> userManager, 
+        public AccountService(UserManager<AppUser> userManager, IUnitOfWork unitOfWork,
             SignInManager<AppUser> signInManager,  RoleManager<IdentityRole> roleManager,
             IMapper mapper)
         {
             this.mapper = mapper;
+            this.unitOfWork = unitOfWork;
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.signInManager = signInManager;
@@ -30,6 +33,7 @@ namespace bioResearchSystem.ВLL.Services.Accounts
         {
             await signInManager.SignOutAsync();
         }
+
 
         public async Task<IdentityResult> Registration(UserDTO userDto)
         {
@@ -44,6 +48,9 @@ namespace bioResearchSystem.ВLL.Services.Accounts
         public async Task<SignInResult> Login(UserDTO model) { 
         
             return await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+        }
+        public async Task<AppUser> FindUser(string param) {
+            return await unitOfWork.Users.Find(u => u.Email == param);
         }
 
         

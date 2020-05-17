@@ -11,5 +11,6 @@ namespace bioResearchSystem.Models.Repositories
         public  Task<ICollection<AppUser>> GetAllAsync();
         public  Task RemoveAsync(AppUser value);
         public  Task UpdateAsync(AppUser user);
+
     }
 }
