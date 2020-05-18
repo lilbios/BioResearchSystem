@@ -1,0 +1,37 @@
+﻿@model bioResearchSystem.Web.Models.Topics.TopicViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="row" id="topic-form" align="center">
+    <div class="col-md-4">
+        <form asp-action="CreateNewTopic">
+            <div asp-validation-summary="ModelOnly" class="text-danger error-box"></div>
+            <div class="form-group">
+                <small class="text-danger photo-danger"></small>
+                <div class="card" style="width: 18rem;">
+                    <img onclick="invoke()" src="https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img.jpg" class="card-img-top">
+                    <div class="card-body">
+                        <input type="text" class="form-input" />
+                        <p class="card-text">Here you can put some photo and make short description.</p>
+                    </div>
+                </div>
+                <input type="file" onchange="upload(this)" id="photoholder" class="file-container" hidden />
+                <small class="text-danger title-danger"></small>
+            </div>
+            <div class="form-group">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit"  value="Create" onclick="post()" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript" src="~/js/common.js"></script>
+    <script type="text/javascript" src="~/js/admins.js"></script>
+    <script type="text/javascript" src="~/js/topic/create.js"></script>
+}

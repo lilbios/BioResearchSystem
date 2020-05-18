@@ -20,13 +20,13 @@ namespace bioResearchSystem.ВLL.Services
             mapper = _mapper;
 
         }
-      
+
         public Task EditResearch(ResearchDTO researchDto)
         {
             throw new NotImplementedException();
         }
 
-      
+
         public async Task<ICollection<Research>> GetAllResearches()
         {
             return await unitOfWork.Researches.GetAllAsync();
@@ -47,9 +47,10 @@ namespace bioResearchSystem.ВLL.Services
             throw new NotImplementedException();
         }
 
-        public  Task<Research> СreateNewResearch(ResearchDTO researchDto)
+        public async Task<Research> СreateNewResearch(ResearchDTO researchDto)
         {
-            return  null;
+            var research = mapper.Map<Research>(researchDto);
+            return await unitOfWork.Researches.CreateResearch(research);
         }
     }
 }

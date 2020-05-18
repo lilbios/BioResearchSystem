@@ -9,52 +9,55 @@ namespace bioResearchSystem.DAL.Repositories
     public class UnitOfWork:IUnitOfWork
     {
         private BioResearchSystemDbContext dbContext;
-        private IRepository<AppUser> users;
-        private IRepository<Research> researches;
-        private IRepository<Device> devices;
-        private IRepository<Experiment> experiments;
-        private IRepository<Result> results;
-        private IRepository<Objective> objectives;
-        private IRepository<Topic> topics;
-        private IRepository<Tag> tags;
-        private IRepository<TagResearch> tagresearches;
-        private IRepository<Wallet> wallets;
+        private IRepositoryUser users;
+        private IRepositoryResearch researches;
+        private IRepositoryDevice devices;
+        private IRepositoryExperiment experiments;
+        private IRepositoryResult results;
+        private IRepositoryObjective objectives;
+        private IRepositoryTopic topics;
+        private IRepositoryTag tags;
+        private IRepositoryTagResearch tagresearches;
+        private IWalletRepository wallets;
 
         public UnitOfWork(BioResearchSystemDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
-        public IRepository<AppUser> Users => 
-            users ??= new BaseRepository<AppUser>(dbContext);
+
+   
+
+        public IRepositoryUser Users =>
+            users ??= new UserRepository(dbContext);
 
 
-        public IRepository<Wallet> Wallets => 
-            wallets ??= new BaseRepository<Wallet>(dbContext);
+        public IWalletRepository Wallets => 
+            wallets ??= new WalletRepository(dbContext);
 
-        public IRepository<Topic> Topic => 
-            topics ??= new BaseRepository<Topic>(dbContext);
+        public IRepositoryTopic Topic => 
+            topics ??= new TopicRepository(dbContext);
 
-        public IRepository<Research> Researches =>
-            researches ??= new BaseRepository<Research>(dbContext);
+        public IRepositoryResearch Researches =>
+            researches ??= new ResearchRepository(dbContext);
 
-        public IRepository<Result> Results =>
-            results ??= new BaseRepository<Result>(dbContext);
-
-
-        public IRepository<Objective> Objectives =>
-            objectives ??= new BaseRepository<Objective>(dbContext);
+        public IRepositoryResult Results =>
+            results ??= new ResultRepository(dbContext);
 
 
-        public IRepository<TagResearch> TagResearches =>
-            tagresearches ??= new BaseRepository<TagResearch>(dbContext);
+        public IRepositoryObjective Objectives =>
+            objectives ??= new ObjectiveRepository(dbContext);
 
-        public IRepository<Experiment> Experiments =>
-            experiments ??= new BaseRepository<Experiment>(dbContext);
 
-        public IRepository<Device> Devices =>
-            devices ??= new BaseRepository<Device>(dbContext);
+        public IRepositoryTagResearch TagResearches =>
+            tagresearches ??= new TagResearchRepository(dbContext);
 
-        public IRepository<Tag> Tags =>
-            tags ??= new BaseRepository<Tag>(dbContext);
+        public IRepositoryExperiment Experiments =>
+            experiments ??= new ExperimentRepository(dbContext);
+
+        public IRepositoryDevice Devices =>
+            devices ??= new DeviceRepository(dbContext);
+
+        public IRepositoryTag Tags =>
+            tags ??= new TagRepository(dbContext);
     }
 }

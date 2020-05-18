@@ -2,32 +2,34 @@
 @{
     Layout = "~/Views/Shared/_RegisterLayout.cshtml";
 }
-<div class="login-page" style="padding:50% 0 0; margin-left:50%;">
-    <div class="form">
-        <form class="login-form" asp-action="Registration" asp-controller="Accounts">
-            <span asp-validation-for="ErrorMsg" class="text-danger"></span>
-            <div class="form-group">
-                <span asp-validation-for="FullName" class="text-danger"></span>
-                <input type="text" asp-for="FullName" placeholder="full name" />
-            </div>
-            <div class="form-group">
-                <span asp-validation-for="Email" class="text-danger"></span>
-                <input type="text" asp-for="Email" placeholder="email" />
-            </div>
-            <div class="form-group">
-                <span asp-validation-for="Password" class="text-danger"></span>
-                <input type="password" asp-for="Password" placeholder="password" />
-            </div>
-            <div class="form-group">
-                <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
-                <input type="password" asp-for="PasswordConfirm" placeholder="repeat password" />
-            </div>
-            <input type="submit" hidden />
-            <button onlclick="push()">Sing Up</button>
-            <p class="message">Already exsist? <a href="@Url.Action("Login","Accounts")">Login</a></p>
-        </form>
+    <div class="login-page" style="padding:30% 0 0; margin-left:20%;">
+     
+        <div class="form">
+            <h3 class="title-app">BioResearchSystem</h3>
+            <form class="login-form" asp-action="Registration" asp-controller="Accounts">
+                <span asp-validation-for="ErrorMsg" class="text-danger"></span>
+                <div class="form-group">
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                    <input type="text" asp-for="FullName" placeholder="full name" />
+                </div>
+                <div class="form-group">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <input type="text" asp-for="Email" placeholder="email" />
+                </div>
+                <div class="form-group">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <input type="password" asp-for="Password" placeholder="password" />
+                </div>
+                <div class="form-group">
+                    <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+                    <input type="password" asp-for="PasswordConfirm" placeholder="repeat password" />
+                </div>
+                <input type="submit" hidden />
+                <button onlclick="push()">Sing Up</button>
+                <p class="message">Already exsist? <a href="@Url.Action("Login","Accounts")">Login</a></p>
+            </form>
+        </div>
     </div>
-</div>
 @section Scripts{
     <script type="text/javascript" src="~/js/common.js"></script>
 }

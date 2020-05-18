@@ -29,15 +29,15 @@ namespace bioResearchSystem.Web.Common
                 throw new ArgumentNullException(nameof(configuration));
             }
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<BaseRepository<AppUser>,UserRepository>();
-            services.AddTransient<IRepository<Research>,ResearchRepository>();
-            services.AddTransient<IRepository<Objective>,ObjectiveRepository>();
-            services.AddTransient<IRepository<Tag>, TagRepository>();
-            services.AddTransient<IRepository<Device>, DeviceRepository>();
-            services.AddTransient<IRepository<TagResearch>,TagResearchRepository>();
-            services.AddTransient<IRepository<Wallet>,WalletRepository>();
-            services.AddTransient<IRepository<Result>,ResultRepository>();
-            services.AddTransient<IRepository<Topic>, TopicRepository>();
+            services.AddTransient<IRepositoryUser,UserRepository>();
+            services.AddTransient<IRepositoryResearch,ResearchRepository>();
+            services.AddTransient<IRepositoryObjective,ObjectiveRepository>();
+            services.AddTransient<IRepositoryTag, TagRepository>();
+            services.AddTransient<IRepositoryDevice, DeviceRepository>();
+            services.AddTransient<IRepositoryTagResearch,TagResearchRepository>();
+            services.AddTransient<IWalletRepository, WalletRepository>();
+            services.AddTransient<IRepositoryResult,ResultRepository>();
+            services.AddTransient<IRepositoryTopic, TopicRepository>();
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddTransient<IResearchService, ResearchService>();

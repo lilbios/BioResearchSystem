@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace bioResearchSystem.ВLL.Services.Accounts
 {
-    public class AccountService: IAccountService
+    public class AccountService : IAccountService
     {
         private readonly IMapper mapper;
         private readonly IUnitOfWork unitOfWork;
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly RoleManager<IdentityRole> roleManager;
-        
+
         public AccountService(UserManager<AppUser> userManager, IUnitOfWork unitOfWork,
-            SignInManager<AppUser> signInManager,  RoleManager<IdentityRole> roleManager,
+            SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager,
             IMapper mapper)
         {
             this.mapper = mapper;
@@ -26,7 +26,7 @@ namespace bioResearchSystem.ВLL.Services.Accounts
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.signInManager = signInManager;
-            
+
         }
 
         public async Task Logout()
@@ -45,14 +45,16 @@ namespace bioResearchSystem.ВLL.Services.Accounts
             }
             return identityResult;
         }
-        public async Task<SignInResult> Login(UserDTO model) { 
-        
+        public async Task<SignInResult> Login(UserDTO model)
+        {
+
             return await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
         }
-        public async Task<AppUser> FindUser(string param) {
-            return await unitOfWork.Users.Find(u => u.Email == param);
+        public async Task<AppUser> FindUser(string email)
+        {
+            return await unitOfWork.Users.Find(u => u.Email == email);
         }
 
-        
+
     }
 }

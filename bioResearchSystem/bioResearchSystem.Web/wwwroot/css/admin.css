@@ -1,0 +1,27 @@
+﻿main {
+    margin-top:5%;
+}
+#topic-form {
+    display: flex;
+    justify-content: center;
+    margin-top:5%;
+}
+.form-input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom-style: solid;
+    border-bottom-width: medium;
+    width: 50%;
+    border-color: darkgrey;
+    outline:none;
+}
+.nav-link {
+    color:black
+}
+    .nav-link:hover {
+        text-decoration: underline;
+    }
+img.card-img-top {
+    cursor:pointer;
+}

@@ -1,17 +1,11 @@
 ﻿@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
-.register-container {
-    background-image: url('wall/pexels-photo-954585.jpeg');
+body{
     background-repeat: no-repeat;
     background-size: cover;
     height:100%;
-}
-.login-container {
-    background-image: url('wall/pexels-photo-2280571.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
 }
 html {
     overflow-y: hidden;
@@ -20,7 +14,7 @@ html {
 
 .login-page {
     width: 360px;
-    padding: 70% 0 0;
+    padding: 50% 0 0;
     margin: auto;
 }
 
@@ -134,4 +128,8 @@ html {
     .navbar {
         background-color: #4285F4;
     }
+}
+.title-app {
+    font-family: 'Righteous', cursive;
+    margin-bottom:10%;
 }
