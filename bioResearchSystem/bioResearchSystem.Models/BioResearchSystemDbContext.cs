@@ -15,6 +15,7 @@ namespace bioResearchSystem.Models
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Branch> Branches { get; set; }
         public DbSet<TagResearch> TagResearches { get; set; }
 
         public BioResearchSystemDbContext(DbContextOptions<BioResearchSystemDbContext> options)

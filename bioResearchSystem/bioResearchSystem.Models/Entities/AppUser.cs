@@ -7,10 +7,8 @@ namespace bioResearchSystem.Models.Entities
     public class AppUser : IdentityUser
     {
 
-        [Required]
         public string Name { get; set; }
         public string LastName { get; set; }
-        [Required]
         public string NickName { get; set; }
         public int Age { get; set; }
 

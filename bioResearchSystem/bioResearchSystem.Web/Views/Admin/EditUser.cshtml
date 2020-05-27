@@ -13,18 +13,15 @@
         <form asp-action="EditUser">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="DefaultFullName" class="control-label"></label>
-                <input asp-for="DefaultFullName" class="form-control" />
-                <span asp-validation-for="DefaultFullName" class="text-danger"></span>
+                <input asp-for="NickName" placeholder="user name" class="form-control" />
+                <span asp-validation-for="NickName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" class="form-control" placeholder="email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <input asp-for="Password" class="form-control" placeholder="password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">

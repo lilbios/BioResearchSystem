@@ -1,8 +1,8 @@
 ﻿using bioResearchSystem.DAL.Implementations;
 using bioResearchSystem.DAL.Repositories;
-using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Interfaces.DataAccess;
 using bioResearchSystem.Models.Repositories;
+using bioResearchSystem.ВLL.DomainModels.DeviceModule;
 using bioResearchSystem.ВLL.Services;
 using bioResearchSystem.ВLL.Services.Accounts;
 using bioResearchSystem.ВLL.Services.Devices;
@@ -13,7 +13,6 @@ using bioResearchSystem.ВLL.Services.Results;
 using bioResearchSystem.ВLL.Services.Tags;
 using bioResearchSystem.ВLL.Services.Topics;
 using bioResearchSystem.ВLL.Services.Wallets;
-using bioResearchSystem.ВLL.Third_part.pic;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -39,6 +38,7 @@ namespace bioResearchSystem.Web.Common
             services.AddTransient<IRepositoryResult,ResultRepository>();
             services.AddTransient<IRepositoryTopic, TopicRepository>();
 
+         
             services.AddScoped<IAccountService, AccountService>();
             services.AddTransient<IResearchService, ResearchService>();
             services.AddTransient<IDeviceService, DeviceService>();
@@ -48,7 +48,8 @@ namespace bioResearchSystem.Web.Common
             services.AddTransient<IResultService, ResultService>();
             services.AddTransient<IWalletService, WalletService>();
             services.AddTransient<ITopicService, TopicService>();
-            services.AddTransient<IImageBuilder, ImageConvertor>();
+            services.AddTransient<IBaseDevice,DnaSequencer>();
+          
 
             return services;
         }

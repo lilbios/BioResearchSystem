@@ -1,43 +1,48 @@
 ﻿using AutoMapper;
 using bioResearchSystem.Models.Entities;
-using bioResearchSystem.Models.Interfaces.DataAccess;
+using bioResearchSystem.Models.Repositories;
 using bioResearchSystem.ВLL.Services.Topics;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace bioResearchSystem.ВLL.Services
 {
     public class TopicService : ITopicService
     {
-
-        private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
-        public TopicService(IUnitOfWork _unitOfWork, IMapper _mapper)
+        private readonly IRepositoryTopic topicRepository;
+        public TopicService(IRepositoryTopic topicRepository, IMapper _mapper)
         {
-            unitOfWork = _unitOfWork;
             mapper = _mapper;
+            this.topicRepository = topicRepository;
+
         }
 
-        public Task CreateTopic(TopicDTO topic)
+        public async Task CreateTopic(TopicDTO topicDto)
         {
-            throw new NotImplementedException();
+            var topic = mapper.Map<Topic>(topicDto);
+            await topicRepository.AddAsync(topic);
+
         }
 
-        public Task<ICollection<Topic>> PopularTopics()
+        public async Task<ICollection<Topic>> PopularTopics()
         {
-            throw new NotImplementedException();
+            var topics = await topicRepository.GetAllAsync();
+            return topics.Take(10).ToList();
         }
 
-        public Task RemoveTopic(Guid id)
+        public async Task RemoveTopic(Guid id)
         {
-            throw new NotImplementedException();
+            var topic = await topicRepository.GetAsync(id);
+            await topicRepository.RemoveAsync(topic);
         }
 
-        public Task UpdateTopic(TopicDTO topic)
+        public async  Task UpdateTopic(TopicDTO topicDto)
         {
-            throw new NotImplementedException();
+            var topic = mapper.Map<Topic>(topicDto);
+            await topicRepository.UpdateAsync(topic);
         }
     }
 }

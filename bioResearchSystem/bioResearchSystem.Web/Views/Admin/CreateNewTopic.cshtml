@@ -7,25 +7,43 @@
 
 <div class="row" id="topic-form" align="center">
     <div class="col-md-4">
-        <form asp-action="CreateNewTopic">
-            <div asp-validation-summary="ModelOnly" class="text-danger error-box"></div>
+        <form asp-action="CreateNewTopic" enctype="multipart/form-data"  method="post">
+            <small asp-validation-summary="ModelOnly" class="text-danger error-box"></small>
             <div class="form-group">
+                <div class="form-group">
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
                 <small class="text-danger photo-danger"></small>
                 <div class="card" style="width: 18rem;">
-                    <img onclick="invoke()" src="https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img.jpg" class="card-img-top">
+                    @if (Model != null)
+                    {
+                        if (Model.TopicPicture is null)
+                        {
+                            <img onclick="invoke()" src="https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img.jpg" class="card-img-top" id="image">
+                        }
+                        else
+                        {
+                            var image = bioResearchSystem.ВLL.Third_part.pic.ImageConvertor.ConvertBytesToImage(Model.TopicPicture);
+
+                            <img onclick="invoke()" src="@image" class="card-img-top" id="image">
+                        }
+                    }
+                    else
+                    {
+                        <img onclick="invoke()" src="https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img.jpg" class="card-img-top" id="image">
+                    }
                     <div class="card-body">
-                        <input type="text" class="form-input" />
+                        <input type="text" asp-for="TopicName" class="form-input" />
                         <p class="card-text">Here you can put some photo and make short description.</p>
                     </div>
                 </div>
-                <input type="file" onchange="upload(this)" id="photoholder" class="file-container" hidden />
-                <small class="text-danger title-danger"></small>
+                <input type="file" onchange="upload(this)" id="photoholder" name="topic-picture" class="file-container" hidden />
             </div>
             <div class="form-group">
-                <span asp-validation-for="Title" class="text-danger"></span>
+                <span asp-validation-for="TopicName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit"  value="Create" onclick="post()" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-lg btn-primary" />
             </div>
         </form>
     </div>
@@ -33,5 +51,5 @@
 @section Scripts{
     <script type="text/javascript" src="~/js/common.js"></script>
     <script type="text/javascript" src="~/js/admins.js"></script>
-    <script type="text/javascript" src="~/js/topic/create.js"></script>
+
 }

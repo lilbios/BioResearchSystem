@@ -6,10 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace bioResearchSystem.Web.Controllers
 {
-    public class ResultsController : Controller
+    public class DeviceController : Controller
     {
-        public IActionResult Index()
-        {
+        public IActionResult Settings() {
             return View();
         }
     }

@@ -10,14 +10,14 @@ using bioResearchSystem.Models;
 namespace bioResearchSystem.Models.Migrations
 {
     [DbContext(typeof(BioResearchSystemDbContext))]
-    [Migration("20200516175339_InitalMigration")]
-    partial class InitalMigration
+    [Migration("20200527183334_Initializer")]
+    partial class Initializer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -187,11 +187,9 @@ namespace bioResearchSystem.Models.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NickName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
@@ -237,6 +235,27 @@ namespace bioResearchSystem.Models.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("bioResearchSystem.Models.Entities.Branch", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BranchName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreation")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LastUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Branches");
+                });
+
             modelBuilder.Entity("bioResearchSystem.Models.Entities.Device", b =>
                 {
                     b.Property<Guid>("Id")
@@ -244,6 +263,12 @@ namespace bioResearchSystem.Models.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Alias")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("BoundRateDevice")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PortName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
@@ -325,6 +350,9 @@ namespace bioResearchSystem.Models.Migrations
                     b.Property<DateTime?>("ClosedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CreatorId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -363,11 +391,16 @@ namespace bioResearchSystem.Models.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("BranchId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("OrignalResult")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BranchId");
 
                     b.ToTable("Results");
                 });
@@ -539,6 +572,15 @@ namespace bioResearchSystem.Models.Migrations
                     b.HasOne("bioResearchSystem.Models.Entities.AppUser", "User")
                         .WithMany("Researches")
                         .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("bioResearchSystem.Models.Entities.Result", b =>
+                {
+                    b.HasOne("bioResearchSystem.Models.Entities.Branch", "Branch")
+                        .WithMany("Results")
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("bioResearchSystem.Models.Entities.TagResearch", b =>

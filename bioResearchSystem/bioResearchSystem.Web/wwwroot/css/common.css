@@ -1,5 +1,31 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400');
+
+
 #header-nav {
     font-family: 'Quicksand', sans-serif;
 }
 
+.img-user {
+    width: 150px;
+    height: 150px;
+    border: 3px solid #03B1CE;
+    border-radius: 160px 160px 160px 160px;
+    -webkit-border-radius: 160px 160px 160px 160px;
+    -moz-border-radius: 160px 160px 160px 160px;
+}
+.form input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.control-label {
+    font-family: 'Nunito', sans-serif
+}

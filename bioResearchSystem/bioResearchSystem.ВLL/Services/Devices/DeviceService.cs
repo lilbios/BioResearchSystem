@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Interfaces.DataAccess;
+using bioResearchSystem.ВLL.DomainModels.DeviceModule;
+using bioResearchSystem.ВLL.DomainModels.DeviceModule.Biology;
 using bioResearchSystem.ВLL.Services.Devices;
 using System;
 using System.Collections.Generic;
@@ -11,12 +13,15 @@ namespace bioResearchSystem.ВLL.Services
 {
     public class DeviceService : IDeviceService
     {
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IBaseDevice baseDevice;
         private readonly IMapper mapper;
-        public DeviceService(IUnitOfWork _unitOfWork, IMapper _mapper)
+
+        public DeviceService (IMapper mapper, IBaseDevice baseDevice)
         {
-            unitOfWork = _unitOfWork;
-            mapper = _mapper;
+            this.mapper = mapper;
+    
+            this.baseDevice = baseDevice;
+            
 
         }
 
@@ -30,7 +35,7 @@ namespace bioResearchSystem.ВLL.Services
             throw new NotImplementedException();
         }
 
-        public Task<Device> GetById(Guid id)
+        public Task<Device> GetById(Guid identifier)
         {
             throw new NotImplementedException();
         }
@@ -38,6 +43,22 @@ namespace bioResearchSystem.ВLL.Services
         public Task<Device> GetDevice(string alias)
         {
             throw new NotImplementedException();
+        }
+
+        public Task<DnaUnit> StartSequencingProcess()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task SwitchDevice(bool toggleToken)
+        {
+            if (toggleToken)
+            {
+                await baseDevice.Connect();
+            }
+            else {
+                await baseDevice.Disconect();
+            }
         }
     }
 }

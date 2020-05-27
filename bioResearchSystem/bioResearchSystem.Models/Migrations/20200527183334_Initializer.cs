@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace bioResearchSystem.Models.Migrations
 {
-    public partial class InitalMigration : Migration
+    public partial class Initializer : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,9 +40,9 @@ namespace bioResearchSystem.Models.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
-                    NickName = table.Column<string>(nullable: false),
+                    NickName = table.Column<string>(nullable: true),
                     Age = table.Column<int>(nullable: false),
                     Gender = table.Column<int>(nullable: false),
                     Photo = table.Column<byte[]>(nullable: true)
@@ -53,15 +53,17 @@ namespace bioResearchSystem.Models.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Results",
+                name: "Branches",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    OrignalResult = table.Column<string>(nullable: false)
+                    BranchName = table.Column<string>(nullable: false),
+                    DateCreation = table.Column<DateTime>(nullable: false),
+                    LastUpdated = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Results", x => x.Id);
+                    table.PrimaryKey("PK_Branches", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -201,7 +203,9 @@ namespace bioResearchSystem.Models.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Alias = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: true),
+                    BoundRateDevice = table.Column<int>(nullable: false),
+                    PortName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -234,6 +238,25 @@ namespace bioResearchSystem.Models.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Results",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    OrignalResult = table.Column<string>(nullable: false),
+                    BranchId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Results", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Results_Branches_BranchId",
+                        column: x => x.BranchId,
+                        principalTable: "Branches",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Researches",
                 columns: table => new
                 {
@@ -245,6 +268,7 @@ namespace bioResearchSystem.Models.Migrations
                     OpenedDate = table.Column<DateTime>(nullable: false),
                     ClosedDate = table.Column<DateTime>(nullable: true),
                     UserId = table.Column<string>(nullable: true),
+                    CreatorId = table.Column<string>(nullable: true),
                     TopicId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -410,6 +434,11 @@ namespace bioResearchSystem.Models.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Results_BranchId",
+                table: "Results",
+                column: "BranchId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TagResearches_ResearchId",
                 table: "TagResearches",
                 column: "ResearchId");
@@ -470,6 +499,9 @@ namespace bioResearchSystem.Models.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tags");
+
+            migrationBuilder.DropTable(
+                name: "Branches");
 
             migrationBuilder.DropTable(
                 name: "Topics");

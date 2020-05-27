@@ -13,5 +13,6 @@ namespace bioResearchSystem.ВLL.Services.Accounts
         public Task<SignInResult> Login(UserDTO user);
         public Task Logout();
         public Task<AppUser> FindUser(string param);
+        public Task<ICollection<AppUser>> GetUsers();
     }
 }

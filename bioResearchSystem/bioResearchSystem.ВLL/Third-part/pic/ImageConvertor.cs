@@ -1,20 +1,30 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace bioResearchSystem.ВLL.Third_part.pic
 {
-    public class ImageConvertor : IImageBuilder
+    public static  class ImageConvertor
     {
-        public string ConvertBytesToImage(byte[] bytes)
+        public  static string ConvertBytesToImage(byte[] bytes)
         {
-            throw new NotImplementedException();
+            var base64 = Convert.ToBase64String(bytes);
+            var imagesrc = string.Format("data:image/jpeg;base64,{0}", base64);
+            return imagesrc;
         }
 
-        public byte[] ConvertImageToBytes(IFormFile pictureFile)
+        public static byte[] ConvertImageToBytes(IFormFile pictureFile)
         {
-            throw new NotImplementedException();
+            byte[] bytes = new byte[0];
+            using (var fs1 = pictureFile.OpenReadStream())
+            using (var ms1 = new MemoryStream())
+            {
+                fs1.CopyTo(ms1);
+                bytes = ms1.ToArray();
+            }
+            return bytes;
         }
     }
 }

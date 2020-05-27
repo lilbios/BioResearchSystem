@@ -38,6 +38,7 @@ namespace bioResearchSystem.Web
                 opts.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<BioResearchSystemDbContext>();
 
+            
 
             services.RegisterServices(Configuration);
             services.Configure<IdentityOptions>(options =>
