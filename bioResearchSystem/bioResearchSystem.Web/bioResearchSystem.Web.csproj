@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Helpers\" />
     <Folder Include="Validators\Attributes\" />
     <Folder Include="wwwroot\icons\main\" />
     <Folder Include="wwwroot\js\chart\" />

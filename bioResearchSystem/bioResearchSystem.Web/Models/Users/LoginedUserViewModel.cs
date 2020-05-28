@@ -9,7 +9,8 @@ namespace bioResearchSystem.Web.Models.Users
     public class LoginedUserViewModel
     {
         [Required]
-        public string NickName { get; set; }
+        public string UserName { get; set; }
+
         [Required(ErrorMessage ="email is required")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
@@ -17,7 +18,7 @@ namespace bioResearchSystem.Web.Models.Users
         [MinLength(10,ErrorMessage ="password length cannot be less than 10 charactes")]
         public string Password { get; set; }
         public byte[] Photo { get; set; }
-        public bool AdminToggle { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }
      

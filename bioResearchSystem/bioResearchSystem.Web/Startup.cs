@@ -33,24 +33,19 @@ namespace bioResearchSystem.Web
             services.AddDbContext<BioResearchSystemDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("bioResearchSystem.Models")));
             services.AddAutoMapper(typeof(MapperProfile));
 
-            services.AddIdentity<AppUser, IdentityRole>(opts =>
+            services.AddIdentity<AppUser, IdentityRole>(options =>
             {
-                opts.User.RequireUniqueEmail = true;
-            }).AddEntityFrameworkStores<BioResearchSystemDbContext>();
-
-            
-
-            services.RegisterServices(Configuration);
-            services.Configure<IdentityOptions>(options =>
-            {
-                // Password settings.
+                options.User.RequireUniqueEmail = true;
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 6;
-                options.Password.RequiredUniqueChars = 1;
-            });
+            }).AddEntityFrameworkStores<BioResearchSystemDbContext>();
+
+
+            services.RegisterServices(Configuration);
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
