@@ -105,6 +105,6 @@ body {
     height: 30px;
     font-family: 'Quicksand', sans-serif;
 }
-.card-img-top:hover {
+.display-only:hover {
     filter: blur(1.5px);
 }

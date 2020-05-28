@@ -8,6 +8,7 @@
     <div class="col-md-4">
         <form asp-action="CreateNewTopic" enctype="multipart/form-data" method="post">
             <small asp-validation-summary="ModelOnly" class="text-danger error-box"></small>
+            <input type="text" asp-for="Id" class="form-input"  hidden/>
             <div class="form-group">
                 <div class="form-group">
                     <span asp-validation-for="Image" class="text-danger"></span>
@@ -16,9 +17,9 @@
                 <div class="card" style="width: 18rem;">
                     @if (Model != null)
                     {
-                        var image = @ImageConvertor.ConvertBytesToImage(Model.TopicPicture);
+                        var image = ImageConvertor.ConvertBytesToImage(Model.TopicPicture);
 
-                        <img onclick="invoke()" src="image" class="card-img-top" id="image">
+                        <img onclick="invoke()" src="@image" class="card-img-top" id="image">
                     }
                     else
                     {
@@ -42,7 +43,6 @@
 </div>
 
 @section Scripts{
-    <script type="text/javascript" src="~/js/common.js"></script>
     <script type="text/javascript" src="~/js/admins.js"></script>
 
 }

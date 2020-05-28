@@ -119,6 +119,10 @@ namespace bioResearchSystem.Web.Controllers
         public async Task<IActionResult> EditTopic(TopicViewModel topicView)
         {
 
+            var topic = await topicService.FindTopic(topicView.Id);
+            if (topic is null) {
+                ModelState.AddModelError(string.Empty, "Something went wrong...Topic is not defined");
+            }
             if (Request.Form.Files.Count != 1)
             {
                 ModelState.AddModelError("Image", "image cannot be empty");
@@ -130,8 +134,12 @@ namespace bioResearchSystem.Web.Controllers
 
             if (ModelState.IsValid)
             {
+                if (topicView.TopicName is null && topic != null) {
+                    topic.TopicName = topic.TopicName;
+                }
+
                 var mappedTopic = mapper.Map<TopicDTO>(topicView);
-                await topicService.CreateTopic(mappedTopic);
+                await topicService.UpdateTopic(mappedTopic);
             }
             return View(topicView);
         }
