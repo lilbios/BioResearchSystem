@@ -1,6 +1,9 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -69,4 +72,39 @@ body {
 }
 .text-danger {
     font-family: 'Rajdhani', sans-serif;
+}
+.card-header {
+    font-family: 'DM Mono', monospace;
+    font-size: 130%;
+}
+.panel-btn {
+    font-family: 'DM Mono', monospace;
+    background: #007BFF;
+    color: #fff;
+    font-size: 100%;
+    cursor: pointer;
+    width: 250px;
+}
+    .panel-btn:hover {
+        color: #fff;
+    }
+
+.panel-btn-edit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-size: 15px;
+    background: #FFC107;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    font-family: 'Quicksand', sans-serif;
+}
+.card-img-top:hover {
+    filter: blur(1.5px);
 }

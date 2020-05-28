@@ -12,5 +12,7 @@ namespace bioResearchSystem.ВLL.Services.Topics
         public Task UpdateTopic(TopicDTO topic);
         public Task RemoveTopic(Guid id);
         public Task<ICollection<Topic>> PopularTopics();
+        public Task<ICollection<Topic>> AllTopics();
+        public Task<TopicDTO> FindTopic(Guid guid);
     }
 }

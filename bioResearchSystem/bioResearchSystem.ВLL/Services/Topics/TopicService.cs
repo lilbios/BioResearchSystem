@@ -20,11 +20,22 @@ namespace bioResearchSystem.ВLL.Services
 
         }
 
+        public async  Task<ICollection<Topic>> AllTopics()
+        {
+            return await topicRepository.GetAllAsync();
+        }
+
         public async Task CreateTopic(TopicDTO topicDto)
         {
             var topic = mapper.Map<Topic>(topicDto);
             await topicRepository.AddAsync(topic);
 
+        }
+
+        public async Task<TopicDTO> FindTopic(Guid guid)
+        {
+            var topic =  await topicRepository.GetAsync(guid);
+            return mapper.Map<TopicDTO>(topic);
         }
 
         public async Task<ICollection<Topic>> PopularTopics()

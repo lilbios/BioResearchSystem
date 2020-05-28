@@ -26,12 +26,8 @@ namespace bioResearchSystem.Web.Controllers
             this.topicService = topicService;
             this.accountService = accountService;
 
-
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+       
 
         [HttpGet]
         public IActionResult CreateNewTopic()
@@ -60,6 +56,7 @@ namespace bioResearchSystem.Web.Controllers
             return View(topicView);
 
         }
+
         public IActionResult EditTopic()
         {
             return View();
@@ -100,13 +97,54 @@ namespace bioResearchSystem.Web.Controllers
             return View(loginView);
         }
 
+        [HttpGet]
         public IActionResult EditUser()
         {
             return View();
         }
-        public IActionResult Panel()
+
+        [HttpGet]
+        public async Task<IActionResult> EditTopic(string id) {
+
+            var selectedTopic = await topicService.FindTopic(Guid.Parse(id));
+            if (selectedTopic != null)
+            {
+                var topicViewModel = mapper.Map<TopicViewModel>(selectedTopic);
+                return View(topicViewModel);
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditTopic(TopicViewModel topicView)
         {
-            return View();
+
+            if (Request.Form.Files.Count != 1)
+            {
+                ModelState.AddModelError("Image", "image cannot be empty");
+            }
+            else
+            {
+                topicView.TopicPicture = ImageConvertor.ConvertImageToBytes(Request.Form.Files[0]);
+            }
+
+            if (ModelState.IsValid)
+            {
+                var mappedTopic = mapper.Map<TopicDTO>(topicView);
+                await topicService.CreateTopic(mappedTopic);
+            }
+            return View(topicView);
+        }
+
+
+
+
+
+        public async Task<IActionResult> Panel()
+        {
+            var topics = await topicService.AllTopics();
+            return View(topics);
+           
         }
 
     }

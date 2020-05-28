@@ -50,6 +50,14 @@ namespace bioResearchSystem.Web.Controllers
         public IActionResult Tags(string tagName) {
             return View();
         }
+        
+        [HttpGet]
+        public IActionResult BoardObjective(int id) {
+
+            return View();
+        }
+        
+        
 
         
         
