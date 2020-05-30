@@ -18,9 +18,9 @@
                         <div class="col-md-4  multi-content" style="width: 18rem;">
                             <div class="card mb-4 box-shadow card-block">
                                 <img class="card-img-top display-only" src="@ImageConvertor.ConvertBytesToImage(item.TopicPicture)" alt="Card image cap">
-                               
-                                    <a href="Admin/EditTopic/@item.Id.ToString()" class="btn-dat panel-btn-edit" > Edit </a>
-                                  
+
+                                <a href="Admin/EditTopic/@item.Id.ToString()" class="btn-dat panel-btn-edit"> Edit </a>
+
                                 <div class="card-body">
                                     <p class="card-text topic-text" align="center">@item.TopicName</p>
                                 </div>
@@ -31,7 +31,8 @@
                 else
                 {
                     <div class="row mx-auto empty">
-                        There are no upcoming events yet
+
+                        <img src="~/icons/main/empty_data_set.png" />
                         <i class="far fa-sad-cry"></i>
                     </div>
                 }
@@ -45,7 +46,7 @@
                 </div>
                 <div align="center">
                     <form asp-action="CreateNewTopic" asp-controller="Admin" class="mt-3">
-                        <input class="btn btn-sm btn-block panel-btn" value="+ Create new topic" />
+                        <input type="submit" class="btn btn-sm btn-block panel-btn" value="+ Create new topic" />
                     </form>
                 </div>
             </div>

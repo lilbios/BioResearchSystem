@@ -1,4 +1,5 @@
-﻿using System;
+﻿using bioResearchSystem.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,6 +14,7 @@ namespace bioResearchSystem.ВLL.Services.Accounts
         public string Password { get; set; }
         public byte[] Photo { get; set; }
         public bool IsAdmin { get; set; }
+        public Roles Role { get; set; }
         public bool RememberMe { get; set; }
     }
 }

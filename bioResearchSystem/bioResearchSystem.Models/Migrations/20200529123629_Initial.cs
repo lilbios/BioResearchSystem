@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace bioResearchSystem.Models.Migrations
 {
-    public partial class Initializer : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,7 @@ namespace bioResearchSystem.Models.Migrations
                     NickName = table.Column<string>(nullable: true),
                     Age = table.Column<int>(nullable: false),
                     Gender = table.Column<int>(nullable: false),
+                    Role = table.Column<int>(nullable: false),
                     Photo = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>

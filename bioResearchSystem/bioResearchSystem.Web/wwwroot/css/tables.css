@@ -1,0 +1,11 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
+th {
+    font-family: 'Cairo', sans-serif;
+}
+.btn-paggin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-family: 'Cairo', sans-serif;
+}

@@ -12,7 +12,11 @@ namespace bioResearchSystem.ВLL.Services.Accounts
         public Task<IdentityResult> Registration(UserDTO user);
         public Task<SignInResult> Login(UserDTO user);
         public Task Logout();
-        public Task<AppUser> FindUser(string param);
+        public Task<AppUser> FindUser(string value);
+        public Task<ICollection<AppUser>> FindUsers(string value);
         public Task<ICollection<AppUser>> GetUsers();
+        public Task<ICollection<AppUser>> GetChunckedUsersCollection(int currentPage,int pageSize);
+        public Task<int> CountAsync();
+        public Task<ICollection<AppUser>> FindBySpecialKeyName(string nickname);
     }
 }

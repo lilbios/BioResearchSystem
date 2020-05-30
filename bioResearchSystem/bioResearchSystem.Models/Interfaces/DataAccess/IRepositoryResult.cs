@@ -12,6 +12,6 @@ namespace bioResearchSystem.Models.Repositories
         public Task<Result> Create(Result result);
         public Task<ICollection<Result>> GetAllWithInlude();
         public Task<Result> GetObjectWithIcnlude(Guid id);
-       
+        
     }
 }

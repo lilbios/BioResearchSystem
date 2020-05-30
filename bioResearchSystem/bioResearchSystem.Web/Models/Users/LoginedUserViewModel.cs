@@ -19,6 +19,7 @@ namespace bioResearchSystem.Web.Models.Users
         public string Password { get; set; }
         public byte[] Photo { get; set; }
         public bool IsAdmin { get; set; }
+
     }
 }
      

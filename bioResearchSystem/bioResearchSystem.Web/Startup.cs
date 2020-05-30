@@ -72,7 +72,7 @@ namespace bioResearchSystem.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Admin}/{action=Panel}/{id?}");
+                    pattern: "{controller=Admin}/{action=Users}/{id?}");
             });
         }
     }

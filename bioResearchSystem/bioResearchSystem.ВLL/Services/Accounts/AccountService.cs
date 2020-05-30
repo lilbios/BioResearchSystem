@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -70,6 +71,29 @@ namespace bioResearchSystem.ВLL.Services.Accounts
         public async Task<ICollection<AppUser>> GetUsers()
         {
             return await userManager.Users.ToListAsync();
+        }
+
+        public async Task<ICollection<AppUser>> GetChunckedUsersCollection(int currentPage, int pageSize)
+        {
+            return await userManager.Users.Skip((currentPage - 1) * pageSize).Take(pageSize).ToListAsync();
+        }
+
+        public async Task<int> CountAsync()
+        {
+            var users = await userManager.Users.ToListAsync();
+            return users.Count;
+        }
+
+        public async  Task<ICollection<AppUser>> FindUsers(string value)
+        {
+            var searchResult = await Task.Run(()=>userManager.Users.Where(u=> u.Email.StartsWith(value)));
+            return await searchResult.ToListAsync();
+        }
+
+        public async  Task<ICollection<AppUser>> FindBySpecialKeyName(string nickname)
+        {
+            var searchResult = await Task.Run(() => userManager.Users.Where(u => u.UserName.StartsWith(nickname)));
+            return await searchResult.ToListAsync();
         }
     }
 }

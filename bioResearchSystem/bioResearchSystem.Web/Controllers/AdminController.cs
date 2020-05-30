@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-
+using bioResearchSystem.Models.Entities;
+using bioResearchSystem.Models.Enums;
+using bioResearchSystem.Web.Helpers;
+using bioResearchSystem.Web.Helpers.Users;
 using bioResearchSystem.Web.Models.Topics;
 using bioResearchSystem.Web.Models.Users;
 using bioResearchSystem.ВLL.Services.Accounts;
@@ -27,13 +30,45 @@ namespace bioResearchSystem.Web.Controllers
             this.accountService = accountService;
 
         }
-       
+
+
+        public async Task<IActionResult> Search(string value) {
+
+
+            if (value.StartsWith('@') && value.Length > 2)
+            {
+                var foundNickNames = await accountService.FindBySpecialKeyName(value.Substring(1));
+                return View(foundNickNames);
+            }
+            else {
+                var foundEmails = await accountService.FindUsers(value);
+                return View(foundEmails);
+            }
+
+
+        }
 
         [HttpGet]
         public IActionResult CreateNewTopic()
         {
             return View();
         }
+
+        public async Task<IActionResult> Users(int page = 1)
+        {
+            var users = await accountService.GetChunckedUsersCollection(page, (int)PageSizes.UserPageSize);
+           int count = await accountService.CountAsync();
+            var pageModel = new PageModel(count, page, (int)PageSizes.UserPageSize);
+            var viewModel = new UsersViewCollection
+            {
+                PageViewModel = pageModel,
+                Objects = users
+            };
+
+            return View(viewModel);
+        }
+
+
 
         [HttpPost]
         public async Task<IActionResult> CreateNewTopic(TopicViewModel topicView)
@@ -50,12 +85,13 @@ namespace bioResearchSystem.Web.Controllers
 
             if (ModelState.IsValid)
             {
+
                 var mappedTopic = mapper.Map<TopicDTO>(topicView);
                 await topicService.CreateTopic(mappedTopic);
             }
             return View(topicView);
-
         }
+
 
         public IActionResult EditTopic()
         {
@@ -80,10 +116,11 @@ namespace bioResearchSystem.Web.Controllers
                 }
 
                 var mappedUser = mapper.Map<UserDTO>(loginView);
-               var result =  await accountService.Registration(mappedUser);
+                mappedUser.Role = loginView.IsAdmin ? Roles.Admin : Roles.User;
+                var result = await accountService.Registration(mappedUser);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction(nameof(Panel));
+                    return RedirectToAction(nameof(Users));
                 }
                 else
                 {
@@ -104,7 +141,8 @@ namespace bioResearchSystem.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditTopic(string id) {
+        public async Task<IActionResult> EditTopic(string id)
+        {
 
             var selectedTopic = await topicService.FindTopic(Guid.Parse(id));
             if (selectedTopic != null)
@@ -120,7 +158,8 @@ namespace bioResearchSystem.Web.Controllers
         {
 
             var topic = await topicService.FindTopic(topicView.Id);
-            if (topic is null) {
+            if (topic is null)
+            {
                 ModelState.AddModelError(string.Empty, "Something went wrong...Topic is not defined");
             }
             if (Request.Form.Files.Count != 1)
@@ -134,7 +173,8 @@ namespace bioResearchSystem.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                if (topicView.TopicName is null && topic != null) {
+                if (topicView.TopicName is null && topic != null)
+                {
                     topic.TopicName = topic.TopicName;
                 }
 
@@ -152,7 +192,7 @@ namespace bioResearchSystem.Web.Controllers
         {
             var topics = await topicService.AllTopics();
             return View(topics);
-           
+
         }
 
     }

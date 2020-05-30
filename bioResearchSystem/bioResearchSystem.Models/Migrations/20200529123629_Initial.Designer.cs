@@ -10,8 +10,8 @@ using bioResearchSystem.Models;
 namespace bioResearchSystem.Models.Migrations
 {
     [DbContext(typeof(BioResearchSystemDbContext))]
-    [Migration("20200527183334_Initializer")]
-    partial class Initializer
+    [Migration("20200529123629_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -211,6 +211,9 @@ namespace bioResearchSystem.Models.Migrations
 
                     b.Property<byte[]>("Photo")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
