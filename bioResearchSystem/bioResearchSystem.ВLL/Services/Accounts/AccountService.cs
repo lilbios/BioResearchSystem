@@ -2,11 +2,13 @@
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Interfaces.DataAccess;
 using bioResearchSystem.Models.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,6 +33,7 @@ namespace bioResearchSystem.ВLL.Services.Accounts
             this.signInManager = signInManager;
 
         }
+
 
         public async Task Logout()
         {
@@ -84,16 +87,72 @@ namespace bioResearchSystem.ВLL.Services.Accounts
             return users.Count;
         }
 
-        public async  Task<ICollection<AppUser>> FindUsers(string value)
+        public async Task<ICollection<AppUser>> FindUsers(string value)
         {
-            var searchResult = await Task.Run(()=>userManager.Users.Where(u=> u.Email.StartsWith(value)));
+            var searchResult = await Task.Run(() => userManager.Users.Where(u => u.Email.StartsWith(value)));
             return await searchResult.ToListAsync();
         }
 
-        public async  Task<ICollection<AppUser>> FindBySpecialKeyName(string nickname)
+        public async Task<ICollection<AppUser>> FindBySpecialKeyName(string nickname)
         {
             var searchResult = await Task.Run(() => userManager.Users.Where(u => u.UserName.StartsWith(nickname)));
             return await searchResult.ToListAsync();
+        }
+
+        public async Task DeleteUser(AppUser appUser)
+        {
+
+            var role = await userManager.GetRolesAsync(appUser);
+            await userManager.RemoveFromRoleAsync(appUser, role.FirstOrDefault());
+            await userManager.DeleteAsync(appUser);
+        }
+
+        public async Task<AppUser> GetUser(Expression<Func<AppUser, bool>> expession)
+        {
+            return await userManager.Users.FirstOrDefaultAsync(expession);
+        }
+
+        public async Task<AppUser> GetUserByIdAsync(string id)
+        {
+            return await userManager.FindByIdAsync(id);
+
+        }
+
+        public async Task<IdentityResult> UpdateUserAsync(string id, UserDTO _user)
+        {
+
+            var user = await userManager.FindByIdAsync(id);
+
+            if (user != null)
+            {
+                _user.Photo ??= user.Photo;
+                if (_user.UserName != user.UserName || _user.Email != user.Email)
+                {
+                    user.UserName = _user.UserName;
+                    user.Email = _user.Email;
+                }
+                var role = await userManager.GetRolesAsync(user);
+                var olderUser = user;
+
+                user.Name = _user.Name;
+                user.LastName = _user.LastName;
+                user.Bio = _user.Bio;
+                user.Role = _user.Role;
+                user.Photo = _user.Photo;
+              
+
+
+                var identityResult = await userManager.UpdateAsync(user);
+                if (identityResult.Succeeded)
+                {
+                    await userManager.RemoveFromRoleAsync(olderUser, role.FirstOrDefault());
+                    await userManager.AddToRoleAsync(user, user.Role.ToString());
+
+                }
+                return identityResult;
+
+            }
+            return IdentityResult.Failed();
         }
     }
 }

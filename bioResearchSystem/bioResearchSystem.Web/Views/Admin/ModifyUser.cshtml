@@ -1,0 +1,73 @@
+﻿@model bioResearchSystem.Web.Models.Users.ProfileViewModel
+@using bioResearchSystem.ВLL.Third_part.pic
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h4>Advanced user settings</h4>
+<hr />
+
+<div class="container">
+    <form asp-action="ModifyUser" enctype="multipart/form-data" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-sm-4" align="center">
+                <div class="border-0 mt-2">
+                    <div class="mt-1">
+                        @if (Model.Photo == null || Model.Photo.Length == 0)
+                        {
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR41-H0dE99scKp7WICfg5c5wHQjjNY57sU82pSwYhvEcn9vIZh&usqp=CAUr" class="img-user" id="image">
+                        }
+                        else
+                        {
+                            <img src="@ImageConvertor.ConvertBytesToImage(@Model.Photo)" class="img-user" id="image" />
+                        }
+                        <input type="file" name="photo" class="ghost" onchange="upload(this)" hidden />
+                    </div>
+                    <div align="center" onclick="push()">
+                        <label id="profile-image">
+                            <small>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M15 3H7c0-.55-.45-1-1-1H2c-.55 0-1 .45-1 1-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h14c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM6 5H2V4h4v1zm4.5 7C8.56 12 7 10.44 7 8.5S8.56 5 10.5 5 14 6.56 14 8.5 12.44 12 10.5 12zM13 8.5c0 1.38-1.13 2.5-2.5 2.5S8 9.87 8 8.5 9.13 6 10.5 6 13 7.13 13 8.5z"></path></svg>
+                            </small>
+                        </label>
+                    </div>
+                </div>
+                <label class="control-label mt-2">Admin?</label>
+                <div class="switch_box box_1">
+                    <input type="checkbox" asp-for="IsAdmin" class="switch_1">
+                </div>
+                <input type="submit" value="Commit your changes" class="bnt btn-info btn-sm mt-5" />
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <span class="span-lable">First name</span>
+                    <input asp-for="Name" class="form-control short-data" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <span class="span-lable">Last name</span>
+                    <input asp-for="LastName" s class="form-control short-data" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <span class="span-lable">NickName<span style="color:red">*</span></span>
+                    <input asp-for="UserName" placeholder="nickname" class="form-control short-data" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <span class="span-lable">Email<span style="color:red">*</span></span>
+                    <input asp-for="Email" placeholder="email" class="form-control short-data" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+
+                    <textarea asp-for="Bio" placeholder="Tell us a little bit about yourself" class="form-control bio-area"></textarea>
+                    <span>You can mention other users and organizations to link to them.</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+</div>
+

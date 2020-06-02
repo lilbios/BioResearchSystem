@@ -22,7 +22,10 @@ namespace bioResearchSystem.Web.Common
             CreateMap<TopicDTO, Topic>().ReverseMap();
             CreateMap<LoginedUserViewModel, UserDTO>().ReverseMap();
             CreateMap<UserDTO,AppUser>().ReverseMap();
-
+            CreateMap<AppUser, ProfileViewModel>().ReverseMap();
+            CreateMap<UserDTO, ProfileViewModel>().ReverseMap();
+            
+           
 
 
 

@@ -23,4 +23,7 @@ function url(input) {
 
 }
 
+function saveToLocalStorage(value) {
+    window.localStorage.setItem('id', JSON.stringify(value));
+}
 

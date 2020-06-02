@@ -8,6 +8,6 @@ namespace bioResearchSystem.Web.Helpers.Users
 {
     public class UsersViewCollection:ObjectsViewCollection<AppUser>
     {
-
+        public string IdCurrentUser { get; set; }
     }
 }

@@ -4,8 +4,7 @@
     {
         Male,
         Female,
-        Undefined,
-        None
+        Undefined
 
     }
 }

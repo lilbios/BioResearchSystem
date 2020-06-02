@@ -10,18 +10,23 @@ namespace bioResearchSystem.Web.Models.Researсhes
 {
     public class ResearchViewModel
     {
+        [Required]
         public Guid Id { get; set; }
 
         [Required]
         public string Title { get; set; }
 
+        public DateTime OpenedDate { get; set; }
+
         [Required]
+        [UIHint("CreateNewResearch")]
         public string Description { get; set; }
 
         [Required]
         public Privacy Privacy { get; set; }
 
-        public List<Tag> Tags { get; set; }
+        public string Tags { get; set; }
+        
 
     }
 }

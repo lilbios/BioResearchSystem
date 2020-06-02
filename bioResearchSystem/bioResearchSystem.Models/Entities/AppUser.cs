@@ -11,6 +11,7 @@ namespace bioResearchSystem.Models.Entities
         public string LastName { get; set; }
         public string NickName { get; set; }
         public int Age { get; set; }
+        public string Bio { get; set; }
 
         public Wallet Wallet { get; set; }
         public Gender Gender { get; set; }

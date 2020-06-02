@@ -1,10 +1,12 @@
 ﻿using bioResearchSystem.DAL.Implementations;
+using bioResearchSystem.DAL.Infrastructure;
 using bioResearchSystem.DAL.Repositories;
 using bioResearchSystem.Models.Interfaces.DataAccess;
 using bioResearchSystem.Models.Repositories;
 using bioResearchSystem.ВLL.DomainModels.DeviceModule;
 using bioResearchSystem.ВLL.Services;
 using bioResearchSystem.ВLL.Services.Accounts;
+using bioResearchSystem.ВLL.Services.DatabaseManager;
 using bioResearchSystem.ВLL.Services.Devices;
 using bioResearchSystem.ВLL.Services.Experiments;
 using bioResearchSystem.ВLL.Services.Objectives;
@@ -13,6 +15,7 @@ using bioResearchSystem.ВLL.Services.Results;
 using bioResearchSystem.ВLL.Services.Tags;
 using bioResearchSystem.ВLL.Services.Topics;
 using bioResearchSystem.ВLL.Services.Wallets;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -28,6 +31,7 @@ namespace bioResearchSystem.Web.Common
                 throw new ArgumentNullException(nameof(configuration));
             }
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IDbMaster, DbMaster>();
             services.AddTransient<IRepositoryUser,UserRepository>();
             services.AddTransient<IRepositoryResearch,ResearchRepository>();
             services.AddTransient<IRepositoryObjective,ObjectiveRepository>();
@@ -39,7 +43,9 @@ namespace bioResearchSystem.Web.Common
             services.AddTransient<IRepositoryTopic, TopicRepository>();
 
          
+            
             services.AddScoped<IAccountService, AccountService>();
+            services.AddTransient<IDatabaseManagerService, DatabaseManagerService>();
             services.AddTransient<IResearchService, ResearchService>();
             services.AddTransient<IDeviceService, DeviceService>();
             services.AddTransient<IExperimentService, ExperimentService>();

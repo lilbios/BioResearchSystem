@@ -29,3 +29,6 @@
 .control-label {
     font-family: 'Nunito', sans-serif
 }
+#description {
+    width:1000px;
+}

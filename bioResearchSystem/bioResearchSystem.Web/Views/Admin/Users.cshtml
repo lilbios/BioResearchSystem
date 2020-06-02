@@ -30,8 +30,14 @@
                                 <td>@(item.LastName??(@item.LastName= "None"))</td>
                                 <td>@item.Email</td>
                                 <td>@item.Role</td>
-                                <td><button class="btn btn-warning btn-edit-user" data-toggle="modal" data-target="#exampleModalCenter">Modify</button></td>
-                                <td> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button></td>
+                                <td><a class="btn btn-warning btn-edit-user btn-sm" href="@Url.Action("ModifyUser","Admin",new { id = @item.Id.ToString()})">Modify</a></td>
+                                 @if (@item.Id != Model.IdCurrentUser)
+                                 {
+                                <td> <button type="button" onclick="saveToLocalStorage('@item.Id.ToString()')" class="btn btn-danger btn-remove-user btn-sm" data-toggle="modal" data-target="#myModal">Remove</button></td>
+                                 }
+                                 else {       
+                                    <td> <button type="button" onclick="saveToLocalStorage('@item.Id.ToString()')" class="btn btn-danger btn-remove-user btn-sm" data-toggle="modal" data-target="#myModal" disabled>Remove</button></td>
+                                 }
                             </tr>
 
                         }
@@ -74,25 +80,26 @@
     </div>
 </div>
 
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
+                <h5 class="modal-title" id="exampleModalLongTitle">Are you sure to delete?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="modal-body">
-                <p>Some text in the modal.</p>
+            <div class="modal-body" aling="center">
+                After all you cannot restore data releted with current user!
+                <span class="text-danger error-box"></span>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button href="/Admin/" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" onclick="remove()" class="btn btn-danger">Delete user</button>
             </div>
         </div>
-
     </div>
 </div>
 @section Scripts{
-    <script src="~/js/modals/modal.js"></script>
+    <script src="~/js/admins/post-user-remove.js"></script>
 } 

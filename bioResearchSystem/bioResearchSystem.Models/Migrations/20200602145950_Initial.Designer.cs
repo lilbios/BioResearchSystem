@@ -10,7 +10,7 @@ using bioResearchSystem.Models;
 namespace bioResearchSystem.Models.Migrations
 {
     [DbContext(typeof(BioResearchSystemDbContext))]
-    [Migration("20200529123629_Initial")]
+    [Migration("20200602145950_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -162,6 +162,9 @@ namespace bioResearchSystem.Models.Migrations
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
+
+                    b.Property<string>("Bio")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()

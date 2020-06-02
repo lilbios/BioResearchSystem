@@ -44,6 +44,7 @@ namespace bioResearchSystem.Models.Migrations
                     LastName = table.Column<string>(nullable: true),
                     NickName = table.Column<string>(nullable: true),
                     Age = table.Column<int>(nullable: false),
+                    Bio = table.Column<string>(nullable: true),
                     Gender = table.Column<int>(nullable: false),
                     Role = table.Column<int>(nullable: false),
                     Photo = table.Column<byte[]>(nullable: true)

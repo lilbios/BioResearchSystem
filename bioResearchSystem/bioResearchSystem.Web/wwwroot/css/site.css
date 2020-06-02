@@ -108,3 +108,14 @@ body {
 .display-only:hover {
     filter: blur(1.5px);
 }
+.modal {
+    font-family: 'Quicksand', sans-serif;
+}
+.span-lable {
+    font-family: 'Quicksand', sans-serif;
+}
+.bio-area {
+    height:85px;
+    width:450px;
+}
+

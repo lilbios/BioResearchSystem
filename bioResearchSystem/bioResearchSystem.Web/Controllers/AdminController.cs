@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using bioResearchSystem.Models.Entities;
@@ -19,20 +20,24 @@ namespace bioResearchSystem.Web.Controllers
 {
     public class AdminController : Controller
     {
-        private IMapper mapper;
-        private ITopicService topicService;
-        private IAccountService accountService;
+        private readonly IMapper mapper;
+        private readonly ITopicService topicService;
+        private readonly IAccountService accountService;
+        private readonly UserManager<AppUser> accountManager;
 
-        public AdminController(IAccountService accountService, ITopicService topicService, IMapper mapper)
+        public AdminController(IAccountService accountService, ITopicService topicService,
+             IMapper mapper, UserManager<AppUser> accountManager)
         {
             this.mapper = mapper;
             this.topicService = topicService;
             this.accountService = accountService;
+            this.accountManager = accountManager;
 
         }
 
 
-        public async Task<IActionResult> Search(string value) {
+        public async Task<IActionResult> Search(string value)
+        {
 
 
             if (value.StartsWith('@') && value.Length > 2)
@@ -40,7 +45,8 @@ namespace bioResearchSystem.Web.Controllers
                 var foundNickNames = await accountService.FindBySpecialKeyName(value.Substring(1));
                 return View(foundNickNames);
             }
-            else {
+            else
+            {
                 var foundEmails = await accountService.FindUsers(value);
                 return View(foundEmails);
             }
@@ -54,15 +60,17 @@ namespace bioResearchSystem.Web.Controllers
             return View();
         }
 
+
         public async Task<IActionResult> Users(int page = 1)
         {
             var users = await accountService.GetChunckedUsersCollection(page, (int)PageSizes.UserPageSize);
-           int count = await accountService.CountAsync();
+            int count = await accountService.CountAsync();
             var pageModel = new PageModel(count, page, (int)PageSizes.UserPageSize);
             var viewModel = new UsersViewCollection
             {
                 PageViewModel = pageModel,
-                Objects = users
+                Objects = users,
+                IdCurrentUser = accountManager.GetUserId(User)
             };
 
             return View(viewModel);
@@ -134,11 +142,6 @@ namespace bioResearchSystem.Web.Controllers
             return View(loginView);
         }
 
-        [HttpGet]
-        public IActionResult EditUser()
-        {
-            return View();
-        }
 
         [HttpGet]
         public async Task<IActionResult> EditTopic(string id)
@@ -195,5 +198,72 @@ namespace bioResearchSystem.Web.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<IActionResult> RemoveUser(string id)
+        {
+
+            var user = await accountService.GetUserByIdAsync(id);
+            if (user != null)
+            {
+                await accountService.DeleteUser(user);
+                return Ok(HttpStatusCode.OK);
+            }
+            return BadRequest(HttpStatusCode.BadRequest);
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> ModifyUser(string id)
+        {
+
+            var user = await accountService.GetUserByIdAsync(id);
+            if (user != null)
+            {
+                var profile = mapper.Map<ProfileViewModel>(user);
+                profile.IsAdmin = user.Role == Roles.Admin;
+
+                return View(profile);
+            }
+            return NotFound();
+
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ModifyUser(ProfileViewModel user)
+        {
+
+            if (ModelState.IsValid)
+            {
+               
+                    if (Request.Form.Files.Count == 1)
+                    {
+                        user.Photo = ImageConvertor.ConvertImageToBytes(Request.Form.Files[0]);
+                    }
+
+                    user.Role = user.IsAdmin ? Roles.Admin : Roles.User;
+                    var userDto = mapper.Map<UserDTO>(user);
+                    
+                    var identityResult = await accountService.UpdateUserAsync(user.Id, userDto);
+
+                    if (identityResult.Succeeded)
+                    {
+                        return RedirectToAction(nameof(Users));
+                    }
+                    else
+                    {
+                        foreach (var error in identityResult.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
+
+                }
+            return View(user);
+               
+            }
+
+        }
+
     }
-}
