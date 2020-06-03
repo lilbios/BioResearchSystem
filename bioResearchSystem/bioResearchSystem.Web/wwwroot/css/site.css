@@ -4,6 +4,8 @@ for details on configuring this project to bundle and minify static web assets. 
 @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -118,4 +120,32 @@ body {
     height:85px;
     width:450px;
 }
-
+.title-header {
+    font-family: 'Muli', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin-top:1em;
+}
+.subheader {
+    font-size: 18px;
+    color: #586069;
+    font-family: 'Muli', sans-serif;
+}
+.btn-create-research {
+    margin-top:570px;
+}
+.badge {
+    cursor:pointer;
+}
+footer {
+    font-family: 'Russo One', sans-serif;
+    color:aliceblue;
+}
+#foot-link {
+    text-decoration: none;
+    color: aliceblue;
+}
+    #foot-link:hover {
+        text-decoration: none;
+        color: aliceblue;
+    }

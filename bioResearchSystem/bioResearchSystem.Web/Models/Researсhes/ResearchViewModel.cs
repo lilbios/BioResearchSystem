@@ -16,7 +16,7 @@ namespace bioResearchSystem.Web.Models.Researсhes
         [Required]
         public string Title { get; set; }
 
-        public DateTime OpenedDate { get; set; }
+        public DateTime OpenedDate { get; set; } = DateTime.Now;
 
         [Required]
         [UIHint("CreateNewResearch")]
@@ -24,9 +24,10 @@ namespace bioResearchSystem.Web.Models.Researсhes
 
         [Required]
         public Privacy Privacy { get; set; }
+        public List<Privacy> Privaces { get; set; }
 
         public string Tags { get; set; }
-        
+
 
     }
 }

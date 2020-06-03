@@ -10,11 +10,11 @@ namespace bioResearchSystem.ВLL.Services
 {
     public class ExperimentService:IExperimentService
     {
-        private readonly IUnitOfWork unitOfWork;
+      
         private readonly IMapper mapper;
-        public ExperimentService(IUnitOfWork _unitOfWork, IMapper _mapper)
+        public ExperimentService(IMapper _mapper)
         {
-            unitOfWork = _unitOfWork;
+      
             mapper = _mapper;
 
         }

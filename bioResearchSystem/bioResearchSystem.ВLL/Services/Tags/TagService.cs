@@ -11,20 +11,42 @@ namespace bioResearchSystem.ВLL.Services
 {
     public class TagService : ITagService
     {
-        private readonly IUnitOfWork unitOfWork;
+
         private readonly IMapper mapper;
-        public TagService(IUnitOfWork _unitOfWork, IMapper _mapper)
+        private readonly IRepositoryTag repositoryTag;
+        private readonly IRepositoryTagResearch repositoryTagResearch;
+
+        public TagService(IMapper _mapper, IRepositoryTag repositoryTag,
+            IRepositoryTagResearch repositoryTagResearch)
         {
-            unitOfWork = _unitOfWork;
+            this.repositoryTagResearch = repositoryTagResearch;
+            this.repositoryTag = repositoryTag;
             mapper = _mapper;
         }
 
-        public Task AddTag(TagDTO tagDto)
+        public async Task<Tag> AddTag(Tag tag)
         {
-            throw new NotImplementedException();
+            return await repositoryTag.AddTag(tag);
         }
 
-        public Task RetrieveTag(TagDTO tag)
+        public async Task AttachTag(Tag tag, Research research)
+        {
+            var attached = new TagResearch
+            {
+                TagId = tag.Id,
+                ReseachId = research.Id,
+                Tag = tag,
+                Research = research
+            };
+            await repositoryTagResearch.AddAsync(attached);
+        }
+
+        public async Task<Tag> FindTag(string name)
+        {
+            return await repositoryTag.Find(tag => tag.TagName == name);
+        }
+
+        public Task RetrieveTag(Tag tag)
         {
             throw new NotImplementedException();
         }

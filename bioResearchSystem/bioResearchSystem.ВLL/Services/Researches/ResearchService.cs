@@ -1,23 +1,23 @@
 ﻿using AutoMapper;
 using bioResearchSystem.Models.Entities;
-using bioResearchSystem.Models.Interfaces.DataAccess;
 using bioResearchSystem.Models.Repositories;
 using bioResearchSystem.ВLL.Services.Researches;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace bioResearchSystem.ВLL.Services
 {
     public class ResearchService : IResearchService
     {
-        private readonly IUnitOfWork unitOfWork;
+
         private readonly IMapper mapper;
-        public ResearchService(IUnitOfWork _unitOfWork, IMapper _mapper)
+        private readonly IRepositoryResearch researchRepository;
+        public ResearchService(IMapper _mapper, IRepositoryResearch researchRepository)
         {
-            unitOfWork = _unitOfWork;
+           
             mapper = _mapper;
+            this.researchRepository = researchRepository;
 
         }
 
@@ -29,7 +29,7 @@ namespace bioResearchSystem.ВLL.Services
 
         public async Task<ICollection<Research>> GetAllResearches()
         {
-            return await unitOfWork.Researches.GetAllAsync();
+            return await researchRepository.GetAllAsync();
         }
 
         public Task GetResearchByTagName(string tagName)
@@ -50,7 +50,7 @@ namespace bioResearchSystem.ВLL.Services
         public async Task<Research> СreateNewResearch(ResearchDTO researchDto)
         {
             var research = mapper.Map<Research>(researchDto);
-            return await unitOfWork.Researches.CreateResearch(research);
+            return await researchRepository.CreateResearch(research);
         }
     }
 }

@@ -15,15 +15,14 @@ namespace bioResearchSystem.ВLL.Services.Researches
 
         public StatusResearch? StatusResearch { get; set; }
 
-        
+
         public Privacy Privacy { get; set; }
 
-        
+
         public DateTime OpenedDate { get; set; }
         public DateTime? ClosedDate { get; set; }
 
-
-        public string UserId { get; set; }
+        public string CreatorId { get; set; }
         public AppUser User { get; set; }
 
         public ICollection<Experiment> Experiments { get; set; }

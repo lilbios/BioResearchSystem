@@ -1,37 +1,71 @@
 ﻿@model bioResearchSystem.Web.Models.Researсhes.ResearchViewModel
+@using bioResearchSystem.Models.Enums
 
-<h4>ResearchViewModel</h4>
+<h1 class="title-header">Create a new reaserch</h1>
+<h6 class="subheader">Here you can describe all the necessary information that will help users understand the topic of the study.</h6>
 <hr />
-<div class="row">
-    <div class="col-md-10">
-        <form asp-action="CreateNewResearch">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="container">
+    <form asp-action="CreateNewResearch" asp-controller="Researches">
+        <div class="row">
+            <div class="col-md-8">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+                <div class="form-group">
+                    <label class="control-label">Research title<span style="color:red">*</span></label>
+                    <small asp-validation-for="Title" class="text-danger"></small>
+                    <input asp-for="Title" class="form-control" />
+
+                    <h6 class="subheader"></h6>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Tags" class="control-label"></label>
+                    <h6 class="subheader">Add tags to fast searching or mention<small style="color:gray">(optional)</small></h6>
+                    <hr />
+                    <input class="form-control reciever" />
+                    <span class="tag-container">
+                        @if (!String.IsNullOrEmpty(Model.Tags))
+                        {
+                            foreach (var item in Model.Tags.Split(','))
+                            {
+                                <small class="badge badge-warning" style="margin-left: 5px">@item</small>
+                            }
+                        }
+                    </span>
+                    <input asp-for="Tags" class="form-control tg-holder" hidden />
+                    <span class="text-danger errors"></span>
+                </div>
+               
+                <div class="form-group">
+                    <label class="control-label">Description<span style="color:red">*</span></label>
+                    <small asp-validation-for="Description" class="text-danger"></small>
+                    <textarea asp-for="Description" cols="80" rows="16"></textarea>
+
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" cols="100" rows="16" ></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
+            <div class="col-md-4">
+                <label class="control-label">Privacy policy</label>
+                <div class="flex-colum">
+                    @Html.RadioButtonFor(model => model.Privacy, "Public", new { @checked = "true" })
+                    <span>Public</span>
+                    <br />
+                    <small>Anyone can see this research and join</small>
+                    <br />
+                    <br />
+                    @Html.RadioButtonFor(model => model.Privacy, "Private")
+                    <span>Private</span>
+                    <br />
+                    <small>You choose who can see and commit to this research</small>
+                </div>
+                <div class="form-group btn-create-research">
+                    <input type="submit" value="Create" class="btn btn-success btn-sm btn-block" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Privacy" class="control-label"></label>
-                <input asp-for="Privacy" class="form-control" />
-                <span asp-validation-for="Privacy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+
+        </div>
+    </form>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-@section Scripts{ 
+@section Scripts{
     <script src="~/js/tiny.js"></script>
+    <script src="~/js/tags.js"></script>
 }
