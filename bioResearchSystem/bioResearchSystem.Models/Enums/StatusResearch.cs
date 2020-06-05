@@ -2,8 +2,8 @@
 {
     public enum StatusResearch
     {
-        Approved,
-        UnCommited,
-        Denied
+        NotStarted,
+        InProgress,
+        Closed
     }
 }

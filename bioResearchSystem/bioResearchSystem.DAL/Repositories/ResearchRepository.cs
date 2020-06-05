@@ -6,6 +6,7 @@ using bioResearchSystem.Models.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace bioResearchSystem.DAL.Implementations
@@ -33,6 +34,8 @@ namespace bioResearchSystem.DAL.Implementations
                 .ToListAsync();
         }
 
+        public Task<int> GetResearchCollectionLength() => Task.Run(()=> dbSet.Count());
+
         public async Task<Research> GetWithInclude(Guid id)
         {
             return await dbSet.Include(e => e.Experiments)
@@ -42,6 +45,15 @@ namespace bioResearchSystem.DAL.Implementations
 
 
         }
-        
+
+        public async Task<ICollection<Research>> SliceResearchCollection(int currentPage, int pageSize)
+        {
+            return await dbSet.Include(e => e.Experiments)
+                .Include(o => o.Objectives)
+                .Include(u => u.User)
+                .Include(tr => tr.TagResearches)
+                .Skip((currentPage - 1) * pageSize).Take(pageSize)
+                .ToListAsync();
+        }
     }
 }

@@ -12,6 +12,8 @@ namespace bioResearchSystem.Models.Repositories
         public Task<Research> GetWithInclude(Guid id);
         public Task<ICollection<Research>> GetAllWithInlude();
         public Task<Research> CreateResearch(Research research);
+        public Task<ICollection<Research>> SliceResearchCollection(int currentPage,int pageSize);
+        public Task<int> GetResearchCollectionLength();
 
     }
 }

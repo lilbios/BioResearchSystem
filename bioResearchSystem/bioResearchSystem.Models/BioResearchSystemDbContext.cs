@@ -17,6 +17,7 @@ namespace bioResearchSystem.Models
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Branch> Branches { get; set; }
         public DbSet<TagResearch> TagResearches { get; set; }
+        public DbSet<Contract> Contracts { get; set; }
 
         public BioResearchSystemDbContext(DbContextOptions<BioResearchSystemDbContext> options)
             : base(options)

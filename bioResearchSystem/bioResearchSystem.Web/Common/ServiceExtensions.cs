@@ -41,6 +41,7 @@ namespace bioResearchSystem.Web.Common
             services.AddTransient<IWalletRepository, WalletRepository>();
             services.AddTransient<IRepositoryResult,ResultRepository>();
             services.AddTransient<IRepositoryTopic, TopicRepository>();
+            services.AddTransient<IRepositoryContract, ContractRepository>();
 
          
             

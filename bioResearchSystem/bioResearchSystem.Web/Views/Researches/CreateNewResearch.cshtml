@@ -23,7 +23,7 @@
                     <hr />
                     <input class="form-control reciever" />
                     <span class="tag-container">
-                        @if (!String.IsNullOrEmpty(Model.Tags))
+                        @if ( Model!= null && !String.IsNullOrEmpty(Model.Tags))
                         {
                             foreach (var item in Model.Tags.Split(','))
                             {
@@ -56,6 +56,9 @@
                     <br />
                     <small>You choose who can see and commit to this research</small>
                 </div>
+                <label class="control-label" style="margin-top:10px;">Select topic of the research</label>
+                <br/>
+                <select  class="styled" name="topicId" asp-for="Topic" asp-items="@Model.Topics"></select>
                 <div class="form-group btn-create-research">
                     <input type="submit" value="Create" class="btn btn-success btn-sm btn-block" />
                 </div>

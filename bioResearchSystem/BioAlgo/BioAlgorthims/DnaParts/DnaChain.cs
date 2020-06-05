@@ -8,7 +8,7 @@ namespace BioAlgo.BioAlgorthims.DnaParts
     {
         private byte[] genome;
         public byte[] Genome { get => genome; }
-        public int Length { get => genome.Length}
+        public int Length { get => genome.Length; }
 
         public DnaChain(byte[] convertedGenome)
         {

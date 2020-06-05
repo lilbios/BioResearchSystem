@@ -149,3 +149,17 @@ footer {
         text-decoration: none;
         color: aliceblue;
     }
+.styled select {
+    background: transparent;
+    width: 160px;
+    font-size: 14px;
+    height: 25px;
+}
+
+.styled {
+    margin:2px;
+    width: 150px;
+    height: 25px;
+    overflow: hidden;
+    font-size: 14px;
+}

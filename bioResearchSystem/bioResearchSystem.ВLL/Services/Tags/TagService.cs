@@ -35,8 +35,6 @@ namespace bioResearchSystem.ВLL.Services
             {
                 TagId = tag.Id,
                 ReseachId = research.Id,
-                Tag = tag,
-                Research = research
             };
             await repositoryTagResearch.AddAsync(attached);
         }
@@ -46,9 +44,11 @@ namespace bioResearchSystem.ВLL.Services
             return await repositoryTag.Find(tag => tag.TagName == name);
         }
 
-        public Task RetrieveTag(Tag tag)
+        public async  Task<ICollection<TagResearch>> GetRelatedTagsWithResearhes()
         {
-            throw new NotImplementedException();
+            return await repositoryTagResearch.GetAllAsync();
         }
+
+        
     }
 }

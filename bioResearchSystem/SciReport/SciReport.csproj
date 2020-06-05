@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="ReportFactory\Doc\" />
-    <Folder Include="ReportFactory\Xml\" />
     <Folder Include="ReportFactory\Pdf\" />
   </ItemGroup>
 

@@ -2,6 +2,6 @@
 {
     public enum Formats
     {
-        pdf,xml,doc
+        pdf,xml,doc,xlsx
     }
 }

@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Web.Models.Accounts;
+using bioResearchSystem.Web.Models.Researсhes;
 using bioResearchSystem.Web.Models.Topics;
 using bioResearchSystem.Web.Models.Users;
 using bioResearchSystem.ВLL.Services.Accounts;
+using bioResearchSystem.ВLL.Services.Researches;
 using bioResearchSystem.ВLL.Services.Topics;
 using System;
 using System.Collections.Generic;
@@ -24,7 +26,8 @@ namespace bioResearchSystem.Web.Common
             CreateMap<UserDTO,AppUser>().ReverseMap();
             CreateMap<AppUser, ProfileViewModel>().ReverseMap();
             CreateMap<UserDTO, ProfileViewModel>().ReverseMap();
-            
+            CreateMap<ResearchDTO, ResearchViewModel>().ReverseMap();
+            CreateMap<ResearchDTO, Research>().ReverseMap();
            
 
 

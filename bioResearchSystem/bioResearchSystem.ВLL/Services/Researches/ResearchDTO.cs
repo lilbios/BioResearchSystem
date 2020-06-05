@@ -2,6 +2,7 @@
 using bioResearchSystem.Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace bioResearchSystem.ВLL.Services.Researches
@@ -13,7 +14,8 @@ namespace bioResearchSystem.ВLL.Services.Researches
 
         public string Description { get; set; }
 
-        public StatusResearch? StatusResearch { get; set; }
+        [DefaultValue(StatusResearch.NotStarted)]
+        public StatusResearch StatusResearch { get; set; }
 
 
         public Privacy Privacy { get; set; }

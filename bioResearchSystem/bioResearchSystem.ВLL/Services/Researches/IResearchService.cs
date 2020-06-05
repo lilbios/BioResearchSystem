@@ -15,5 +15,9 @@ namespace bioResearchSystem.ВLL.Services.Researches
         public Task GetResearchByTagName(string tagName);
         public Task<ICollection<Research>> GetAllResearches();
         public Task<ICollection<Research>> GetResearches();
+        public Task JoinToResearch(string userId, Guid researchId);
+        public Task LeaveResearch(string userId, Guid researchId);
+        public Task<ICollection<Research>> GetChunckedResearchCollection(int page,int pageSize);
+        public Task<int> ResearchCollectionLength();
     } 
 }

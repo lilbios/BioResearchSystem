@@ -20,6 +20,6 @@ namespace bioResearchSystem.Models.Entities
         public byte[] Photo { get; set; }
         public ICollection<Device> Devices { get; set; }
         public ICollection<Research> Researches { get; set; }
-
+        public ICollection<Contract> Contracts { get; set; }
     }
 }

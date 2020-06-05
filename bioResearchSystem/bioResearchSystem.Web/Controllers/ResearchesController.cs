@@ -1,17 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Enums;
-using bioResearchSystem.Models.Interfaces.DataAccess;
+using bioResearchSystem.Web.Helpers;
+using bioResearchSystem.Web.Helpers.Researches;
 using bioResearchSystem.Web.Models.Researсhes;
-using bioResearchSystem.ВLL.Services.Accounts;
 using bioResearchSystem.ВLL.Services.Researches;
 using bioResearchSystem.ВLL.Services.Tags;
+using bioResearchSystem.ВLL.Services.Topics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace bioResearchSystem.Web.Controllers
 {
@@ -21,31 +22,53 @@ namespace bioResearchSystem.Web.Controllers
         private readonly IMapper mapper;
         private readonly ITagService tagService;
         private readonly IResearchService researchService;
+        private readonly ITopicService topicService;
         private readonly UserManager<AppUser> accountManager;
 
-        public ResearchesController(IMapper mapper, IResearchService researchService,
-            ITagService tagService,UserManager<AppUser> accountManager)
+        public ResearchesController(IMapper mapper, IResearchService researchService, ITopicService topicService,
+            ITagService tagService, UserManager<AppUser> accountManager)
         {
-            
+
             this.mapper = mapper;
             this.accountManager = accountManager;
+            this.topicService = topicService;
             this.tagService = tagService;
             this.researchService = researchService;
 
         }
 
         [HttpGet]
-        public IActionResult Index(int numberPage = 1)
+        public async Task<IActionResult> Researches(int page = 1)
         {
-            return View();
+            var relatedTagCollection = await tagService.GetRelatedTagsWithResearhes();
+            var researches = await researchService.GetChunckedResearchCollection(page, (int)PageSizes.ResearchPageSize);
+            int count = await researchService.ResearchCollectionLength();
+            var pageModel = new PageModel(count, page, (int)PageSizes.UserPageSize);
+            var researchView = new ResearchViewCollection
+            {
+                PageViewModel = pageModel,
+                Objects = researches,
+                TopTagListItems = relatedTagCollection.GroupBy(t => t.Tag)
+                .Select(item=> new TopTagListItem { 
+                        TagName = item.Key.TagName,
+                        Count = item.Count()
+                        
+                }).ToList()
+            };
+            return View(researchView);
         }
 
 
-        public IActionResult CreateNewResearch()
+        public async Task<IActionResult> CreateNewResearch()
         {
-            var researchViewModel = new ResearchViewModel {
-
-                Privaces = Enum.GetValues(typeof(Privacy)).Cast<Privacy>().ToList()
+            var topics = await topicService.AllTopics();
+            var researchViewModel = new ResearchViewModel
+            {
+                Topics = topics.Select(selectItem => new SelectListItem
+                {
+                    Value = selectItem.Id.ToString(),
+                    Text = selectItem.TopicName
+                }).ToList()
             };
             return View(researchViewModel);
         }
@@ -53,13 +76,16 @@ namespace bioResearchSystem.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateNewResearch(ResearchViewModel researchView)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 var researchDto = mapper.Map<ResearchDTO>(researchView);
-                researchDto.CreatorId = accountManager.GetUserId(User);
+                // researchDto.CreatorId = accountManager.GetUserId(User);
+                researchDto.CreatorId = "0000-000-000-0000";
 
                 var research = await researchService.СreateNewResearch(researchDto);
 
-                if (researchView.Tags != null) {
+                if (researchView.Tags != null)
+                {
 
                     var collection = researchView.Tags.Split(',')
                         .ToList()
@@ -69,9 +95,10 @@ namespace bioResearchSystem.Web.Controllers
                     {
                         var tag = await tagService.FindTag(item.TagName);
 
-                        if (tag is null) {
+                        if (tag is null)
+                        {
 
-                          tag =   await tagService.AddTag(item);
+                            tag = await tagService.AddTag(item);
                         }
                         await tagService.AttachTag(tag, research);
                     }
@@ -85,7 +112,7 @@ namespace bioResearchSystem.Web.Controllers
 
 
 
-        public IActionResult EditResearch(int id)
+        public IActionResult EditResearch(Guid id)
         {
             return View();
         }
