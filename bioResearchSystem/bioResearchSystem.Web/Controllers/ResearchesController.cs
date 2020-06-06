@@ -38,7 +38,7 @@ namespace bioResearchSystem.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Researches(int page = 1)
+        public async Task<IActionResult> ScientificResearches(int page = 1)
         {
             var relatedTagCollection = await tagService.GetRelatedTagsWithResearhes();
             var researches = await researchService.GetChunckedResearchCollection(page, (int)PageSizes.ResearchPageSize);
@@ -55,6 +55,7 @@ namespace bioResearchSystem.Web.Controllers
                         
                 }).ToList()
             };
+
             return View(researchView);
         }
 
@@ -121,7 +122,7 @@ namespace bioResearchSystem.Web.Controllers
 
             return View();
         }
-        public IActionResult ResearchDetails(Guid id)
+        public IActionResult ResearchDetails(string id)
         {
             return View();
         }
@@ -137,10 +138,50 @@ namespace bioResearchSystem.Web.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Search(string searchValue) {
+
+
+            var relatedTagCollection = await tagService.GetRelatedTagsWithResearhes();
+            var researches = await researchService.GetChunckedResearchCollection(page, (int)PageSizes.ResearchPageSize);
+            int count = await researchService.ResearchCollectionLength();
+            var pageModel = new PageModel(count, page, (int)PageSizes.UserPageSize);
+            var researchView = new ResearchViewCollection
+            {
+                PageViewModel = pageModel,
+                Objects = researches,
+                TopTagListItems = relatedTagCollection.GroupBy(t => t.Tag)
+                .Select(item => new TopTagListItem
+                {
+                    TagName = item.Key.TagName,
+                    Count = item.Count()
+
+                }).ToList()
+            };
+
+            return View(researchView);
+        }
+
         [HttpGet]
-        public IActionResult ReleatedResearchTags(string tag)
+        public async  Task<IActionResult> Tagged(int page,string tag)
         {
-            return View();
+            var relatedTagCollection = await tagService.GetRelatedTagsWithResearhes();
+            var researches = await researchService.GetChunckedResearchCollection(page, (int)PageSizes.ResearchPageSize);
+            int count = await researchService.ResearchCollectionLength();
+            var pageModel = new PageModel(count, page, (int)PageSizes.UserPageSize);
+            var researchView = new ResearchViewCollection
+            {
+                PageViewModel = pageModel,
+                Objects = researches,
+                TopTagListItems = relatedTagCollection.GroupBy(t => t.Tag)
+                .Select(item => new TopTagListItem
+                {
+                    TagName = item.Key.TagName,
+                    Count = item.Count()
+
+                }).ToList()
+            };
+
+            return View(researchView);
         }
 
 

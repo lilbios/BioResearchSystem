@@ -1,6 +1,6 @@
 ﻿namespace SciReport
 {
-    public enum Formats
+    public enum Format
     {
         pdf,xml,doc,xlsx
     }

@@ -4,31 +4,42 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BioAlgo.BioAlgorthims.Algorithms.KmersComputing
 {
     public class KMC
     {
         private readonly  Hashtable hashTable;
+        private static object locker = new object();
         public KMC()
         {
-            hashTable = new Hashtable();
+            hashTable = Hashtable.Synchronized(new Hashtable());
         }
 
-        public Hashtable CalculateFrequencyKmer(int k, DnaChain dnaChain ) {
+        public Hashtable BuildAcidDictionary(int k, string dnaChain)
+        {
 
-            for (int i = 0; i <dnaChain.Length; i++)
+            Parallel.For(0, dnaChain.Length, (i, state) =>
             {
-                var subKmer = dnaChain.Genome.Skip(i).Take(k).ToArray();
-
-                if (hashTable.ContainsKey(subKmer))
+                if (dnaChain.Length - i < k)
                 {
-                    hashTable[subKmer] = ((int)hashTable[subKmer]) + 1;
+                    state.Break();
                 }
-                else {
-                    hashTable.Add(subKmer,1);
+                var subKmer = string.Join("", dnaChain.Skip(i).Take(k));
+
+                lock (locker)
+                {
+                    if (hashTable.ContainsKey(subKmer))
+                    {
+                        hashTable[subKmer] = ((int)hashTable[subKmer]) + 1;
+                    }
+                    else
+                    {
+                        hashTable.Add(subKmer, 1);
+                    }
                 }
-            }
+            });
             return hashTable;
         }
 

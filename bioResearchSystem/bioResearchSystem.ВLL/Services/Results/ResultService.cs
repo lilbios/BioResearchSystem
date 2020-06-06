@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Interfaces.DataAccess;
+using bioResearchSystem.Models.Repositories;
 using bioResearchSystem.ВLL.Services.Results;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,11 @@ namespace bioResearchSystem.ВLL.Services
     public class ResultService : IResultService
     {
 
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IRepositoryResult repositoryResult;
         private readonly IMapper mapper;
-        public ResultService(IUnitOfWork _unitOfWork, IMapper _mapper)
+        public ResultService(IRepositoryResult repositoryResult, IMapper _mapper)
         {
-            unitOfWork = _unitOfWork;
+            this.repositoryResult = repositoryResult;
             mapper = _mapper;
 
         }
@@ -24,6 +25,11 @@ namespace bioResearchSystem.ВLL.Services
         public Task AddResult(ResultDTO resultDto)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Result> GetResultAsync(Guid id)
+        {
+            return await repositoryResult.GetAsync(id);
         }
     }
 }

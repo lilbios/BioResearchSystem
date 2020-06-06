@@ -20,6 +20,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\bioResearchSystem.ВLL\bioResearchSystem.ВLL.csproj" />
+    <ProjectReference Include="..\SciReport\SciReport.csproj" />
   </ItemGroup>
 
   <ItemGroup>
