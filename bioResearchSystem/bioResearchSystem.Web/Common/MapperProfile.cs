@@ -28,6 +28,7 @@ namespace bioResearchSystem.Web.Common
             CreateMap<UserDTO, ProfileViewModel>().ReverseMap();
             CreateMap<ResearchDTO, ResearchViewModel>().ReverseMap();
             CreateMap<ResearchDTO, Research>().ReverseMap();
+            CreateMap<ResearchModel, Research>().ReverseMap();
            
 
 

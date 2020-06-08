@@ -6,6 +6,8 @@ for details on configuring this project to bundle and minify static web assets. 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -173,4 +175,32 @@ footer {
     border-right-width: 0;
     padding: 24px;
     box-sizing: border-box
+}
+.tag-item {
+    color: #000000;
+    text-decoration: none;
+    
+}
+    .tag-item:hover {
+        color: #000000;
+        text-decoration: none;
+    }
+.rsch-title {
+    font-family: 'Nunito', sans-serif;
+}
+#right-side-bar {
+    margin-top: 1em;
+    font-family: 'Work Sans', sans-serif;
+}
+#st {
+    margin-right:1.5em;
+}
+#exp {
+    margin-right:1.5em;
+}
+#st-count {
+    margin-left:2.5em;
+}
+#exp-count {
+    margin-left:3em;
 }

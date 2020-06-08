@@ -370,8 +370,7 @@ namespace bioResearchSystem.Models.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    ReseachId = table.Column<Guid>(nullable: false),
-                    ResearchId = table.Column<Guid>(nullable: true),
+                    ResearchId = table.Column<Guid>(nullable: false),
                     TagId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
@@ -382,7 +381,7 @@ namespace bioResearchSystem.Models.Migrations
                         column: x => x.ResearchId,
                         principalTable: "Researches",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_TagResearches_Tags_TagId",
                         column: x => x.TagId,

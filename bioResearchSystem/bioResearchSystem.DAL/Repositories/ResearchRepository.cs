@@ -30,7 +30,8 @@ namespace bioResearchSystem.DAL.Implementations
             return await dbSet.Include(e => e.Experiments)
                 .Include(o => o.Objectives)
                 .Include(u => u.User)
-                .Include(tr => tr.TagResearches).ThenInclude(t => t.Tag).AsNoTracking()
+                .Include(c => c.Contracts)
+                .Include(tr => tr.TagResearches).ThenInclude(t => t.Tag)
                 .ToListAsync();
         }
 
@@ -41,6 +42,7 @@ namespace bioResearchSystem.DAL.Implementations
             return await dbSet.Include(e => e.Experiments)
                 .Include(o => o.Objectives)
                 .Include(u => u.User)
+                .Include(c => c.Contracts)
                 .Include(tr => tr.TagResearches).ThenInclude(t => t.Tag).FirstOrDefaultAsync();
 
 
@@ -48,12 +50,14 @@ namespace bioResearchSystem.DAL.Implementations
 
         public async Task<ICollection<Research>> SliceResearchCollection(int currentPage, int pageSize)
         {
-            return await dbSet.Include(e => e.Experiments)
+           var collection =  await dbSet.Include(e => e.Experiments)
                 .Include(o => o.Objectives)
                 .Include(u => u.User)
+                .Include(c=> c.Contracts)
                 .Include(tr => tr.TagResearches)
                 .Skip((currentPage - 1) * pageSize).Take(pageSize)
                 .ToListAsync();
+            return collection;
         }
     }
 }

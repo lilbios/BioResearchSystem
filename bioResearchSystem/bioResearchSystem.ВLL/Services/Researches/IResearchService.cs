@@ -19,5 +19,6 @@ namespace bioResearchSystem.ВLL.Services.Researches
         public Task LeaveResearch(string userId, Guid researchId);
         public Task<ICollection<Research>> GetChunckedResearchCollection(int page,int pageSize);
         public Task<int> ResearchCollectionLength();
+        public Task<Research> GetResearchAsync(Guid id);
     } 
 }

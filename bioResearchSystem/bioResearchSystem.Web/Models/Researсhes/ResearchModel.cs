@@ -1,33 +1,36 @@
-﻿
+﻿using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace bioResearchSystem.Models.Entities
+namespace bioResearchSystem.Web.Models.Researсhes
 {
-    public class Research:Entity
+    public class ResearchModel
     {
-        [Required]
-        public string  Title {get;set;}
+        public Guid Id { get; set; }
+        public string Title { get; set; }
 
-        [Required]
         public string Description { get; set; }
 
         public StatusResearch? StatusResearch { get; set; }
 
-        [Required]
+
         public Privacy Privacy { get; set; }
 
-        [Required]
+
         public DateTime OpenedDate { get; set; }
         public DateTime? ClosedDate { get; set; }
+
+        public bool IsParticipate { get; set; }
 
         public string UserId { get; set; }
         public AppUser User { get; set; }
 
-        public string CreatorId { get; set; }
- 
+        public AppUser CurrentUser { get; set; }
+
         public ICollection<Experiment> Experiments { get; set; }
         public ICollection<TagResearch> TagResearches { get; set; }
         public ICollection<Contract> Contracts { get; set; }

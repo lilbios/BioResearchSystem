@@ -9,5 +9,6 @@ namespace bioResearchSystem.Models.Interfaces.DataAccess
 {
     public interface IRepositoryTagResearch:IRepository<TagResearch>
     {
+        public Task<ICollection<TagResearch>> GetAllwithIncludeAsync();
     }
 }

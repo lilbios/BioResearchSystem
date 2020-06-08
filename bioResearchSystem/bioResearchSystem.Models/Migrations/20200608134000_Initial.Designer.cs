@@ -10,7 +10,7 @@ using bioResearchSystem.Models;
 namespace bioResearchSystem.Models.Migrations
 {
     [DbContext(typeof(BioResearchSystemDbContext))]
-    [Migration("20200606130729_Initial")]
+    [Migration("20200608134000_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -452,10 +452,7 @@ namespace bioResearchSystem.Models.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ReseachId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("ResearchId")
+                    b.Property<Guid>("ResearchId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("TagId")
@@ -562,7 +559,7 @@ namespace bioResearchSystem.Models.Migrations
             modelBuilder.Entity("bioResearchSystem.Models.Entities.Contract", b =>
                 {
                     b.HasOne("bioResearchSystem.Models.Entities.Research", "Research")
-                        .WithMany()
+                        .WithMany("Contracts")
                         .HasForeignKey("ResearchId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -627,7 +624,9 @@ namespace bioResearchSystem.Models.Migrations
                 {
                     b.HasOne("bioResearchSystem.Models.Entities.Research", "Research")
                         .WithMany("TagResearches")
-                        .HasForeignKey("ResearchId");
+                        .HasForeignKey("ResearchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("bioResearchSystem.Models.Entities.Tag", "Tag")
                         .WithMany("TagResearches")

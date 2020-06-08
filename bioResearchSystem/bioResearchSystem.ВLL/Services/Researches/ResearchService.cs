@@ -36,12 +36,17 @@ namespace bioResearchSystem.ВLL.Services
 
         public async Task<ICollection<Research>> GetAllResearches()
         {
-            return await researchRepository.GetAllAsync();
+            return await researchRepository.GetAllWithInlude();
         }
 
         public  async Task<ICollection<Research>> GetChunckedResearchCollection(int page, int pageSize)
         {
             return await researchRepository.SliceResearchCollection(page, pageSize);
+        }
+
+        public async Task<Research> GetResearchAsync(Guid id)
+        {
+            return await researchRepository.GetAsync(id);
         }
 
         public Task GetResearchByTagName(string tagName)

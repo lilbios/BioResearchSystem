@@ -1,9 +1,10 @@
 ﻿@model bioResearchSystem.Web.Helpers.Researches.ResearchViewCollection
+@using bioResearchSystem.Models.Enums
 
 
 
-<div class="container">
-    <div id="content">
+<div class="row">
+    <div class="col-10">
         <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-white rounded box-shadow">
             <div class="lh-100">
                 <div class="row">
@@ -12,34 +13,53 @@
             </div>
         </div>
         <div class="my-3 p-3 bg-white rounded box-shadow">
-            <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
 
-            @foreach (var item in Model.Objects)
+            @if (Model.Objects.Count() > 0)
             {
-                <div class="media text-muted pt-3">
-                    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                        <h3>
-                            <a href="Researches/ResarchDetails/@item.Id.ToString()">@item.Title</a>
+                @foreach (var item in Model.Objects)
+                {
+                    @if (item.Privacy == Privacy.Public)
+                    {
+                        <span class="badge badge-success">Public</span>
+                    }
+                    else
+                    {
+                        <label></label>
+                        <span class="badge badge-dark">Private</span>
+                    }
+
+                    <div class="media text-muted pt-3">
+                        <h3 class="rsch-title">
+                            <a href="Researches/ResearchDetails/@item.Id.ToString()">@item.Title</a>
                         </h3>
+                        <span id="st">Scientists<br /> <small id="st-count"> @item.Contracts.Count() </small></span>
+                        <span id="exp">Experiments<br /> <small id="exp-count">@item.Experiments.Count() </small></span>
+
+
+
 
                         @if (item.TagResearches.Count > 0)
                         {
                             <span>
                                 @foreach (var tag in item.TagResearches)
                                 {
-                                    <a href=""> 
-                                        <small class="badge badge-warning" style="margin-left: 5px">@tag.Tag.TagName</small>
-                                    </a>
+
+                                    <small class="badge badge-warning badge-pill" style="margin-left: 5px;">
+                                        <a class="tag-item" href="/Researches/Tagged/@tag.Tag.TagName">@tag.Tag.TagName</a>
+                                    </small>
+
                                 }
                             </span>
                         }
-                    </p>
-                </div>
+                        <br />
+                        <div class="badge"></div>
+
+                    </div>
+                }
             }
-
-
-
         </div>
+
+
 
         <div class="container btn-paggin">
             @if (Model.PageViewModel.HasPreviousPage)
@@ -62,7 +82,20 @@
             }
         </div>
     </div>
-    <div id="right-side-bar">
+    <div id="right-side-bar" class="col-2" align="center">
+        <div class="card">
+            <div class="card-header" style="font-weight:300">Top tags</div>
+            <div class="card-body">
+                @foreach (var tg in Model.TopTagListItems)
+                {
+                    <div class="row mt-1" align="center">
+                        <a class="badge badge-warning p-2" href="/Researches/Tagged/@tg.TagName">@tg.TagName</a>
 
+                        <span style="margin-left:5px;">@tg.Count</span>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
+
 </div>

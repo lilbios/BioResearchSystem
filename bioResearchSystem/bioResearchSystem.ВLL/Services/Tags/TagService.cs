@@ -34,7 +34,7 @@ namespace bioResearchSystem.ВLL.Services
             var attached = new TagResearch
             {
                 TagId = tag.Id,
-                ReseachId = research.Id,
+                ResearchId = research.Id,
             };
             await repositoryTagResearch.AddAsync(attached);
         }
@@ -46,7 +46,7 @@ namespace bioResearchSystem.ВLL.Services
 
         public async  Task<ICollection<TagResearch>> GetRelatedTagsWithResearhes()
         {
-            return await repositoryTagResearch.GetAllAsync();
+            return await repositoryTagResearch.GetAllwithIncludeAsync();
         }
 
         
