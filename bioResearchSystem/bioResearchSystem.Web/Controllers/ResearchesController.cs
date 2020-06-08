@@ -10,12 +10,14 @@ using bioResearchSystem.Web.Models.Researсhes;
 using bioResearchSystem.ВLL.Services.Researches;
 using bioResearchSystem.ВLL.Services.Tags;
 using bioResearchSystem.ВLL.Services.Topics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace bioResearchSystem.Web.Controllers
 {
+    [Authorize(Roles = "User")]
     public class ResearchesController : Controller
     {
 
@@ -82,8 +84,7 @@ namespace bioResearchSystem.Web.Controllers
             {
                 var researchDto = mapper.Map<ResearchDTO>(researchView);
 
-                // researchDto.CreatorId = accountManager.GetUserId(User);
-                researchDto.CreatorId = "0000-000-000-0000";
+                researchDto.CreatorId = accountManager.GetUserId(User);
 
                 var research = await researchService.СreateNewResearch(researchDto);
 
@@ -132,18 +133,17 @@ namespace bioResearchSystem.Web.Controllers
         public async Task<IActionResult> ResearchDetails(string id)
         {
             var selectedResearch = await researchService.GetResearchAsync(Guid.Parse(id));
-            //CHANGE!
-           // var user = await accountManager.GetUserAsync(User);
+            var user = await accountManager.GetUserAsync(User);
             if (selectedResearch != null)
             {
                 var modelViewResearch = mapper.Map<ResearchModel>(selectedResearch);
-               // modelViewResearch.CurrentUser = user;
+                modelViewResearch.CurrentUser = user;
                 return View(modelViewResearch);
             }
             return NotFound();
         }
 
-        
+
 
         public IActionResult Tags(string tagName)
         {

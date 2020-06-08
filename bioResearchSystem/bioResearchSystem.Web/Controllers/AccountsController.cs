@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using bioResearchSystem.Models.Entities;
@@ -57,11 +58,12 @@ namespace bioResearchSystem.Web.Controllers
             if (ModelState.IsValid)
             {
                 var user = mapper.Map<UserDTO>(model);
+                user.UserName = $"user#{userManager.Users.Count() + 1}";
                 var result = await accountService.Registration(user);
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction(nameof(Index), "Home");
+                    return RedirectToAction("ScientificResearches", "Researches");
                 }
                 else
                 {

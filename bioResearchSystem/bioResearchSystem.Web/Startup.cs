@@ -6,6 +6,7 @@ using AutoMapper;
 using bioResearchSystem.Models;
 using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Web.Common;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,13 +37,24 @@ namespace bioResearchSystem.Web
             services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = true;
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@#+";
                 options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
+                options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = true;
+                options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 6;
             }).AddEntityFrameworkStores<BioResearchSystemDbContext>();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Account/Login";
+                options.Cookie.Name = "YourAppCookieName";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.LoginPath = "/Account/Login";
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
+            });
 
             services.RegisterServices(Configuration);
             
@@ -66,13 +78,14 @@ namespace bioResearchSystem.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Researches}/{action=ScientificResearches}/{id?}");
+                    pattern: "{controller=Accounts}/{action=Login}/{id?}");
             });
         }
     }

@@ -6,6 +6,7 @@
      
         <div class="form">
             <h3 class="title-app">BioResearchSystem</h3>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <form class="login-form" asp-action="Registration" asp-controller="Accounts">
                 <span asp-validation-for="ErrorMsg" class="text-danger"></span>
                 <div class="form-group">

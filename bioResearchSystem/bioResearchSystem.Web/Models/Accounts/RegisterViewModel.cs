@@ -25,6 +25,7 @@ namespace bioResearchSystem.Web.Models.Accounts
         [Required]
         [Compare("Password", ErrorMessage = "Passswords doesn't equals")]
         public string PasswordConfirm { get; set; }
+        
 
     }
 }

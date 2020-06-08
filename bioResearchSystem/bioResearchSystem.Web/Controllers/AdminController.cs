@@ -13,11 +13,13 @@ using bioResearchSystem.Web.Models.Users;
 using bioResearchSystem.ВLL.Services.Accounts;
 using bioResearchSystem.ВLL.Services.Topics;
 using bioResearchSystem.ВLL.Third_part.pic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bioResearchSystem.Web.Controllers
 {
+    //[Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly IMapper mapper;

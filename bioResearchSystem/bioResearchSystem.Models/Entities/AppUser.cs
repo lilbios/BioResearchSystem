@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace bioResearchSystem.Models.Entities
@@ -15,6 +16,7 @@ namespace bioResearchSystem.Models.Entities
 
         public Wallet Wallet { get; set; }
         public Gender Gender { get; set; }
+        [DefaultValue(Roles.User)]
         public Roles Role { get; set; }
 
         public byte[] Photo { get; set; }
