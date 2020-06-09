@@ -24,7 +24,7 @@ namespace bioResearchSystem.ВLL.Services.Researches
         public DateTime OpenedDate { get; set; }
         public DateTime? ClosedDate { get; set; }
 
-        public string CreatorId { get; set; }
+        public string UserId { get; set; }
         public AppUser User { get; set; }
 
         public ICollection<Experiment> Experiments { get; set; }

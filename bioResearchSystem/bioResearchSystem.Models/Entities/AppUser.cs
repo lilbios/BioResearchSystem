@@ -16,7 +16,6 @@ namespace bioResearchSystem.Models.Entities
 
         public Wallet Wallet { get; set; }
         public Gender Gender { get; set; }
-        [DefaultValue(Roles.User)]
         public Roles Role { get; set; }
 
         public byte[] Photo { get; set; }

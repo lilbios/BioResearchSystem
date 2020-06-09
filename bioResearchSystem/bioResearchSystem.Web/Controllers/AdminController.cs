@@ -98,6 +98,7 @@ namespace bioResearchSystem.Web.Controllers
 
                 var mappedTopic = mapper.Map<TopicDTO>(topicView);
                 await topicService.CreateTopic(mappedTopic);
+                return RedirectToAction(nameof(Panel));
             }
             return View(topicView);
         }

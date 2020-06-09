@@ -14,14 +14,16 @@ namespace bioResearchSystem.Web.Controllers
     {
         private readonly IMapper mapper;
         private readonly IAccountService accountService;
-        private readonly UserManager<AppUser> userManager;
+        private readonly UserManager<AppUser> userManager; 
+        private readonly SignInManager<AppUser> signInManager;
       
         public AccountsController(IMapper mapper,IAccountService accountService, 
-            UserManager<AppUser> userManager)
+            UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             this.accountService = accountService;
             this.userManager = userManager;
             this.mapper = mapper;
+            this.signInManager = signInManager;
         }
 
         [HttpGet]
@@ -59,6 +61,7 @@ namespace bioResearchSystem.Web.Controllers
             {
                 var user = mapper.Map<UserDTO>(model);
                 user.UserName = $"user#{userManager.Users.Count() + 1}";
+                user.IsAdmin = false;
                 var result = await accountService.Registration(user);
 
                 if (result.Succeeded)
@@ -80,9 +83,9 @@ namespace bioResearchSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-            var findUser = await accountService.FindUser(model.Email);
+            var fondUser = await accountService.FindUser(model.Email);
 
-            if (findUser is null)
+            if (fondUser is null)
             {
                 ModelState.AddModelError("ErrorMsg", "User doesn't exsist");
             }
@@ -90,22 +93,24 @@ namespace bioResearchSystem.Web.Controllers
             if (ModelState.IsValid)
             {
                 var user = mapper.Map<UserDTO>(model);
-                var result = await accountService.Login(user);
+                var result =  await signInManager.PasswordSignInAsync(model.Email,model.Password,model.RememberMe,false);
                 if (result.Succeeded)
                 {
-              
-                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+
+                    if (await userManager.IsInRoleAsync(fondUser, Roles.Admin.ToString()))
                     {
-                        return Redirect(model.ReturnUrl);
+                        return RedirectToAction("ScientificResearches", "Researches");
                     }
                     else
                     {
-                        return RedirectToAction(nameof(Index), "Home");
+                        return RedirectToAction("Users", "Admin");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Incorrect login and (or) password");
+                    
+                        ModelState.AddModelError(string.Empty,"Invalid login attempt");
+                    
                 }
             }
             return View(model);

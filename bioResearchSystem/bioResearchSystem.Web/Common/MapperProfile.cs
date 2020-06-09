@@ -18,6 +18,7 @@ namespace bioResearchSystem.Web.Common
     {
         public MapperProfile()
         {
+            CreateMap<LoginViewModel, UserDTO>().ReverseMap();
             CreateMap<RegisterViewModel, UserDTO>().ReverseMap();
             CreateMap<UserDTO, AppUser>().ReverseMap();
             CreateMap<TopicViewModel, TopicDTO>().ReverseMap();

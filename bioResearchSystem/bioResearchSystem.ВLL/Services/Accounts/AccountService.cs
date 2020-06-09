@@ -44,6 +44,7 @@ namespace bioResearchSystem.ВLL.Services.Accounts
         public async Task<IdentityResult> Registration(UserDTO userDto)
         {
             var user = mapper.Map<AppUser>(userDto);
+            user.Role = userDto.IsAdmin ? Roles.Admin : Roles.User;
             var identityResult = await userManager.CreateAsync(user, userDto.Password);
             if (identityResult.Succeeded)
             {

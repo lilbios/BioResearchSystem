@@ -84,7 +84,7 @@ namespace bioResearchSystem.Web.Controllers
             {
                 var researchDto = mapper.Map<ResearchDTO>(researchView);
 
-                researchDto.CreatorId = accountManager.GetUserId(User);
+                researchDto.User = await accountManager.GetUserAsync(User);
 
                 var research = await researchService.СreateNewResearch(researchDto);
 
@@ -107,7 +107,7 @@ namespace bioResearchSystem.Web.Controllers
                         await tagService.AttachTag(tag, research);
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ResearchDetails),new { id = research.Id.ToString() });
             }
 
             return View();

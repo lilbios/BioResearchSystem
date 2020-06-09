@@ -7,6 +7,6 @@ namespace bioResearchSystem.Models.Enums
     public enum PageSizes
     {
         UserPageSize = 3,
-        ResearchPageSize = 20
+        ResearchPageSize = 3
     }
 }

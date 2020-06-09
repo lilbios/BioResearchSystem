@@ -30,7 +30,7 @@
 
                     <div class="media text-muted pt-3">
                         <h3 class="rsch-title">
-                            <a href="Researches/ResearchDetails/@item.Id.ToString()">@item.Title</a>
+                            <a href='@Url.Action("ResearchDetails", "Researches", new {  id = @item.Id.ToString() }, null)'>@item.Title</a>
                         </h3>
                         <span id="st">Scientists<br /> <small id="st-count"> @item.Contracts.Count() </small></span>
                         <span id="exp">Experiments<br /> <small id="exp-count">@item.Experiments.Count() </small></span>
@@ -55,6 +55,8 @@
                         <div class="badge"></div>
 
                     </div>
+                    <br/>
+                    <br/>
                 }
             }
         </div>
