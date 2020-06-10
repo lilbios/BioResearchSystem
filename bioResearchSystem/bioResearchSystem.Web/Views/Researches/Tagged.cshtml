@@ -8,7 +8,7 @@
         <div class="d-flex align-items-center p-3 my-3 bg-white rounded box-shadow row lh-100">
 
             <div class="col-3">
-                <h6 class="mb-0 lh-100 head-line-text">Top Researches</h6>
+                <h6 class="mb-0 lh-100 head-line-text">Research related with  <span class="badge badge-primary">@Model.TagName</span></h6>
             </div>
             <div class="col-9">
                 <a href='@Url.Action("CreateNewResearch", "Researches")' class="btn btn-success " id="btn-add-rsch">+ Add new research</a>
@@ -62,28 +62,6 @@
                     <br />
                     <hr />
                 }
-            }
-        </div>
-
-
-
-        <div class="container btn-paggin">
-            @if (Model.PageViewModel.HasPreviousPage)
-            {
-                <a asp-action="Researches"
-                   asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
-                   class="page-link">
-
-                    Previous page
-                </a>
-            }
-            @if (Model.PageViewModel.HasNextPage)
-            {
-                <a asp-action="Researches"
-                   asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
-                   class="page-link">
-                    Next page
-                </a>
             }
         </div>
     </div>

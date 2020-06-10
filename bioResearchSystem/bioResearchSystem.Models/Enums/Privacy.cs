@@ -6,6 +6,7 @@ namespace bioResearchSystem.Models.Enums
 {
     public enum Privacy
     {
-        Private,Public
+        Private,
+        Public
     }
 }

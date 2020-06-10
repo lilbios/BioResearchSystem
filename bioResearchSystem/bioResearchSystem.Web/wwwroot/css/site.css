@@ -193,14 +193,26 @@ footer {
     font-family: 'Work Sans', sans-serif;
 }
 #st {
-    margin-right:1.5em;
+    margin-right:1.8em;
+    margin-left:2em;
 }
 #exp {
-    margin-right:1.5em;
+    margin-right: 1.8em;
+    margin-left: 2em;
 }
 #st-count {
     margin-left:2.5em;
 }
 #exp-count {
     margin-left:3em;
+}
+.head-line-text {
+    font-family: 'DM Mono', monospace;
+}
+#btn-add-rsch {
+    margin-left:74%;
+}
+.mono {
+    font-family: 'DM Mono', monospace;
+    margin-top:1.5em;
 }

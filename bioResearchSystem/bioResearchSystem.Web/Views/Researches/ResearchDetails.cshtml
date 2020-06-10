@@ -1,7 +1,8 @@
 ﻿@model bioResearchSystem.Web.Models.Researсhes.ResearchModel
+@using bioResearchSystem.Models.Enums
 
 @{
-    var userNick = "@user1231";
+    var userNick = $"@{Model.AppUser.UserName}";
 
 }
 
@@ -44,19 +45,27 @@
                 <strong>@Model.StatusResearch</strong>
             </li>
         </ul>
-        @if (Model.User.Id != Model.CurrentUser.Id)
+        @if (Model.AppUser.Id != Model.CurrentUser.Id)
         {
-            @if (Model.IsParticipate)
+            @if (!Model.IsParticipate)
             {
-                <form asp-for="" class="card p-2">
-                    <input type="submit" class="btn btn-success " style="width:100%" value="Join">
-                </form>
+                @if (Model.Privacy == Privacy.Public)
+                {
+                    <a style="width:100%" class="btn btn-success" href='@Url.Action("Join", "Researches", new {   researchId = @Model.Id.ToString() }, null)'>Join</a>
+                }
+                else
+                {
+                    <form class="card p-2">
+                        <input type="submit" class="btn btn-secondary " style="width:100%" value="This research private" disabled>
+                    </form>
+                }
             }
             else
-            {
-                <form asp-for="" class="card p-2">
-                    <input type="submit" class="btn btn-danger" style="width:100%" value="Leave">
-                </form>
+            { 
+                <a style="width:100%" class="btn btn-outline-primary" href='@Url.Action("CreateExperiment", "Experiments", new {   researchId = @Model.Id.ToString() }, null)'>Explore</a>
+                <a style="width:100%; margin-top:25px;" class="btn btn-danger" href='@Url.Action("Leave", "Researches", new {   researchId = @Model.Id.ToString() }, null)'>Leave</a>
+
+
             }
         }
         else

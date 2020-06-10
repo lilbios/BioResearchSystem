@@ -9,5 +9,6 @@ namespace bioResearchSystem.Web.Helpers.Researches
     public class ResearchViewCollection : ObjectsViewCollection<Research>
     {
         public List<TopTagListItem> TopTagListItems { get; set; }
+        public string TagName { get; set; }
     }
 }

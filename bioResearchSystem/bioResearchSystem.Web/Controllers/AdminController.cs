@@ -154,10 +154,11 @@ namespace bioResearchSystem.Web.Controllers
             if (selectedTopic != null)
             {
                 var topicViewModel = mapper.Map<TopicViewModel>(selectedTopic);
-                return View(topicViewModel);
+                return RedirectToAction(nameof(Panel));
             }
             return NotFound();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> EditTopic(TopicViewModel topicView)

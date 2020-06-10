@@ -26,8 +26,8 @@ namespace bioResearchSystem.Web.Models.Researсhes
 
         public bool IsParticipate { get; set; }
 
-        public string UserId { get; set; }
-        public AppUser User { get; set; }
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
 
         public AppUser CurrentUser { get; set; }
 

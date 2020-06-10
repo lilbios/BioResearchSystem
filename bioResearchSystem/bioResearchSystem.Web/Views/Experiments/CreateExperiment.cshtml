@@ -1,0 +1,43 @@
+﻿@model bioResearchSystem.Web.Models.Experiments.ExperimentModel
+
+@{
+    ViewData["Title"] = "CreateExperiment";
+}
+
+
+
+    <h4 class="mono">
+        Preparatory experiment information
+    </h4>
+<hr />
+<div class="row">
+    <div class="col-lg-10">
+        <form asp-action="CreateExperiment">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div>
+                    <h6 class="my-0">Name Experiment<span style="color:red">*</span></h6>
+                    <small class="text-muted">Give short name to experiment</small>
+                </div>
+                <input asp-for="NameExperiment" class="form-control" />
+                <span asp-validation-for="NameExperiment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div>
+                    <h6 class="my-0">Goal <span style="color:red">*</span></h6>
+                    <small class="text-muted">Describe your goal this experiment</small>
+                </div>
+                <textarea asp-for="Goal" class="form-control" ></textarea>
+                <span asp-validation-for="Goal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Confirm" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

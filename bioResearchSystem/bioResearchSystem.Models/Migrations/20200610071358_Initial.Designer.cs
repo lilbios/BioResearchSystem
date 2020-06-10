@@ -10,7 +10,7 @@ using bioResearchSystem.Models;
 namespace bioResearchSystem.Models.Migrations
 {
     [DbContext(typeof(BioResearchSystemDbContext))]
-    [Migration("20200608224655_Initial")]
+    [Migration("20200610071358_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -374,11 +374,11 @@ namespace bioResearchSystem.Models.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime?>("ClosedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -400,14 +400,11 @@ namespace bioResearchSystem.Models.Migrations
                     b.Property<Guid?>("TopicId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("TopicId");
+                    b.HasIndex("AppUserId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("TopicId");
 
                     b.ToTable("Researches");
                 });
@@ -602,13 +599,13 @@ namespace bioResearchSystem.Models.Migrations
 
             modelBuilder.Entity("bioResearchSystem.Models.Entities.Research", b =>
                 {
+                    b.HasOne("bioResearchSystem.Models.Entities.AppUser", "AppUser")
+                        .WithMany("Researches")
+                        .HasForeignKey("AppUserId");
+
                     b.HasOne("bioResearchSystem.Models.Entities.Topic", null)
                         .WithMany("Researches")
                         .HasForeignKey("TopicId");
-
-                    b.HasOne("bioResearchSystem.Models.Entities.AppUser", "User")
-                        .WithMany("Researches")
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("bioResearchSystem.Models.Entities.Result", b =>

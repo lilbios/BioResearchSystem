@@ -269,25 +269,24 @@ namespace bioResearchSystem.Models.Migrations
                     Privacy = table.Column<int>(nullable: false),
                     OpenedDate = table.Column<DateTime>(nullable: false),
                     ClosedDate = table.Column<DateTime>(nullable: true),
-                    UserId = table.Column<string>(nullable: true),
-                    CreatorId = table.Column<string>(nullable: true),
+                    AppUserId = table.Column<string>(nullable: true),
                     TopicId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Researches", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Researches_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Researches_Topics_TopicId",
                         column: x => x.TopicId,
                         principalTable: "Topics",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Researches_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -460,14 +459,14 @@ namespace bioResearchSystem.Models.Migrations
                 column: "ResearchId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Researches_AppUserId",
+                table: "Researches",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Researches_TopicId",
                 table: "Researches",
                 column: "TopicId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Researches_UserId",
-                table: "Researches",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Results_BranchId",
@@ -543,10 +542,10 @@ namespace bioResearchSystem.Models.Migrations
                 name: "Branches");
 
             migrationBuilder.DropTable(
-                name: "Topics");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Topics");
         }
     }
 }

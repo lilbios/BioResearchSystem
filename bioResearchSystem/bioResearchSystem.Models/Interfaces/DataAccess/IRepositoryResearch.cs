@@ -14,6 +14,8 @@ namespace bioResearchSystem.Models.Repositories
         public Task<Research> CreateResearch(Research research);
         public Task<ICollection<Research>> SliceResearchCollection(int currentPage,int pageSize);
         public Task<int> GetResearchCollectionLength();
+        public Task<ICollection<Research>> FindRelatedWithTag(string tagName);
+ 
 
     }
 }

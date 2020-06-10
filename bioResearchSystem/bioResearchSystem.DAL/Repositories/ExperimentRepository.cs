@@ -17,6 +17,13 @@ namespace bioResearchSystem.DAL.Implementations
 
         }
 
+        public async Task<Experiment> CreateAsync(Experiment experiment)
+        {
+            await dbSet.AddAsync(experiment);
+            await dbContext.SaveChangesAsync();
+            return experiment;
+        }
+
         public async Task<ICollection<Experiment>> GetAllWithInludeAsync()
         {
             return await dbSet.Include(r => r.Research).AsNoTracking().ToListAsync();

@@ -23,10 +23,8 @@ namespace bioResearchSystem.Models.Entities
         public DateTime OpenedDate { get; set; }
         public DateTime? ClosedDate { get; set; }
 
-        public string UserId { get; set; }
-        public AppUser User { get; set; }
-
-        public string CreatorId { get; set; }
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
  
         public ICollection<Experiment> Experiments { get; set; }
         public ICollection<TagResearch> TagResearches { get; set; }

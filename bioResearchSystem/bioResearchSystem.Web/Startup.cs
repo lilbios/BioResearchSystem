@@ -45,7 +45,10 @@ namespace bioResearchSystem.Web
                 options.Password.RequiredLength = 6;
             }).AddEntityFrameworkStores<BioResearchSystemDbContext>();
 
-      
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(36000);
+            });
             services.RegisterServices(Configuration);
             
         }
@@ -67,7 +70,7 @@ namespace bioResearchSystem.Web
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
 

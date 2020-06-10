@@ -12,5 +12,6 @@ namespace bioResearchSystem.Models.Repositories
 
         public Task<Experiment> GetWithIncludeAsync(Guid id);
         public Task<ICollection<Experiment>> GetAllWithInludeAsync();
+        public Task<Experiment> CreateAsync(Experiment experiment);
     }
 }

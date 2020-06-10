@@ -42,9 +42,10 @@ namespace bioResearchSystem.Web.Common
             services.AddTransient<IRepositoryResult,ResultRepository>();
             services.AddTransient<IRepositoryTopic, TopicRepository>();
             services.AddTransient<IRepositoryContract, ContractRepository>();
+            services.AddTransient<IRepositoryExperiment, ExperimentRepository>();
 
-         
-            
+
+
             services.AddScoped<IAccountService, AccountService>();
             services.AddTransient<IDatabaseManagerService, DatabaseManagerService>();
             services.AddTransient<IResearchService, ResearchService>();

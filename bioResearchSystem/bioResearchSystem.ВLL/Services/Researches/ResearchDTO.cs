@@ -21,11 +21,11 @@ namespace bioResearchSystem.ВLL.Services.Researches
         public Privacy Privacy { get; set; }
 
 
-        public DateTime OpenedDate { get; set; }
+        public DateTime OpenedDate { get; set; } = DateTime.Now;
         public DateTime? ClosedDate { get; set; }
 
-        public string UserId { get; set; }
-        public AppUser User { get; set; }
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
 
         public ICollection<Experiment> Experiments { get; set; }
         public ICollection<TagResearch> TagResearches { get; set; }

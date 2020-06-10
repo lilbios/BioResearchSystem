@@ -19,7 +19,7 @@
                             <div class="card mb-4 box-shadow card-block">
                                 <img class="card-img-top display-only" src="@ImageConvertor.ConvertBytesToImage(item.TopicPicture)" alt="Card image cap">
 
-                                <a style="text-decoration:none; color:black"  href="/Admin/EditTopic/@item.Id.ToString()" class="btn-dat panel-btn-edit p-1"> Edit </a>
+                                <a style="text-decoration:none; color:black"  href='@Url.Action("EditTopic", "Admin", new {  id = @item.Id.ToString() }, null)' class="btn-dat panel-btn-edit p-1"> Edit </a>
 
                                 <div class="card-body">
                                     <p class="card-text topic-text" align="center">@item.TopicName</p>

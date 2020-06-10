@@ -1,0 +1,20 @@
+﻿using bioResearchSystem.Models.Entities;
+using bioResearchSystem.Models.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace bioResearchSystem.Web.Models.Experiments
+{
+    public class ExperimentProcess
+    {
+        public string NameExperiment { get; set; }
+        public string ShortDesription { get; set; }
+        public StatusExperiment StatusExperiment { get; set; }
+        public DateTime StartedDate { get; set; }
+        public Guid ResearchId { get; set; }
+        public Research Research { get; set; }
+        public string Result { get; set; }
+    }
+}
