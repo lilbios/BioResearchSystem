@@ -47,9 +47,9 @@ namespace bioResearchSystem.ВLL.Services
             throw new NotImplementedException();
         }
 
-        public Task UpdeteExperiment(Experiment experiment)
+        public async Task UpdeteExperiment(Experiment experiment)
         {
-            throw new NotImplementedException();
+            await repositoryExperiment.UpdateAsync(experiment);
         }
 
 

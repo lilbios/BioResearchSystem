@@ -65,6 +65,8 @@ namespace bioResearchSystem.Web.Controllers
             {
                 var user = mapper.Map<UserDTO>(model);
                 user.UserName = $"user#{userManager.Users.Count() + 1}";
+                user.Name = model.FullName.Split(" ").FirstOrDefault();
+                user.LastName = model.FullName.Split(" ").LastOrDefault();
                 user.IsAdmin = false;
                 var result = await accountService.Registration(user);
 

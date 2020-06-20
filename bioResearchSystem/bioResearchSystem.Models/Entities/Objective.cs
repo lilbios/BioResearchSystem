@@ -8,10 +8,8 @@ namespace bioResearchSystem.Models.Entities
     {
         [Required]
         public string Headline { get; set; }
-
         [Required]
         public string Description { get; set; }
-
         public bool Checked { get; set; }
         public bool IsModified { get; set; }
         public Guid ResearchId { get; set; }

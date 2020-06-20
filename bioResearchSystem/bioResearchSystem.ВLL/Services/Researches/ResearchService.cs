@@ -34,6 +34,10 @@ namespace bioResearchSystem.ВLL.Services
             throw new NotImplementedException();
         }
 
+        public Task<ICollection<Research>> Find(string searchString)
+        {
+            throw new NotImplementedException();
+        }
 
         public async Task<ICollection<Research>> GetAllResearches()
         {

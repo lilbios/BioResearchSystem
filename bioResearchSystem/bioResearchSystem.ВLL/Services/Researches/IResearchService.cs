@@ -21,5 +21,6 @@ namespace bioResearchSystem.ВLL.Services.Researches
         public Task<int> ResearchCollectionLength();
         public Task<Research> GetResearchAsync(Guid id);
         public Task<bool> IsHasContractWithResearch(AppUser appUser, Research researchId);
+        public Task<ICollection<Research>> Find(string searchString);
     } 
 }

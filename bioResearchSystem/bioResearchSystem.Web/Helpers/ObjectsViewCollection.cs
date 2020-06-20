@@ -9,5 +9,6 @@ namespace bioResearchSystem.Web.Helpers
     {
         public ICollection<T> Objects { get; set; }
         public PageModel PageViewModel { get; set; }
+        public string SearchValue { get; set; }
     }
 }

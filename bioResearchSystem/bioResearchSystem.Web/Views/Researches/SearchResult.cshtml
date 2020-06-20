@@ -1,0 +1,74 @@
+﻿@model bioResearchSystem.Web.Helpers.Researches.ResearchViewCollection
+@using bioResearchSystem.Models.Enums
+<div class="row">
+<div class="col-10">
+    <div class="d-flex align-items-center p-3 my-3 bg-white rounded box-shadow row lh-100">
+
+        <div class="col-3">
+            <h6 class="mb-0 lh-100 head-line-text">Search result for "@Model.SearchValue" </h6>
+        </div>
+        <div class="col-9">
+            <a href='@Url.Action("CreateNewResearch", "Researches")' class="btn btn-success " id="btn-add-rsch">+ Add new research</a>
+        </div>
+    </div>
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+
+        @if (Model.Objects.Count() > 0)
+        {
+            @foreach (var item in Model.Objects)
+            {
+                @if (item.Privacy == Privacy.Public)
+                {
+                    <span class="badge badge-success">Public</span>
+                }
+                else
+                {
+                    <span class="badge badge-dark">Private</span>
+                }
+
+                <div class="media text-muted pt-3">
+                    <h3 class="rsch-title">
+                        <a href='@Url.Action("ResearchDetails", "Researches", new { id = @item.Id.ToString() }, null)'>@item.Title</a>
+                    </h3>
+                    <span id="st">Scientists<br /> <small id="st-count"> @item.Contracts.Count() </small></span>
+                    <span id="exp">Experiments<br /> <small id="exp-count">@item.Experiments.Count() </small></span>
+                    @if (item.TagResearches.Count > 0)
+                    {
+                        <span>
+                            @foreach (var tag in item.TagResearches)
+                            {
+
+                                <small class="badge badge-warning badge-pill" style="margin-left: 5px;">
+                                    <a class="tag-item" href='@Url.Action("Tagged", "Researches", new { tag = @tag.Tag.TagName }, null)'>@tag.Tag.TagName</a>
+                                </small>
+                            }
+                        </span>
+                    }
+                </div>
+                <br />
+                <br />
+                <hr />
+            }
+        }
+        else { 
+            <p>Sorry, but we did not find for you....</p>     
+        }
+    </div>
+</div>
+<div id="right-side-bar" class="col-2" align="center">
+    <div class="card">
+        <div class="card-header" style="font-weight:300">Top tags</div>
+        <div class="card-body">
+            @foreach (var tg in Model.TopTagListItems)
+            {
+                <div class="row mt-1" align="center">
+                    <a class="badge badge-warning p-2" href='@Url.Action("Tagged", "Researches", new {  tag = @tg.TagName }, null)'>@tg.TagName</a>
+
+                    <span style="margin-left:5px;">@tg.Count</span>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+</div>

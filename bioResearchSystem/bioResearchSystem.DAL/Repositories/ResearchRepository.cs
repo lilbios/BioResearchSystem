@@ -57,6 +57,16 @@ namespace bioResearchSystem.DAL.Implementations
 
         }
 
+        public  async Task<ICollection<Research>> FindResearchByName(string researchName)
+        {
+            return await dbSet.Include(e => e.Experiments)
+               .Include(o => o.Objectives)
+               .Include(u => u.AppUser)
+               .Include(c => c.Contracts)
+               .Include(tr => tr.TagResearches).ThenInclude(t => t.Tag)
+               .Where(r => r.Title.StartsWith(researchName)).ToListAsync();
+        }
+
         public async Task<ICollection<Research>> GetAllWithInlude()
         {
             return await dbSet.Include(e => e.Experiments)

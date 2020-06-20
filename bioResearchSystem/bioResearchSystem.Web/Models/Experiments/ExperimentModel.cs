@@ -3,13 +3,13 @@ using bioResearchSystem.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace bioResearchSystem.Web.Models.Experiments
 {
     public class ExperimentModel
     {
+        public Guid Id { get; set; }
         [Required]
         public string NameExperiment { get; set; }
 
@@ -19,8 +19,9 @@ namespace bioResearchSystem.Web.Models.Experiments
         public DateTime StartedDate { get; set; }
         public Guid ResearchId { get; set; }
         public Research Research { get; set; }
-        public string Result { get; set; }
+        public IDictionary<string, int> Result { get; set; }
         public string Data { get; set; }
-       
+        public int Kmer { get; set; }
+
     }
 }

@@ -11,7 +11,6 @@ using bioResearchSystem.ВLL.Services.Devices;
 using bioResearchSystem.ВLL.Services.Experiments;
 using bioResearchSystem.ВLL.Services.Objectives;
 using bioResearchSystem.ВLL.Services.Researches;
-using bioResearchSystem.ВLL.Services.Results;
 using bioResearchSystem.ВLL.Services.Tags;
 using bioResearchSystem.ВLL.Services.Topics;
 using bioResearchSystem.ВLL.Services.Wallets;
@@ -30,7 +29,6 @@ namespace bioResearchSystem.Web.Common
             {
                 throw new ArgumentNullException(nameof(configuration));
             }
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IDbMaster, DbMaster>();
             services.AddTransient<IRepositoryUser,UserRepository>();
             services.AddTransient<IRepositoryResearch,ResearchRepository>();
@@ -39,7 +37,6 @@ namespace bioResearchSystem.Web.Common
             services.AddTransient<IRepositoryDevice, DeviceRepository>();
             services.AddTransient<IRepositoryTagResearch,TagResearchRepository>();
             services.AddTransient<IWalletRepository, WalletRepository>();
-            services.AddTransient<IRepositoryResult,ResultRepository>();
             services.AddTransient<IRepositoryTopic, TopicRepository>();
             services.AddTransient<IRepositoryContract, ContractRepository>();
             services.AddTransient<IRepositoryExperiment, ExperimentRepository>();
@@ -53,7 +50,6 @@ namespace bioResearchSystem.Web.Common
             services.AddTransient<IExperimentService, ExperimentService>();
             services.AddTransient<IObjectiveService, ObjectiveService>();
             services.AddTransient<ITagService, TagService>();
-            services.AddTransient<IResultService, ResultService>();
             services.AddTransient<IWalletService, WalletService>();
             services.AddTransient<ITopicService, TopicService>();
             services.AddTransient<IBaseDevice,DnaSequencer>();

@@ -10,11 +10,11 @@ namespace bioResearchSystem.ВLL.Services
 {
     public class WalletService:IWalletService
     {
-        private readonly IUnitOfWork unitOfWork;
+
         private readonly IMapper mapper;
-        public WalletService(IUnitOfWork _unitOfWork, IMapper _mapper)
+        public WalletService(IMapper _mapper)
         {
-            unitOfWork = _unitOfWork;
+   
             mapper = _mapper;
         }
     }

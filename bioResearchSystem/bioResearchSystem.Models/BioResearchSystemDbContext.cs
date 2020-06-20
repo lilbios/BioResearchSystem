@@ -9,13 +9,12 @@ namespace bioResearchSystem.Models
     {
         public DbSet<Research> Researches { get; set; }
         public DbSet<Experiment> Experiments { get; set; }
-        public DbSet<Result> Results { get; set; }
+        
         public DbSet<Objective> Objectives { get; set; }
         public DbSet<Device> Devices { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<Branch> Branches { get; set; }
         public DbSet<TagResearch> TagResearches { get; set; }
         public DbSet<Contract> Contracts { get; set; }
 

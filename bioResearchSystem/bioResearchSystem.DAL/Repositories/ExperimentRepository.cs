@@ -32,7 +32,6 @@ namespace bioResearchSystem.DAL.Implementations
         public Task<Experiment> GetWithIncludeAsync(Guid id)
         {
             var experiment = dbSet.Include(rsrch => rsrch.Research)
-                .Include(res => res.Result)
                 .FirstOrDefaultAsync(e => e.Id == id);
             return experiment;
         }

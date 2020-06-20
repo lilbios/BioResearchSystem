@@ -12,6 +12,7 @@ namespace bioResearchSystem.Web.Models.Researсhes
     public class ResearchViewModel
     {
 
+        public Guid Id { get; set; }
 
         [Required]
         public string Title { get; set; }

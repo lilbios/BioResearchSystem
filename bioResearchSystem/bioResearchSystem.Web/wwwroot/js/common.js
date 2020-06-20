@@ -27,3 +27,26 @@ function saveToLocalStorage(value) {
     window.localStorage.setItem('id', JSON.stringify(value));
 }
 
+function find_user() {
+
+    let searchValue = $("search-field").val();
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "/Research/SearchUser",
+        data: {
+            value: searchValue
+        }
+    })
+}
+function find_research() {
+    let value = $(".search-field-research").val();
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "/Research/SearchResult",
+        data: {
+            searchValue: value
+        }
+    })
+}

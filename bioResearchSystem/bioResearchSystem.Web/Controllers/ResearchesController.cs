@@ -124,8 +124,9 @@ namespace bioResearchSystem.Web.Controllers
 
 
         [HttpGet]
-        public IActionResult ManageResearch(Guid id)
+        public IActionResult ManageResearch(string id)
         {
+            
             return View();
         }
 
@@ -171,16 +172,26 @@ namespace bioResearchSystem.Web.Controllers
             return View();
         }
 
-        //public async Task<IActionResult> Search(int page, string searchValue)
-        //{
+        [HttpGet]
+        public async Task<IActionResult> SearchResult( string searchValue)
+        {
+            var foundResearch = await researchService.Find(searchValue);
+            var relatedTagCollection = await tagService.GetRelatedTagsWithResearhes();
+           
+            var researchView = new ResearchViewCollection
+            { 
+                SearchValue = searchValue,
+                Objects = foundResearch,
+                TopTagListItems = relatedTagCollection.GroupBy(t => t.Tag)
+                .Select(item => new TopTagListItem
+                {
+                    TagName = item.Key.TagName,
+                    Count = item.Count()
 
-
-        //    var relatedTagCollection = await tagService.GetRelatedTagsWithResearhes();
-        //    var researches = await researchService.GetChunckedResearchCollection(page, (int)PageSizes.ResearchPageSize);
-
-
-        //    return View(researchView);
-        //}
+                }).Take(10).ToList()
+            };
+            return View(researchView);
+        }
 
         [HttpGet]
         public async Task<IActionResult> Tagged(string tag)

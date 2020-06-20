@@ -12,11 +12,11 @@ namespace bioResearchSystem.ВLL.Services
     public class ObjectiveService : IObjectiveService
     {
 
-        private readonly IUnitOfWork unitOfWork;
+      
         private readonly IMapper mapper;
-        public ObjectiveService(IUnitOfWork _unitOfWork, IMapper _mapper)
+        public ObjectiveService( IMapper _mapper)
         {
-            unitOfWork = _unitOfWork;
+       
             mapper = _mapper;
 
         }

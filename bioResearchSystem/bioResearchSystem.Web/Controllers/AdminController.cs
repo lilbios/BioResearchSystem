@@ -38,7 +38,7 @@ namespace bioResearchSystem.Web.Controllers
         }
 
 
-        public async Task<IActionResult> Search(string value)
+        public async Task<IActionResult> SearchUser(string value)
         {
 
 
