@@ -11,9 +11,11 @@ using System.Xml.Linq;
 using AutoMapper;
 using BioAlgo.BioAlgorthims.Algorithms.KmersComputing;
 using bioResearchSystem.Models.Entities;
+using bioResearchSystem.Models.Enums;
 using bioResearchSystem.Web.Models.Experiments;
 using bioResearchSystem.ВLL.Services.Experiments;
 using bioResearchSystem.ВLL.Services.Researches;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
@@ -43,14 +45,22 @@ namespace bioResearchSystem.Web.Controllers
             var experiment = await experimentService.GetExperimentAsync(Guid.Parse(experimentId));
             if (experiment != null)
             {
-                var resultDictionary = JsonConvert.DeserializeObject<IDictionary<string,int>>(experiment.JsonResult);
+                var resultDictionary = JsonConvert.DeserializeObject<IDictionary<string, int>>(experiment.JsonResult);
                 var xElement = new XElement("experiment-resut-root", resultDictionary.Select(kv => new XElement(kv.Key, kv.Value)));
                 var xmlDocument = new XDocument();
                 xmlDocument.Add(xElement);
-                return File(new MemoryStream(Encoding.Unicode.GetBytes(xmlDocument.ToString().ToArray())), "application/xml", "experiment-result.xml");;
+                return File(new MemoryStream(Encoding.Unicode.GetBytes(xmlDocument.ToString().ToArray())), "application/xml", "experiment-result.xml"); ;
             }
 
             return NotFound();
+        }
+
+        public async Task<IActionResult> MyLaboratory()
+        {
+            var stringedUserId = HttpContext.Session.GetString("userId");
+            var user = await userManager.FindByIdAsync(stringedUserId);
+            var userExperiments = await experimentService.GetUsersExperiments(user.Id);
+            return View(userExperiments);
         }
 
         [HttpGet]
@@ -72,7 +82,8 @@ namespace bioResearchSystem.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                var mappedExperiment = mapper.Map<Experiment>(experimentModel);
+                var mappedExperiment = mapper.Map<Experimet>(experimentModel);
+                mappedExperiment.StatusExperiment = StatusExperiment.NotStarted;
                 var experiment = await experimentService.CreateNewExperiment(mappedExperiment);
                 return RedirectToAction(nameof(ExperimentProcess), new { id = experiment.Id });
             }
@@ -101,7 +112,7 @@ namespace bioResearchSystem.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var experiment = await experimentService.CreateNewExperiment(mapper.Map<Experiment>(exp));
+                var experiment = await experimentService.CreateNewExperiment(mapper.Map<Experimet>(exp));
                 return RedirectToAction(nameof(ExperimentProcess), new { id = experiment.Id });
             }
             return View();
@@ -128,6 +139,7 @@ namespace bioResearchSystem.Web.Controllers
                 return strb.ToString();
             });
             experiment.Data = result;
+            experiment.StatusExperiment = StatusExperiment.InProgress;
             await experimentService.UpdeteExperiment(experiment);
             return RedirectToAction(nameof(ExperimentProcess), new { id = experiment.Id });
         }
@@ -141,6 +153,7 @@ namespace bioResearchSystem.Web.Controllers
                 var experiment = await experimentService.GetExperimentAsync(exp.Id);
                 var processedData = kmc.BuildAcidDictionary(exp.Kmer, exp.Data);
                 experiment.JsonResult = JsonConvert.SerializeObject(processedData);
+                experiment.StatusExperiment = StatusExperiment.Done;
                 await experimentService.UpdeteExperiment(experiment);
                 return RedirectToAction(nameof(ExperimentProcess), new { id = experiment.Id });
             }

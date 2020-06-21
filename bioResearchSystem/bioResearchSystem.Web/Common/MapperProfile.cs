@@ -31,9 +31,9 @@ namespace bioResearchSystem.Web.Common
             CreateMap<ResearchDTO, ResearchViewModel>().ReverseMap();
             CreateMap<ResearchDTO, Research>().ReverseMap();
             CreateMap<ResearchModel, Research>().ReverseMap();
-            CreateMap<ExperimentModel, Experiment>().ReverseMap();
-            CreateMap<ExperimentProcess, Experiment>().ReverseMap();
-            CreateMap<ExperimentModel, Experiment>().ReverseMap();
+            CreateMap<ExperimentModel, Experimet>().ReverseMap();
+            CreateMap<ExperimentProcess, Experimet>().ReverseMap();
+            CreateMap<ExperimentModel, Experimet>().ReverseMap();
            
 
 

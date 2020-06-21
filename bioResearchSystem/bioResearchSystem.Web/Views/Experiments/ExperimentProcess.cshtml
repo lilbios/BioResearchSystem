@@ -6,24 +6,25 @@
         <div class="row content">
 
             <div class="col-sm-2 sidenav">
-                <h6 class="my-0">Report</h6>
-                <small class="text-muted">Select compatiable format report</small>
+                <h6 class="my-0 pretty-text">Report</h6>
+                <small class="text-muted pretty-text">Select compatiable format report</small>
                 <p><a href="#">xml</a></p>
                 <input asp-for="ResearchId" hidden />
                 <input asp-for="Id" hidden />
             </div>
             <div class="col-sm-8 text-left">
-                <h6>@Model.NameExperiment</h6>
-                <small class="text-muted">@Model.Goal</small>
+                <h4 class="pretty-text">@Model.NameExperiment</h4>
+                <p class="text-muted pretty-text">@Model.Goal</p>
                 <hr>
-                <h6>Data DNA box</h6>
-                <input class="form-control" asp-for="Kmer" min="1" max="1000" />
-                <textarea cols="30" rows="5" asp-for="Data"></textarea>
+                <h6 class="pretty-text">Data DNA box</h6>
+                <input class="form-control" asp-for="Kmer" min="1" max="1000"  value="1"/>
+                <textarea cols="80" rows="7"  class="mt-3" asp-for="Data"></textarea>
+                <br/>
                 <button class="btn btn-info btn-sm" onclick="get_data(@Model.Id)">Start squencing process</button>
                 <hr />
                 @if (Model.Result != null)
                 {
-                    <table class="table table-bordered table-dark">
+                    <table class="table table-bordered table-dark pretty-text">
                         <thead>
                             <tr>
                                 <th scope="col">Sub-K-mers</th>
@@ -43,21 +44,21 @@
                 }
                 else
                 {
-                    <p class="common-text">The experiment has not started yet. Please pick algorithm and generate data</p>
+                    <p class="common-text pretty-text">The experiment has not started yet. Please pick algorithm and generate data</p>
                 }
             </div>
             <div class="col-sm-2 sidenav">
-                <h6 class="my-0">Algorithms</h6>
+                <h6 class="my-0 pretty-text mt-5">Algorithms</h6>
 
-                <small class="text-muted">Pick algorithm</small>
+                <small class="text-muted pretty-text">Pick algorithm</small>
                 <hr />
                 @if (Model.Result is null)
                 {
-                    <h2> <input class="badge badge-secondary" type="submit" value="K-mers computing"></h2>
+                    <input class="btn btn-primary" type="submit" value="K-mers computing">
                 }
                 else
                 {
-                    <h2> <span class="badge badge-secondary">K-mers computing</span></h2>
+                   <span class="badge badge-secondary">K-mers computing</span>
                 }
             </div>
         </div>

@@ -19,7 +19,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace bioResearchSystem.Web.Controllers
 {
-    //[Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly IMapper mapper;
@@ -37,7 +36,6 @@ namespace bioResearchSystem.Web.Controllers
 
         }
 
-
         public async Task<IActionResult> SearchUser(string value)
         {
 
@@ -45,16 +43,30 @@ namespace bioResearchSystem.Web.Controllers
             if (value.StartsWith('@') && value.Length > 2)
             {
                 var foundNickNames = await accountService.FindBySpecialKeyName(value.Substring(1));
-                return View(foundNickNames);
+                var viewModel = new UsersViewCollection
+                {
+
+                    Objects = foundNickNames,
+                    IdCurrentUser = accountManager.GetUserId(User)
+                };
+                return View(viewModel);
             }
             else
             {
                 var foundEmails = await accountService.FindUsers(value);
-                return View(foundEmails);
+                var viewModel = new UsersViewCollection
+                {
+
+                    Objects = foundEmails,
+                    IdCurrentUser = accountManager.GetUserId(User)
+                };
+
+                return View(viewModel);
             }
 
 
         }
+
 
         [HttpGet]
         public IActionResult CreateNewTopic()
@@ -240,34 +252,34 @@ namespace bioResearchSystem.Web.Controllers
 
             if (ModelState.IsValid)
             {
-               
-                    if (Request.Form.Files.Count == 1)
-                    {
-                        user.Photo = ImageConvertor.ConvertImageToBytes(Request.Form.Files[0]);
-                    }
 
-                    user.Role = user.IsAdmin ? Roles.Admin : Roles.User;
-                    var userDto = mapper.Map<UserDTO>(user);
-                    
-                    var identityResult = await accountService.UpdateUserAsync(user.Id, userDto);
-
-                    if (identityResult.Succeeded)
-                    {
-                        return RedirectToAction(nameof(Users));
-                    }
-                    else
-                    {
-                        foreach (var error in identityResult.Errors)
-                        {
-                            ModelState.AddModelError(string.Empty, error.Description);
-                        }
-                    }
-
+                if (Request.Form.Files.Count == 1)
+                {
+                    user.Photo = ImageConvertor.ConvertImageToBytes(Request.Form.Files[0]);
                 }
-            return View(user);
-               
+
+                user.Role = user.IsAdmin ? Roles.Admin : Roles.User;
+                var userDto = mapper.Map<UserDTO>(user);
+
+                var identityResult = await accountService.UpdateUserAsync(user.Id, userDto);
+
+                if (identityResult.Succeeded)
+                {
+                    return RedirectToAction(nameof(Users));
+                }
+                else
+                {
+                    foreach (var error in identityResult.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+
             }
+            return View(user);
 
         }
 
     }
+
+}

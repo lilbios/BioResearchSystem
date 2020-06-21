@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace bioResearchSystem.Models.Entities
 {
-    public class Experiment:Entity
+    public class Experimet:Entity
     {
         public string NameExperiment { get; set; }
         public string Goal { get; set; }

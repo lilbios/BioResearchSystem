@@ -31,7 +31,7 @@ namespace bioResearchSystem.Web.Models.Researсhes
 
         public AppUser CurrentUser { get; set; }
 
-        public ICollection<Experiment> Experiments { get; set; }
+        public ICollection<Experimet> Experiments { get; set; }
         public ICollection<TagResearch> TagResearches { get; set; }
         public ICollection<Contract> Contracts { get; set; }
 

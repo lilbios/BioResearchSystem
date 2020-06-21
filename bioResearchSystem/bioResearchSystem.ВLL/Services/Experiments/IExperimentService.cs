@@ -8,10 +8,11 @@ namespace bioResearchSystem.ВLL.Services.Experiments
 {
     public interface IExperimentService
     {
-        public Task<Experiment> CreateNewExperiment(Experiment experiment);
-        public Task<Experiment> UpdateExperimentWithResult(Guid id);
+        public Task<Experimet> CreateNewExperiment(Experimet experiment);
+        public Task<Experimet> UpdateExperimentWithResult(Guid id);
         public Task RemoveExperiment(Guid id);
-        public Task UpdeteExperiment(Experiment experiment);
-        public Task<Experiment> GetExperimentAsync(Guid id);
+        public Task UpdeteExperiment(Experimet experiment);
+        public Task<Experimet> GetExperimentAsync(Guid id);
+        public Task<ICollection<Experimet>> GetUsersExperiments(string id);
     }
 }

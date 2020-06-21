@@ -27,14 +27,20 @@ namespace bioResearchSystem.ВLL.Services
 
         }
 
-        public async Task<Experiment> CreateNewExperiment(Experiment experiment)
+        public async Task<Experimet> CreateNewExperiment(Experimet experiment)
         {
             return await repositoryExperiment.CreateAsync(experiment);
         }
 
-        public async  Task<Experiment> GetExperimentAsync(Guid id)
+        public async  Task<Experimet> GetExperimentAsync(Guid id)
         {
             return await repositoryExperiment.GetAsync(id);
+        }
+
+        public async Task<ICollection<Experimet>> GetUsersExperiments(string id)
+        {
+            var experiments = await repositoryExperiment.GetUsersExperiments(id);
+            return experiments;
         }
 
         public Task RemoveExperiment(Guid id)
@@ -42,12 +48,12 @@ namespace bioResearchSystem.ВLL.Services
             throw new NotImplementedException();
         }
 
-        public Task<Experiment> UpdateExperimentWithResult(Guid id)
+        public Task<Experimet> UpdateExperimentWithResult(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task UpdeteExperiment(Experiment experiment)
+        public async Task UpdeteExperiment(Experimet experiment)
         {
             await repositoryExperiment.UpdateAsync(experiment);
         }

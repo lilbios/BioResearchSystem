@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace bioResearchSystem.Models.Repositories
 {
-    public interface IRepositoryExperiment: IRepository<Experiment>
+    public interface IRepositoryExperiment: IRepository<Experimet>
     {
 
-        public Task<Experiment> GetWithIncludeAsync(Guid id);
-        public Task<ICollection<Experiment>> GetAllWithInludeAsync();
-        public Task<Experiment> CreateAsync(Experiment experiment);
+        public Task<Experimet> GetWithIncludeAsync(Guid id);
+        public Task<ICollection<Experimet>> GetAllWithInludeAsync();
+        public Task<Experimet> CreateAsync(Experimet experiment);
+        public Task<ICollection<Experimet>> GetUsersExperiments(string id);
     }
 }

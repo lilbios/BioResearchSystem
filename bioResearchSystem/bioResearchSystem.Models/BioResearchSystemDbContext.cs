@@ -8,7 +8,7 @@ namespace bioResearchSystem.Models
     public class BioResearchSystemDbContext : IdentityDbContext<AppUser>
     {
         public DbSet<Research> Researches { get; set; }
-        public DbSet<Experiment> Experiments { get; set; }
+        public DbSet<Experimet> Experiments { get; set; }
         
         public DbSet<Objective> Objectives { get; set; }
         public DbSet<Device> Devices { get; set; }

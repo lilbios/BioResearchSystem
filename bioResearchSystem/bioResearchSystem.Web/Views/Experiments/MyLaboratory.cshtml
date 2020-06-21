@@ -1,0 +1,57 @@
+﻿@model ICollection<bioResearchSystem.Models.Entities.Experimet>
+@using bioResearchSystem.Models.Enums
+<div class="container-fluid text-center mt-3">
+    <form asp-action="StratProcessing">
+        <div class="row content">
+
+            <div class="col-sm-2 sidenav">
+
+
+            </div>
+            <div class="col-sm-8 text-left">
+                @if (Model.Count() > 0)
+                {
+                    @foreach (var item in Model)
+                    {
+                        @if (item.StatusExperiment == StatusExperiment.Done)
+                        {
+                            <span class="badge badge-success">Done</span>
+                        }
+                        else if (item.StatusExperiment == StatusExperiment.InProgress)
+                        {
+
+                            <span class="badge badge-primary">In Progress</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-secondary">Not Started</span>
+                        }
+
+            <div class="media text-muted pt-3">
+                <h3 class="rsch-title">
+                    <a href='@Url.Action("ExperimentProcess", "Experiments", new {  id = @item.Id.ToString() }, null)'>@item.NameExperiment</a>
+                </h3>
+                <small class="text-muted">@item.Goal</small>
+                <hr />
+
+                @if (item.StatusExperiment == StatusExperiment.Done)
+                {
+                    <a  class="btn btn-info" href='@Url.Action("ExperimentProcess", "Experiments", new {  id = @item.Id.ToString() }, null)'>View</a>
+                }
+                else
+                {
+                    <a class="btn btn-primary" href='@Url.Action("ExperimentProcess", "Experiments", new {  id = @item.Id.ToString() }, null)'>Continue</a>
+                }
+            </div>
+                        <br />
+                        <br />
+                        <hr />
+                    }
+                }
+            </div>
+            <div class="col-sm-2 sidenav">
+
+            </div>
+        </div>
+    </form>
+</div>

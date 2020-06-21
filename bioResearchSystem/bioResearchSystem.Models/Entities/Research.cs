@@ -26,7 +26,7 @@ namespace bioResearchSystem.Models.Entities
         public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
  
-        public ICollection<Experiment> Experiments { get; set; }
+        public ICollection<Experimet> Experiments { get; set; }
         public ICollection<TagResearch> TagResearches { get; set; }
         public ICollection<Contract> Contracts { get; set; }
 

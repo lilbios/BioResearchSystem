@@ -27,7 +27,7 @@ namespace bioResearchSystem.ВLL.Services.Researches
         public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
 
-        public ICollection<Experiment> Experiments { get; set; }
+        public ICollection<Experimet> Experiments { get; set; }
         public ICollection<TagResearch> TagResearches { get; set; }
 
         public ICollection<Objective> Objectives { get; set; }
