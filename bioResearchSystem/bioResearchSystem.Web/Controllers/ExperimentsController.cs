@@ -125,19 +125,21 @@ namespace bioResearchSystem.Web.Controllers
         {
             var serialtPort = new SerialPort();
             serialtPort.BaudRate = 9600;
-            serialtPort.PortName = "COM5";
+            serialtPort.PortName = "COM4";
             var strb = new StringBuilder();
             var experiment = await experimentService.GetExperimentAsync(Guid.Parse(id));
 
+            serialtPort.Open();
             var result = await Task.Run(() =>
             {
-                while (strb.Length != 1000)
+                while (strb.Length <= 1000)
                 {
                     var generatedData = serialtPort.ReadLine();
                     strb.Append(generatedData);
                 }
                 return strb.ToString();
             });
+            serialtPort.Close();
             experiment.Data = result;
             experiment.StatusExperiment = StatusExperiment.InProgress;
             await experimentService.UpdeteExperiment(experiment);
@@ -151,13 +153,13 @@ namespace bioResearchSystem.Web.Controllers
             {
                 var kmc = new KMC();
                 var experiment = await experimentService.GetExperimentAsync(exp.Id);
-                var processedData = kmc.BuildAcidDictionary(exp.Kmer, exp.Data);
+                var processedData = kmc.BuildAcidDictionary(exp.Kmer, experiment.Data );
                 experiment.JsonResult = JsonConvert.SerializeObject(processedData);
                 experiment.StatusExperiment = StatusExperiment.Done;
                 await experimentService.UpdeteExperiment(experiment);
                 return RedirectToAction(nameof(ExperimentProcess), new { id = experiment.Id });
             }
-            return View();
+            return RedirectToAction(nameof(ExperimentProcess), new { id = exp.Id });
         }
     }
 }

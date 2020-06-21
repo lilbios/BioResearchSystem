@@ -10,10 +10,7 @@ namespace bioResearchSystem.Web.Models.Experiments
     public class ExperimentModel
     {
         public Guid Id { get; set; }
-        [Required]
         public string NameExperiment { get; set; }
-
-        [Required]
         public string Goal { get; set; }
         public StatusExperiment StatusExperiment { get; set; }
         public DateTime StartedDate { get; set; }

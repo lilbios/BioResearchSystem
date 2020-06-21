@@ -36,10 +36,14 @@ namespace BioAlgo.BioAlgorthims.Algorithms.KmersComputing
                     }
                     else
                     {
-                        hashTable.Add(subKmer, 1);
+                        if (subKmer.Length == k && subKmer != "\r")
+                        {
+                            hashTable.Add(subKmer, 1);
+                        }
                     }
                 }
             });
+
             return hashTable;
         }
 

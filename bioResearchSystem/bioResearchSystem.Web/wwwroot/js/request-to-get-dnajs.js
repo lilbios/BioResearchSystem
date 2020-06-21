@@ -2,10 +2,7 @@
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "/Experiment/GetData",
-        data: {
-            id:expid
-        }
+        url: `/Experiment/GetData/${expid}`,
     });
 
 }
