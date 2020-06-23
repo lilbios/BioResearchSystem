@@ -1,5 +1,8 @@
 ﻿@model bioResearchSystem.Web.Helpers.Researches.ResearchViewCollection
 @using bioResearchSystem.Models.Enums
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localize
+
 
 
 
@@ -8,10 +11,10 @@
         <div class="d-flex align-items-center p-3 my-3 bg-white rounded box-shadow row lh-100">
 
             <div class="col-3">
-                <h6 class="mb-0 lh-100 head-line-text">Top Researches</h6>
+                <h6 class="mb-0 lh-100 head-line-text">@_localize["top_researches"]</h6>
             </div>
             <div class="col-9">
-                <a href='@Url.Action("CreateNewResearch", "Researches")' class="btn btn-success " id="btn-add-rsch">+ Add new research</a>
+                <a href='@Url.Action("CreateNewResearch", "Researches")' class="btn btn-success " id="btn-add-rsch">+ @_localize["add_new_research"]</a>
             </div>
 
 
@@ -24,20 +27,20 @@
                 {
                     @if (item.Privacy == Privacy.Public)
                     {
-                        <span class="badge badge-success">Public</span>
+                        <span class="badge badge-success">@_localize["public"]</span>
                     }
                     else
                     {
 
-                        <span class="badge badge-dark">Private</span>
+                        <span class="badge badge-dark">@_localize["private"]</span>
                     }
 
                     <div class="media text-muted pt-3">
                         <h3 class="rsch-title">
                             <a href='@Url.Action("ResearchDetails", "Researches", new {  id = @item.Id.ToString() }, null)'>@item.Title</a>
                         </h3>
-                        <span id="st">Scientists<br /> <small id="st-count"> @item.Contracts.Count() </small></span>
-                        <span id="exp">Experiments<br /> <small id="exp-count">@item.Experiments.Count() </small></span>
+                        <span id="st">@_localize["scientist"]<br /> <small id="st-count"> @item.Contracts.Count() </small></span>
+                        <span id="exp">@_localize["experiments"]<br /> <small id="exp-count">@item.Experiments.Count() </small></span>
 
 
 
@@ -74,7 +77,7 @@
                    asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
                    class="page-link">
 
-                    Previous page
+                    @_localize["previous_page"]
                 </a>
             }
             @if (Model.PageViewModel.HasNextPage)
@@ -82,14 +85,14 @@
                 <a asp-action="Researches"
                    asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
                    class="page-link">
-                    Next page
+                    @_localize["next_page"]
                 </a>
             }
         </div>
     </div>
     <div id="right-side-bar" class="col-2" align="center">
         <div class="card">
-            <div class="card-header" style="font-weight:300">Top tags</div>
+            <div class="card-header" style="font-weight:300">@_localize["top_tags"]</div>
             <div class="card-body">
                 @foreach (var tg in Model.TopTagListItems)
                 {

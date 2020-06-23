@@ -6,6 +6,7 @@ using bioResearchSystem.Models.Entities;
 using bioResearchSystem.Models.Enums;
 using bioResearchSystem.Web.Helpers;
 using bioResearchSystem.Web.Helpers.Researches;
+using bioResearchSystem.Web.Models;
 using bioResearchSystem.Web.Models.Researсhes;
 using bioResearchSystem.ВLL.Services.Researches;
 using bioResearchSystem.ВLL.Services.Tags;
@@ -13,6 +14,7 @@ using bioResearchSystem.ВLL.Services.Topics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -172,15 +174,20 @@ namespace bioResearchSystem.Web.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult PostResearchSearch(TwinSearchModel SearchModel) {
+
+            return Json(new { redirectToUrl = Url.Action("SearchResult", "Researches",new {value = SearchModel.SearchValue }) });
+        }
         [HttpGet]
-        public async Task<IActionResult> SearchResult( string searchValue)
+        public async Task<IActionResult> SearchResult(string value)
         {
-            var foundResearch = await researchService.Find(searchValue);
+            var foundResearch = await researchService.Find(value);
             var relatedTagCollection = await tagService.GetRelatedTagsWithResearhes();
            
             var researchView = new ResearchViewCollection
             { 
-                SearchValue = searchValue,
+                SearchValue = value,
                 Objects = foundResearch,
                 TopTagListItems = relatedTagCollection.GroupBy(t => t.Tag)
                 .Select(item => new TopTagListItem
@@ -231,7 +238,17 @@ namespace bioResearchSystem.Web.Controllers
         //    return RedirectToAction(nameof(ResearchDetails), new { id = researchId });
         //}
 
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
 
+            return LocalRedirect(returnUrl);
+        }
 
 
 

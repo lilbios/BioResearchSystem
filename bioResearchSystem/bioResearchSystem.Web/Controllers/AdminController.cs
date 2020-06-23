@@ -36,6 +36,7 @@ namespace bioResearchSystem.Web.Controllers
 
         }
 
+        [HttpGet]
         public async Task<IActionResult> SearchUser(string value)
         {
 
@@ -227,6 +228,11 @@ namespace bioResearchSystem.Web.Controllers
             return BadRequest(HttpStatusCode.BadRequest);
         }
 
+        [HttpPost]
+        public IActionResult PostUserSearch(string val) {
+
+            return RedirectToAction(nameof(SearchUser), new {value = val });
+        }
 
 
         [HttpGet]

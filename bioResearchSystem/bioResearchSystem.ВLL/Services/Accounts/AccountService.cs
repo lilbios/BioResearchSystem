@@ -103,9 +103,11 @@ namespace bioResearchSystem.ВLL.Services.Accounts
         public async Task DeleteUser(AppUser appUser)
         {
 
-            var role = await userManager.GetRolesAsync(appUser);
-            await userManager.RemoveFromRoleAsync(appUser, role.FirstOrDefault());
-            await userManager.DeleteAsync(appUser);
+          
+            var result  = await userManager.DeleteAsync(appUser);
+            if (result.Succeeded) {
+                string a = "aaaa";
+            }
         }
 
         public async Task<AppUser> GetUser(Expression<Func<AppUser, bool>> expession)

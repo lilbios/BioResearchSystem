@@ -64,7 +64,7 @@ namespace bioResearchSystem.DAL.Implementations
                .Include(u => u.AppUser)
                .Include(c => c.Contracts)
                .Include(tr => tr.TagResearches).ThenInclude(t => t.Tag)
-               .Where(r => r.Title.StartsWith(researchName)).ToListAsync();
+               .Where(r => r.Title.ToLower().StartsWith(researchName)).ToListAsync();
         }
 
         public async Task<ICollection<Research>> GetAllWithInlude()
